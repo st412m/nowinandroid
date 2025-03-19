@@ -63,10 +63,17 @@ class NiaApplication : Application(), ImageLoaderFactory {
      *
      * If a problem is found, the offending call will be logged and the application will be killed.
      */
+//    private fun setStrictModePolicy() {
+//        if (isDebuggable()) {
+//            StrictMode.setThreadPolicy(
+//                Builder().detectAll().penaltyLog().penaltyDeath().build(),
+//            )
+//        }
+//    }
     private fun setStrictModePolicy() {
         if (isDebuggable()) {
             StrictMode.setThreadPolicy(
-                Builder().detectAll().penaltyLog().penaltyDeath().build(),
+                Builder().detectAll().penaltyLog().build(),
             )
         }
     }

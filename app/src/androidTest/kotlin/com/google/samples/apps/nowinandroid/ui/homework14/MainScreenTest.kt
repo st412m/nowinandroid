@@ -21,15 +21,21 @@ import com.google.samples.apps.nowinandroid.MainActivity
 import com.kaspersky.components.composesupport.config.withComposeSupport
 import com.kaspersky.kaspresso.kaspresso.Kaspresso
 import com.kaspersky.kaspresso.testcases.api.testcase.TestCase
+import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 
 class MainScreenTest : TestCase(
-    Kaspresso.Builder.withComposeSupport(),
+    Kaspresso.Builder.withComposeSupport()
 ) {
     @get: Rule
     val composeTestRule = createAndroidComposeRule<MainActivity>()
     val mainScreen = MainScreen(composeTestRule)
+
+    @Before
+    fun setUp() {
+        composeTestRule.activityRule.scenario.recreate()
+    }
 
     @Test
     fun checkButtonTest() {
@@ -38,14 +44,17 @@ class MainScreenTest : TestCase(
                 mainScreen{
                     headlinesIcon.perform {
                         assertContentDescriptionEquals("Headlines")
+                        composeTestRule.waitForIdle()
                         performClick()
                     }
                     uiIcon.perform {
                         assertContentDescriptionEquals("UI")
+                        composeTestRule.waitForIdle()
                         performClick()
                     }
                     composeIcon.perform {
                         assertContentDescriptionEquals("Compose")
+                        composeTestRule.waitForIdle()
                         performClick()
                     }
                 }
@@ -54,6 +63,7 @@ class MainScreenTest : TestCase(
             step("check button 'done' and click") {
                 mainScreen {
                     doneButton.assertTextContains("Done")
+                    composeTestRule.waitForIdle()
                     performClick()
                 }
             }
