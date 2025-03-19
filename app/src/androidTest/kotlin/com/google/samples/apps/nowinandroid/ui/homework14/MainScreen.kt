@@ -20,9 +20,23 @@ import androidx.compose.ui.test.SemanticsNodeInteractionsProvider
 import com.kaspersky.components.composesupport.core.KNode
 import io.github.kakaocup.compose.node.element.ComposeScreen
 
-class MainScreen(semanticProvides: SemanticsNodeInteractionsProvider):
+class MainScreen(semanticProvides: SemanticsNodeInteractionsProvider) :
     ComposeScreen<MainScreen>(semanticProvides) {
-        val doneButton = KNode(semanticProvides){
-            hasText("Done")
-        }
+
+    val doneButton = KNode(semanticProvides) {
+        hasText("Done")
     }
+
+    val headlinesIcon = KNode(semanticProvides) {
+        hasContentDescription("Headlines")
+
+    }
+
+    val uiIcon = KNode(semanticProvides) {
+        hasContentDescription("UI")
+
+    }
+    val composeIcon = KNode(semanticProvides) {
+        hasContentDescription("Compose")
+    }
+}

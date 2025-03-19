@@ -34,9 +34,27 @@ class MainScreenTest : TestCase(
     @Test
     fun checkButtonTest() {
         run {
-            step("check button 'done'") {
+            step("Отмечаем элементы"){
+                mainScreen{
+                    headlinesIcon.perform {
+                        assertContentDescriptionEquals("Headlines")
+                        performClick()
+                    }
+                    uiIcon.perform {
+                        assertContentDescriptionEquals("UI")
+                        performClick()
+                    }
+                    composeIcon.perform {
+                        assertContentDescriptionEquals("Compose")
+                        performClick()
+                    }
+                }
+            }
+
+            step("check button 'done' and click") {
                 mainScreen {
                     doneButton.assertTextContains("Done")
+                    performClick()
                 }
             }
         }
