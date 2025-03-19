@@ -38,6 +38,9 @@ android {
 //        testInstrumentationRunner = "com.google.samples.apps.nowinandroid.core.testing.NiaTestRunner" заменили на каспрессо
         testInstrumentationRunner = "com.kaspersky.kaspresso.runner.KaspressoRunner"
         testInstrumentationRunnerArguments["clearPackageData"] = "true"
+        testOptions {
+            execution = "ANDROIDX_TEST_ORCHESTRATOR"
+        }
     }
 
     buildTypes {

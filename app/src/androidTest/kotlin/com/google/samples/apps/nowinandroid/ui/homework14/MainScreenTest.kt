@@ -32,11 +32,6 @@ class MainScreenTest : TestCase(
     val composeTestRule = createAndroidComposeRule<MainActivity>()
     val mainScreen = MainScreen(composeTestRule)
 
-    @Before
-    fun setUp() {
-        composeTestRule.activityRule.scenario.recreate()
-    }
-
     @Test
     fun checkButtonTest() {
         run {
