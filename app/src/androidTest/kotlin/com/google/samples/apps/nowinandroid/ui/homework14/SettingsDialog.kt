@@ -25,63 +25,32 @@ class SettingsDialog(semanticProvides: SemanticsNodeInteractionsProvider) :
     ComposeScreen<SettingsDialog>(semanticProvides) {
     private val context = InstrumentationRegistry.getInstrumentation().targetContext
 
-    private val brandGuidelinesText: String by lazy {
+    private fun getStringResource(resourceName: String): String {
         val resId = context.resources.getIdentifier(
-            "feature_settings_brand_guidelines",
+            resourceName,
             "string",
-            context.packageName,
+            context.packageName
         )
-        context.getString(resId)
-    }
-    private val privacyPoliceText: String by lazy {
-        val resId = context.resources.getIdentifier(
-            "feature_settings_privacy_policy",
-            "string",
-            context.packageName,
-        )
-        context.getString(resId)
-    }
-    private val feedbackText: String by lazy {
-        val resId = context.resources.getIdentifier(
-            "feature_settings_feedback",
-            "string",
-            context.packageName,
-        )
-        context.getString(resId)
-    }
-    private val licensesText: String by lazy {
-        val resId = context.resources.getIdentifier(
-            "feature_settings_licenses",
-            "string",
-            context.packageName,
-        )
-        context.getString(resId)
-    }
-    private val okButtonText: String by lazy {
-        val resId = context.resources.getIdentifier(
-            "feature_settings_dismiss_dialog_button_text",
-            "string",
-            context.packageName,
-        )
-        context.getString(resId)
+        return context.getString(resId)
     }
 
-    val privacyPolicyButton = KNode(semanticProvides) {
-        hasText(this@SettingsDialog.privacyPoliceText)
-    }
+val privacyPolicyButton = KNode(semanticProvides) {
+    hasText(this@SettingsDialog.getStringResource("feature_settings_privacy_policy"))
+}
 
     val brandGuideButton = KNode(semanticProvides) {
-        hasText(this@SettingsDialog.brandGuidelinesText)
+        hasText(this@SettingsDialog.getStringResource("feature_settings_brand_guidelines"))
     }
 
     val feedbackButton = KNode(semanticProvides) {
-        hasText(this@SettingsDialog.feedbackText)
+        hasText(this@SettingsDialog.getStringResource("feature_settings_feedback"))
     }
+
     val licensesButton = KNode(semanticProvides) {
-        hasText(this@SettingsDialog.licensesText)
+        hasText(this@SettingsDialog.getStringResource("feature_settings_licenses"))
     }
 
     val okButton = KNode(semanticProvides) {
-        hasText(this@SettingsDialog.okButtonText)
+        hasText(this@SettingsDialog.getStringResource("feature_settings_dismiss_dialog_button_text"))
     }
 }
