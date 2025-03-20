@@ -17,6 +17,7 @@
 package com.google.samples.apps.nowinandroid.ui.homework14
 
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
+import androidx.test.uiautomator.UiSelector
 import com.google.samples.apps.nowinandroid.MainActivity
 import com.kaspersky.components.composesupport.config.withComposeSupport
 import com.kaspersky.kaspresso.kaspresso.Kaspresso
@@ -36,6 +37,11 @@ class MainScreenTest : TestCase(
     @Test
     fun checkButtonTest() {
         run {
+            step("Нажимаем на кнопку 'Allow' в системном диалоге разрешений") {
+                device.uiDevice.findObject(
+                    UiSelector().text("Allow"),
+                ).click()
+            }
             step("Отмечаем элементы") {
                 mainScreen {
                     headlinesIcon.perform {
@@ -55,7 +61,6 @@ class MainScreenTest : TestCase(
                     }
                 }
             }
-
             step("check button 'done' and click") {
                 mainScreen {
                     doneButton.assertTextContains("Done")
@@ -85,7 +90,7 @@ class MainScreenTest : TestCase(
                     device.uiDevice.pressBack()
                 }
             }
-            step("Проверяем наличие кнопки 'Brand Guide' кликаем на нее, потом возвращаемся"){
+            step("Проверяем наличие кнопки 'Brand Guide' кликаем на нее, потом возвращаемся") {
                 settingsDialog {
                     brandGuideButton.assertIsDisplayed()
                     brandGuideButton.performClick()
@@ -94,7 +99,7 @@ class MainScreenTest : TestCase(
                     device.uiDevice.pressBack()
                 }
             }
-            step("Проверяем наличие кнопки 'feedback' кликаем на нее, потом возвращаемся"){
+            step("Проверяем наличие кнопки 'feedback' кликаем на нее, потом возвращаемся") {
                 settingsDialog {
                     feedbackButton.assertIsDisplayed()
                     feedbackButton.performClick()
@@ -103,7 +108,7 @@ class MainScreenTest : TestCase(
                     device.uiDevice.pressBack()
                 }
             }
-            step("Проверяем наличие кнопки 'licenses' кликаем на нее, потом возвращаемся"){
+            step("Проверяем наличие кнопки 'licenses' кликаем на нее, потом возвращаемся") {
                 settingsDialog {
                     licensesButton.assertIsDisplayed()
                     licensesButton.performClick()
@@ -112,7 +117,7 @@ class MainScreenTest : TestCase(
                     device.uiDevice.pressBack()
                 }
             }
-            step("Проверяем наличие кнопки 'ок' и выходим из меню через клик на нее"){
+            step("Проверяем наличие кнопки 'ок' и выходим из меню через клик на нее") {
                 settingsDialog {
                     okButton.assertIsDisplayed()
                     okButton.performClick()
