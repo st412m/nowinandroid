@@ -29,14 +29,14 @@ class SettingsDialog(semanticProvides: SemanticsNodeInteractionsProvider) :
         val resId = context.resources.getIdentifier(
             resourceName,
             "string",
-            context.packageName
+            context.packageName,
         )
         return context.getString(resId)
     }
 
-val privacyPolicyButton = KNode(semanticProvides) {
-    hasText(this@SettingsDialog.getStringResource("feature_settings_privacy_policy"))
-}
+    val privacyPolicyButton = KNode(semanticProvides) {
+        hasText(this@SettingsDialog.getStringResource("feature_settings_privacy_policy"))
+    }
 
     val brandGuideButton = KNode(semanticProvides) {
         hasText(this@SettingsDialog.getStringResource("feature_settings_brand_guidelines"))

@@ -23,6 +23,25 @@ import io.github.kakaocup.compose.node.element.ComposeScreen
 class MainScreen(semanticProvides: SemanticsNodeInteractionsProvider) :
     ComposeScreen<MainScreen>(semanticProvides) {
 
+    val centerAlignedTopAppBar = KNode(semanticProvides) {
+        hasTestTag("niaTopAppBar")
+    }
+
+    val searchIcon = KNode(semanticProvides) {
+        hasContentDescription("Search")
+        hasParent(androidx.compose.ui.test.hasTestTag("niaTopAppBar"))
+    }
+
+    val titleText = KNode(semanticProvides){
+        hasAnySibling(androidx.compose.ui.test.hasContentDescription("Search"))
+        hasParent(androidx.compose.ui.test.hasTestTag("niaTopAppBar"))
+    }
+
+    val settingsIcon = KNode(semanticProvides){
+        hasContentDescription("Settings")
+        hasParent(androidx.compose.ui.test.hasTestTag("niaTopAppBar"))
+    }
+
     val doneButton = KNode(semanticProvides) {
         hasText("Done")
     }

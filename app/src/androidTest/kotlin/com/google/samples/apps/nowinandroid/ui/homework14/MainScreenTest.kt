@@ -69,12 +69,12 @@ class MainScreenTest : TestCase(
                 }
             }
             step("Проверяем отображение иконки 'Search'") {
-                nowInAndroid {
+                mainScreen {
                     searchIcon.assertIsDisplayed()
                 }
             }
             step("Проверяем отображение иконки 'Settings' и кликаем на нее") {
-                nowInAndroid {
+                mainScreen {
                     settingsIcon.assertIsDisplayed()
                     settingsIcon.performClick()
                 }
