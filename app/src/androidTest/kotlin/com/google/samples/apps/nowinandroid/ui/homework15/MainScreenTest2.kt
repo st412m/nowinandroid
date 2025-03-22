@@ -106,24 +106,34 @@ class MainScreenTest2 : TestCase(
                     searchIcon.assertIsDisplayed()
                     searchIcon.performClick()
                 }
-                step("проверяем наличие иконки поиска"){
-                    searchScreenItems{
+                step("проверяем наличие иконки поиска") {
+                    searchScreenItems {
                         searchIcon.assertIsDisplayed()
                     }
                 }
-                step("проверяем наличие текстового поля ввода"){
-                    searchScreenItems{
+                step("проверяем наличие текстового поля ввода") {
+                    searchScreenItems {
                         searchTextField.assertIsDisplayed()
                         searchTextField.performTextInput("хуй")
                     }
                 }
-                step("Проверяем наличие кнопки 'назад' и выходим с экрана по клику"){
-                    searchScreenItems{
+                step("Проверяем наличие кнопки 'назад' и выходим с экрана по клику") {
+                    searchScreenItems {
                         onBackIcon.assertIsDisplayed()
                         onBackIcon.performClick()
                     }
                 }
+            }
+            step("Проверяем наличие и кликабельность значков нижнего тулбара") {
+                mainScreen {
+                    savedIcon.performClick()
+                    composeTestRule.waitForIdle()
+                    interestsIcon.performClick()
+                    composeTestRule.waitForIdle()
+                    forYouIcon.performClick()
+                    composeTestRule.waitForIdle()
 
+                }
             }
         }
     }

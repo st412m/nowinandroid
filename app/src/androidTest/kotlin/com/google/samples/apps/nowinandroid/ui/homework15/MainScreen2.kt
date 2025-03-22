@@ -29,7 +29,7 @@ class MainScreen2(semanticProvides: SemanticsNodeInteractionsProvider) :
         hasTestTag("niaTopAppBar")
     }
 
-    val titleText = KNode(semanticProvides){
+    val titleText = KNode(semanticProvides) {
         hasTestTag(C.UPPER_TITLE_TEXT)
         useUnmergedTree = true
     }
@@ -42,5 +42,18 @@ class MainScreen2(semanticProvides: SemanticsNodeInteractionsProvider) :
     val settingIcon = KNode(semanticProvides) {
         hasTestTag(C.UPPER_SETTINGS_ICON)
         useUnmergedTree = true
+    }
+
+    val forYouIcon = KNode(semanticProvides) {
+        hasTestTag("NiaNavItem")
+        hasText("For you")
+    }
+    val savedIcon = KNode(semanticProvides) {
+        hasTestTag("NiaNavItem")
+        hasText("Saved")
+    }
+    val interestsIcon = KNode(semanticProvides) {
+        hasTestTag("NiaNavItem")
+        hasText("Interests")
     }
 }
