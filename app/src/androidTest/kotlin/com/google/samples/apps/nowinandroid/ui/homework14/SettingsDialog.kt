@@ -19,6 +19,7 @@ package com.google.samples.apps.nowinandroid.ui.homework14
 import androidx.compose.ui.test.SemanticsNodeInteractionsProvider
 import androidx.test.platform.app.InstrumentationRegistry
 import com.kaspersky.components.composesupport.core.KNode
+import com.google.samples.apps.nowinandroid.feature.settings.R
 import io.github.kakaocup.compose.node.element.ComposeScreen
 
 class SettingsDialog(semanticProvides: SemanticsNodeInteractionsProvider) :
@@ -29,23 +30,23 @@ class SettingsDialog(semanticProvides: SemanticsNodeInteractionsProvider) :
         return context.getString(resourceId)
     }
 
-    val privacyPolicyButton = KNode(semanticProvides) {
-        hasText(this@SettingsDialog.getStringResource(com.google.samples.apps.nowinandroid.feature.settings.R.string.feature_settings_privacy_policy))
+    val privacyPolicyButton =  KNode(semanticProvides) {
+        hasText(this@SettingsDialog.getStringResource(R.string.feature_settings_privacy_policy))
     }
 
     val brandGuideButton = KNode(semanticProvides) {
-        hasText(this@SettingsDialog.getStringResource(com.google.samples.apps.nowinandroid.feature.settings.R.string.feature_settings_brand_guidelines))
+        hasText(this@SettingsDialog.getStringResource(R.string.feature_settings_brand_guidelines))
     }
 
     val feedbackButton = KNode(semanticProvides) {
-        hasText(this@SettingsDialog.getStringResource(com.google.samples.apps.nowinandroid.feature.settings.R.string.feature_settings_feedback))
+        hasText(this@SettingsDialog.getStringResource(R.string.feature_settings_feedback))
     }
 
     val licensesButton = KNode(semanticProvides) {
-        hasText(this@SettingsDialog.getStringResource(com.google.samples.apps.nowinandroid.feature.settings.R.string.feature_settings_licenses))
+        hasText(this@SettingsDialog.getStringResource(R.string.feature_settings_licenses))
     }
 
     val okButton = KNode(semanticProvides) {
-        hasText(this@SettingsDialog.getStringResource(com.google.samples.apps.nowinandroid.feature.settings.R.string.feature_settings_dismiss_dialog_button_text))
+        hasText(this@SettingsDialog.getStringResource(R.string.feature_settings_dismiss_dialog_button_text))
     }
 }
