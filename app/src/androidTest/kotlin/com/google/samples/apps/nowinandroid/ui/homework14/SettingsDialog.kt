@@ -29,24 +29,15 @@ class SettingsDialog(semanticProvides: SemanticsNodeInteractionsProvider) :
     private fun getStringResource(resourceId: Int): String {
         return context.getString(resourceId)
     }
-
-    val privacyPolicyButton =  KNode(semanticProvides) {
-        hasText(this@SettingsDialog.getStringResource(R.string.feature_settings_privacy_policy))
-    }
-
-    val brandGuideButton = KNode(semanticProvides) {
-        hasText(this@SettingsDialog.getStringResource(R.string.feature_settings_brand_guidelines))
-    }
-
-    val feedbackButton = KNode(semanticProvides) {
-        hasText(this@SettingsDialog.getStringResource(R.string.feature_settings_feedback))
-    }
-
-    val licensesButton = KNode(semanticProvides) {
-        hasText(this@SettingsDialog.getStringResource(R.string.feature_settings_licenses))
-    }
-
-    val okButton = KNode(semanticProvides) {
-        hasText(this@SettingsDialog.getStringResource(R.string.feature_settings_dismiss_dialog_button_text))
-    }
+    val privacyPolicyButton = child<KNode> {
+        hasText(this@SettingsDialog.getStringResource(R.string.feature_settings_privacy_policy)) }
+    val brandGuideButton = child<KNode> {
+        hasText(this@SettingsDialog.getStringResource(R.string.feature_settings_brand_guidelines)) }
+    val feedbackButton = child<KNode> {
+        hasText(this@SettingsDialog.getStringResource(R.string.feature_settings_feedback)) }
+    val licensesButton = child<KNode> {
+        hasText(this@SettingsDialog.getStringResource(R.string.feature_settings_licenses)) }
+    val okButton = child<KNode>{
+        hasText(this@SettingsDialog.getStringResource(R.string.feature_settings_dismiss_dialog_button_text)) }
 }
+

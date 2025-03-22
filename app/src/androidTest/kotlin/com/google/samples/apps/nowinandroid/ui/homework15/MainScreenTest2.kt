@@ -43,58 +43,58 @@ class MainScreenTest2 : TestCase(
                     UiSelector().text("Allow"),
                 ).click()
             }
-//            step("Проверяем наличие кнопки 'Settings' в верхнем тулбаре и жмакаем в нее") {
-//                mainScreen {
-//                    settingIcon.assertIsDisplayed()
-//                    settingIcon.performClick()
-//                }
-//                step(
-//                    "Проверяем наличие кнопки 'Privacy Police' кликаем на нее, потом возвращаемся",
-//                ) {
-//                    settingsDialog {
-//                        privacyPolicyButton.assertIsDisplayed()
-//                        privacyPolicyButton.performClick()
-//                        composeTestRule.waitForIdle()
-//                        Thread.sleep(5000)
-//                        device.uiDevice.pressBack()
-//                    }
-//                }
-//                step("Проверяем наличие кнопки 'Brand Guide' кликаем на нее, потом возвращаемся") {
-//                    settingsDialog {
-//                        brandGuideButton.assertIsDisplayed()
-//                        brandGuideButton.performClick()
-//                        composeTestRule.waitForIdle()
-//                        Thread.sleep(5000)
-//                        device.uiDevice.pressBack()
-//                    }
-//                }
-//                step("Проверяем наличие кнопки 'feedback' кликаем на нее, потом возвращаемся") {
-//                    settingsDialog {
-//                        feedbackButton.assertIsDisplayed()
-//                        feedbackButton.performClick()
-//                        composeTestRule.waitForIdle()
-//                        Thread.sleep(5000)
-//                        device.uiDevice.pressBack()
-//                    }
-//                }
-//                step("Проверяем наличие кнопки 'licenses' кликаем на нее, потом возвращаемся") {
-//                    settingsDialog {
-//                        licensesButton.assertIsDisplayed()
-//                        licensesButton.performClick()
-//                        composeTestRule.waitForIdle()
-//                        Thread.sleep(5000)
-//                        device.uiDevice.pressBack()
-//                    }
-//                }
-//                step("Проверяем наличие кнопки 'ок' и выходим из меню через клик на нее") {
-//                    settingsDialog {
-//                        okButton.assertIsDisplayed()
-//                        okButton.performClick()
-//                        composeTestRule.waitForIdle()
-//                        Thread.sleep(5000)
-//                    }
-//                }
-//            }
+            step("Проверяем наличие кнопки 'Settings' в верхнем тулбаре и жмакаем в нее") {
+                mainScreen {
+                    settingIcon.assertIsDisplayed()
+                    settingIcon.performClick()
+                }
+                step(
+                    "Проверяем наличие кнопки 'Privacy Police' кликаем на нее, потом возвращаемся",
+                ) {
+                    settingsDialog {
+                        privacyPolicyButton.assertIsDisplayed()
+                        privacyPolicyButton.performClick()
+                        composeTestRule.waitForIdle()
+                        Thread.sleep(5000)
+                        device.uiDevice.pressBack()
+                    }
+                }
+                step("Проверяем наличие кнопки 'Brand Guide' кликаем на нее, потом возвращаемся") {
+                    settingsDialog {
+                        brandGuideButton.assertIsDisplayed()
+                        brandGuideButton.performClick()
+                        composeTestRule.waitForIdle()
+                        Thread.sleep(5000)
+                        device.uiDevice.pressBack()
+                    }
+                }
+                step("Проверяем наличие кнопки 'feedback' кликаем на нее, потом возвращаемся") {
+                    settingsDialog {
+                        feedbackButton.assertIsDisplayed()
+                        feedbackButton.performClick()
+                        composeTestRule.waitForIdle()
+                        Thread.sleep(5000)
+                        device.uiDevice.pressBack()
+                    }
+                }
+                step("Проверяем наличие кнопки 'licenses' кликаем на нее, потом возвращаемся") {
+                    settingsDialog {
+                        licensesButton.assertIsDisplayed()
+                        licensesButton.performClick()
+                        composeTestRule.waitForIdle()
+                        Thread.sleep(5000)
+                        device.uiDevice.pressBack()
+                    }
+                }
+                step("Проверяем наличие кнопки 'ок' и выходим из меню через клик на нее") {
+                    settingsDialog {
+                        okButton.assertIsDisplayed()
+                        okButton.performClick()
+                        composeTestRule.waitForIdle()
+                        Thread.sleep(5000)
+                    }
+                }
+            }
             step("Проверяем наличие заголовка верхнего тулбара") {
                 mainScreen {
                     titleText.assertIsDisplayed()
