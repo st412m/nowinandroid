@@ -126,10 +126,13 @@ class MainScreenTest2 : TestCase(
             }
             step("Проверяем наличие и кликабельность значков нижнего тулбара") {
                 mainScreen {
+                    savedIcon.assertIsDisplayed()
                     savedIcon.performClick()
                     composeTestRule.waitForIdle()
+                    interestsIcon.assertIsDisplayed()
                     interestsIcon.performClick()
                     composeTestRule.waitForIdle()
+                    forYouIcon.assertIsDisplayed()
                     forYouIcon.performClick()
                     composeTestRule.waitForIdle()
 
