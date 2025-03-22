@@ -14,24 +14,19 @@
  * limitations under the License.
  */
 
-package com.google.samples.apps.nowinandroid.ui.homework14
+package com.google.samples.apps.nowinandroid.ui.homework15
 
 import androidx.compose.ui.test.SemanticsNodeInteractionsProvider
 import com.google.samples.apps.nowinandroid.core.designsystem.C
+import com.google.samples.apps.nowinandroid.ui.homework14.MainScreen
 import com.kaspersky.components.composesupport.core.KNode
 import io.github.kakaocup.compose.node.element.ComposeScreen
 
-class MainScreen(semanticProvides: SemanticsNodeInteractionsProvider) :
-    ComposeScreen<MainScreen>(semanticProvides) {
+class MainScreen2(semanticProvides: SemanticsNodeInteractionsProvider) :
+    ComposeScreen<MainScreen2>(semanticProvides) {
 
     val centerAlignedTopAppBar = KNode(semanticProvides) {
         hasTestTag("niaTopAppBar")
-    }
-
-    val searchIcon = KNode(semanticProvides) {
-        hasContentDescription("Search")
-        hasParent(androidx.compose.ui.test.hasTestTag("niaTopAppBar"))
-        useUnmergedTree = true
     }
 
     val titleText = KNode(semanticProvides){
@@ -39,26 +34,13 @@ class MainScreen(semanticProvides: SemanticsNodeInteractionsProvider) :
         useUnmergedTree = true
     }
 
-    val settingsIcon = KNode(semanticProvides){
-        hasContentDescription("Settings")
-        hasParent(androidx.compose.ui.test.hasTestTag("niaTopAppBar"))
+    val searchIcon = KNode(semanticProvides) {
+        hasTestTag(C.UPPER_SEARCH_ICON)
         useUnmergedTree = true
     }
 
-    val doneButton = KNode(semanticProvides) {
-        hasText("Done")
-    }
-
-    val headlinesIcon = KNode(semanticProvides) {
-        hasContentDescription("Headlines")
-
-    }
-
-    val uiIcon = KNode(semanticProvides) {
-        hasContentDescription("UI")
-
-    }
-    val composeIcon = KNode(semanticProvides) {
-        hasContentDescription("Compose")
+    val settingIcon = KNode(semanticProvides) {
+        hasTestTag(C.UPPER_SETTINGS_ICON)
+        useUnmergedTree = true
     }
 }
