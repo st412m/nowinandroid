@@ -18,7 +18,6 @@ package com.google.samples.apps.nowinandroid.ui.homework15
 
 import androidx.compose.ui.test.SemanticsNodeInteractionsProvider
 import com.google.samples.apps.nowinandroid.core.designsystem.C
-import com.google.samples.apps.nowinandroid.ui.homework14.MainScreen
 import com.kaspersky.components.composesupport.core.KNode
 import io.github.kakaocup.compose.node.element.ComposeScreen
 
