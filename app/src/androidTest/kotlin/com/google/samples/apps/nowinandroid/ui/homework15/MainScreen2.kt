@@ -45,14 +45,17 @@ class MainScreen2(semanticProvides: SemanticsNodeInteractionsProvider) :
 
     val forYouIcon = child<KNode> {
         hasTestTag("NiaNavItem")
-        hasText("For you")
+//        hasText("For you")   не определился, что в данном случае надежнее
+        hasPosition(0)
     }
     val savedIcon = child<KNode> {
         hasTestTag("NiaNavItem")
-        hasText("Saved")
+//        hasText("Saved")
+        hasPosition(1)
     }
     val interestsIcon = child<KNode> {
         hasTestTag("NiaNavItem")
-        hasText("Interests")
+//        hasText("Interests")
+        hasPosition(2)
     }
 }
