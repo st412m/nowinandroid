@@ -18,7 +18,6 @@ package com.google.samples.apps.nowinandroid.ui.homework15
 
 import androidx.compose.ui.test.SemanticsNodeInteractionsProvider
 import com.google.samples.apps.nowinandroid.core.designsystem.C
-import com.google.samples.apps.nowinandroid.ui.homework14.NowInAndroid
 import com.kaspersky.components.composesupport.core.KNode
 import io.github.kakaocup.compose.node.element.ComposeScreen
 
@@ -29,11 +28,11 @@ class SearchScreenItems(semanticProvides: SemanticsNodeInteractionsProvider) :
         hasTestTag(C.ON_BACK_ICON)
         useUnmergedTree = true
     }
-    val searchIcon = child<KNode>{
+    val searchIcon = child<KNode> {
         hasTestTag(C.SEARCH_ICON)
         useUnmergedTree = true
     }
-    val searchTextField = child<KNode>{
+    val searchTextField = child<KNode> {
         hasTestTag(C.SEARCH_TEXT_FIELD)
         useUnmergedTree = true
     }
