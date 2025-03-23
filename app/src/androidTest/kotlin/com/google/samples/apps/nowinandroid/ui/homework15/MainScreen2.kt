@@ -24,34 +24,34 @@ import io.github.kakaocup.compose.node.element.ComposeScreen
 class MainScreen2(semanticProvides: SemanticsNodeInteractionsProvider) :
     ComposeScreen<MainScreen2>(semanticProvides) {
 
-    val centerAlignedTopAppBar = KNode(semanticProvides) {
+    val centerAlignedTopAppBar = child<KNode> {
         hasTestTag("niaTopAppBar")
     }
 
-    val titleText = KNode(semanticProvides) {
+    val titleText = child<KNode> {
         hasTestTag(C.UPPER_TITLE_TEXT)
         useUnmergedTree = true
     }
 
-    val searchIcon = KNode(semanticProvides) {
+    val searchIcon = child<KNode> {
         hasTestTag(C.UPPER_SEARCH_ICON)
         useUnmergedTree = true
     }
 
-    val settingIcon = KNode(semanticProvides) {
+    val settingIcon = child<KNode> {
         hasTestTag(C.UPPER_SETTINGS_ICON)
         useUnmergedTree = true
     }
 
-    val forYouIcon = KNode(semanticProvides) {
+    val forYouIcon = child<KNode> {
         hasTestTag("NiaNavItem")
         hasText("For you")
     }
-    val savedIcon = KNode(semanticProvides) {
+    val savedIcon = child<KNode> {
         hasTestTag("NiaNavItem")
         hasText("Saved")
     }
-    val interestsIcon = KNode(semanticProvides) {
+    val interestsIcon = child<KNode> {
         hasTestTag("NiaNavItem")
         hasText("Interests")
     }

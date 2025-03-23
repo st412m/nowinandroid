@@ -25,15 +25,15 @@ import io.github.kakaocup.compose.node.element.ComposeScreen
 class SearchScreenItems(semanticProvides: SemanticsNodeInteractionsProvider) :
     ComposeScreen<SearchScreenItems>(semanticProvides) {
 
-    val onBackIcon = KNode(semanticProvides) {
+    val onBackIcon = child<KNode> {
         hasTestTag(C.ON_BACK_ICON)
         useUnmergedTree = true
     }
-    val searchIcon = KNode(semanticProvides){
+    val searchIcon = child<KNode>{
         hasTestTag(C.SEARCH_ICON)
         useUnmergedTree = true
     }
-    val searchTextField = KNode(semanticProvides){
+    val searchTextField = child<KNode>{
         hasTestTag(C.SEARCH_TEXT_FIELD)
         useUnmergedTree = true
     }
