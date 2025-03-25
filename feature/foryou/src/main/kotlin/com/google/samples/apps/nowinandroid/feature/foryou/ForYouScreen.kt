@@ -50,6 +50,7 @@ import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyHorizontalGrid
 import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.foundation.lazy.grid.itemsIndexed
 import androidx.compose.foundation.lazy.grid.rememberLazyGridState
 import androidx.compose.foundation.lazy.staggeredgrid.LazyStaggeredGridScope
 import androidx.compose.foundation.lazy.staggeredgrid.LazyVerticalStaggeredGrid
@@ -75,6 +76,7 @@ import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
@@ -85,6 +87,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.PermissionStatus.Denied
 import com.google.accompanist.permissions.rememberPermissionState
+import com.google.samples.apps.nowinandroid.core.designsystem.LazyListLengthSemantics
 import com.google.samples.apps.nowinandroid.core.designsystem.component.DynamicAsyncImage
 import com.google.samples.apps.nowinandroid.core.designsystem.component.NiaButton
 import com.google.samples.apps.nowinandroid.core.designsystem.component.NiaIconToggleButton
@@ -94,6 +97,8 @@ import com.google.samples.apps.nowinandroid.core.designsystem.component.scrollba
 import com.google.samples.apps.nowinandroid.core.designsystem.component.scrollbar.rememberDraggableScroller
 import com.google.samples.apps.nowinandroid.core.designsystem.component.scrollbar.scrollbarState
 import com.google.samples.apps.nowinandroid.core.designsystem.icon.NiaIcons
+import com.google.samples.apps.nowinandroid.core.designsystem.lazyListItemPosition
+import com.google.samples.apps.nowinandroid.core.designsystem.lazyListLength
 import com.google.samples.apps.nowinandroid.core.designsystem.theme.NiaTheme
 import com.google.samples.apps.nowinandroid.core.model.data.UserNewsResource
 import com.google.samples.apps.nowinandroid.core.ui.DevicePreviews
@@ -347,18 +352,20 @@ private fun TopicSelection(
                 // The maximum of these two bounds is therefore a valid upper bound in all cases.
                 .heightIn(max = max(240.dp, with(LocalDensity.current) { 240.sp.toDp() }))
                 .fillMaxWidth()
-                .testTag(topicSelectionTestTag),
+                .testTag(topicSelectionTestTag)
+                .semantics { lazyListLength = onboardingUiState.topics.size}
         ) {
-            items(
+            itemsIndexed(
                 items = onboardingUiState.topics,
-                key = { it.topic.id },
-            ) {
+                key = {_, item -> item.topic.id },
+            ) {index, item ->
                 SingleTopicButton(
-                    name = it.topic.name,
-                    topicId = it.topic.id,
-                    imageUrl = it.topic.imageUrl,
-                    isSelected = it.isFollowed,
+                    name = item.topic.name,
+                    topicId = item.topic.id,
+                    imageUrl = item.topic.imageUrl,
+                    isSelected = item.isFollowed,
                     onClick = onTopicCheckedChanged,
+                    modifier = Modifier.semantics { lazyListItemPosition = index }
                 )
             }
         }
@@ -379,10 +386,11 @@ private fun SingleTopicButton(
     topicId: String,
     imageUrl: String,
     isSelected: Boolean,
+    modifier: Modifier = Modifier,
     onClick: (String, Boolean) -> Unit,
 ) {
     Surface(
-        modifier = Modifier
+        modifier = modifier
             .width(312.dp)
             .heightIn(min = 56.dp),
         shape = RoundedCornerShape(corner = CornerSize(8.dp)),
