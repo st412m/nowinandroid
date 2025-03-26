@@ -87,6 +87,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.PermissionStatus.Denied
 import com.google.accompanist.permissions.rememberPermissionState
+import com.google.samples.apps.nowinandroid.core.designsystem.C
 import com.google.samples.apps.nowinandroid.core.designsystem.LazyListLengthSemantics
 import com.google.samples.apps.nowinandroid.core.designsystem.component.DynamicAsyncImage
 import com.google.samples.apps.nowinandroid.core.designsystem.component.NiaButton
@@ -406,13 +407,15 @@ private fun SingleTopicButton(
         ) {
             TopicIcon(
                 imageUrl = imageUrl,
+                modifier = Modifier.testTag(C.TOPIC_SELECTION_ICON)
             )
             Text(
                 text = name,
                 style = MaterialTheme.typography.titleSmall,
                 modifier = Modifier
                     .padding(horizontal = 12.dp)
-                    .weight(1f),
+                    .weight(1f)
+                    .testTag(C.TOPIC_SELECTION_TEXT),
                 color = MaterialTheme.colorScheme.onSurface,
             )
             NiaIconToggleButton(
@@ -422,12 +425,14 @@ private fun SingleTopicButton(
                     Icon(
                         imageVector = NiaIcons.Add,
                         contentDescription = name,
+                        modifier = Modifier.testTag(C.TOPIC_SELECTION_CLEAR_BUTTON)
                     )
                 },
                 checkedIcon = {
                     Icon(
                         imageVector = NiaIcons.Check,
                         contentDescription = name,
+                        modifier = Modifier.testTag(C.TOPIC_SELECTION_CHECKED_BUTTON)
                     )
                 },
             )
