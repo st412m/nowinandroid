@@ -43,7 +43,7 @@ class MainScreenTest3 : TestCase(
                     UiSelector().text("Allow"),
                 ).click()
             }
-            step("Проверяем отображение элемента 'Topic Selection' на 11 позиции") {
+            step("Проверяем отображение элементов 'Topic Selection'") {
                 topicSelectionScreen {
                     list.childAt<TopicSelectionsItems>(11) {
                         icon.assertIsDisplayed()

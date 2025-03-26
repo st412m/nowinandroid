@@ -70,6 +70,7 @@ import com.google.samples.apps.nowinandroid.core.designsystem.R.drawable
 import com.google.samples.apps.nowinandroid.core.designsystem.component.NiaIconToggleButton
 import com.google.samples.apps.nowinandroid.core.designsystem.component.NiaTopicTag
 import com.google.samples.apps.nowinandroid.core.designsystem.icon.NiaIcons
+import com.google.samples.apps.nowinandroid.core.designsystem.lazyListLength
 import com.google.samples.apps.nowinandroid.core.designsystem.theme.NiaTheme
 import com.google.samples.apps.nowinandroid.core.model.data.FollowableTopic
 import com.google.samples.apps.nowinandroid.core.model.data.NewsResource
@@ -120,7 +121,8 @@ fun NewsResourceCardExpanded(
             .semantics {
                 onClick(label = clickActionLabel, action = null)
             }
-            .testTag("newsResourceCard:${userNewsResource.id}"),
+            .testTag("newsResourceCard:${userNewsResource.id}")
+//            .semantics { lazyListLength = userNewsResource.followableTopics.size }
     ) {
         Column {
             if (!userNewsResource.headerImageUrl.isNullOrEmpty()) {

@@ -19,18 +19,17 @@ package com.google.samples.apps.nowinandroid.ui.homework16
 import androidx.compose.ui.test.SemanticsMatcher
 import androidx.compose.ui.test.SemanticsNodeInteractionsProvider
 import com.google.samples.apps.nowinandroid.core.designsystem.LazyListItemPositionSemantics
-import com.google.samples.apps.nowinandroid.core.designsystem.LazyListLengthSemantics
 import io.github.kakaocup.compose.node.element.ComposeScreen
 import io.github.kakaocup.compose.node.element.lazylist.KLazyListNode
 
-class TopicSelectionScreen(semanticsProvider: SemanticsNodeInteractionsProvider) :
-    ComposeScreen<TopicSelectionScreen>(
+class NewsFeedScreen(semanticsProvider: SemanticsNodeInteractionsProvider) :
+    ComposeScreen<NewsFeedScreen>(
         semanticsProvider = semanticsProvider,
         viewBuilderAction = { hasTestTag("forYou:feed") },
     ) {
     val list = KLazyListNode(
         semanticsProvider = semanticsProvider,
-        viewBuilderAction = { hasTestTag("forYou:topicSelection") },
+        viewBuilderAction = { hasTestTag("newsResourceCard") },
         itemTypeBuilder = {
             itemType(::TopicSelectionsItems)
         },
@@ -39,7 +38,6 @@ class TopicSelectionScreen(semanticsProvider: SemanticsNodeInteractionsProvider)
                 LazyListItemPositionSemantics,
                 position,
             )
-        },
-        lengthSemanticsPropertyKey = LazyListLengthSemantics
+        }
     )
 }
