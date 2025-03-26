@@ -28,18 +28,14 @@ class TopicSelectionsItems(
 ) : KLazyListItemNode<TopicSelectionsItems>(semanticsNode, semanticsProvider) {
     val icon = child<KNode> {
         hasTestTag(C.TOPIC_SELECTION_ICON)
-        useUnmergedTree = true
     }
     val text = child<KNode> {
         hasTestTag(C.TOPIC_SELECTION_TEXT)
-        useUnmergedTree = true
     }
     val clearButton = child<KNode> {
         hasTestTag(C.TOPIC_SELECTION_CLEAR_BUTTON)
-        useUnmergedTree = true
     }
     val checkedButton = child<KNode> {
         hasTestTag(C.TOPIC_SELECTION_CHECKED_BUTTON)
-        useUnmergedTree = true
     }
 }
