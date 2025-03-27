@@ -27,16 +27,19 @@ import androidx.compose.foundation.lazy.staggeredgrid.LazyStaggeredGridScope
 import androidx.compose.foundation.lazy.staggeredgrid.LazyVerticalStaggeredGrid
 import androidx.compose.foundation.lazy.staggeredgrid.StaggeredGridCells
 import androidx.compose.foundation.lazy.staggeredgrid.items
+import androidx.compose.foundation.lazy.staggeredgrid.itemsIndexed
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import com.google.samples.apps.nowinandroid.core.analytics.LocalAnalyticsHelper
+import com.google.samples.apps.nowinandroid.core.designsystem.lazyListItemPosition
 import com.google.samples.apps.nowinandroid.core.designsystem.theme.NiaTheme
 import com.google.samples.apps.nowinandroid.core.model.data.UserNewsResource
 
@@ -54,11 +57,10 @@ fun LazyStaggeredGridScope.newsFeed(
     when (feedState) {
         NewsFeedUiState.Loading -> Unit
         is NewsFeedUiState.Success -> {
-            items(
+            itemsIndexed(
                 items = feedState.feed,
-                key = { it.id },
-                contentType = { "newsFeedItem" },
-            ) { userNewsResource ->
+                key = {_ , item -> item.id },
+            ) { index, userNewsResource ->
                 val context = LocalContext.current
                 val analyticsHelper = LocalAnalyticsHelper.current
                 val backgroundColor = MaterialTheme.colorScheme.background.toArgb()
@@ -85,7 +87,8 @@ fun LazyStaggeredGridScope.newsFeed(
                     onTopicClick = onTopicClick,
                     modifier = Modifier
                         .padding(horizontal = 8.dp)
-                        .animateItem(),
+                        .animateItem()
+                        .semantics { lazyListItemPosition = index }
                 )
             }
         }

@@ -38,6 +38,7 @@ class MainScreenTest3 : TestCase(
     @get: Rule
     val composeTestRule = createAndroidComposeRule<MainActivity>()
     val topicSelectionScreen = TopicSelectionScreen(composeTestRule)
+    val newsFeedScreen = NewsFeedScreen(composeTestRule)
 
     @get: Rule
     val kakaoComposeTestRule = KakaoComposeTestRule(
@@ -82,6 +83,14 @@ class MainScreenTest3 : TestCase(
                                 checkedButton.assertDoesNotExist()
                             }
                         }
+                    }
+                }
+            }
+            step("Кликаем в элемент 'Topic Selection' с индексом 0"){
+                topicSelectionScreen{
+                    list.childAt<TopicSelectionsItems>(0){
+                        clearButton.performClick()
+                        composeTestRule.waitForIdle()
                     }
                 }
             }

@@ -66,6 +66,7 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImagePainter
 import coil.compose.rememberAsyncImagePainter
+import com.google.samples.apps.nowinandroid.core.designsystem.C
 import com.google.samples.apps.nowinandroid.core.designsystem.R.drawable
 import com.google.samples.apps.nowinandroid.core.designsystem.component.NiaIconToggleButton
 import com.google.samples.apps.nowinandroid.core.designsystem.component.NiaTopicTag
@@ -121,8 +122,8 @@ fun NewsResourceCardExpanded(
             .semantics {
                 onClick(label = clickActionLabel, action = null)
             }
-            .testTag("newsResourceCard:${userNewsResource.id}")
-//            .semantics { lazyListLength = userNewsResource.followableTopics.size }
+            .testTag(C.NEWS_RESOURCE_CARD)
+
     ) {
         Column {
             if (!userNewsResource.headerImageUrl.isNullOrEmpty()) {
@@ -140,6 +141,7 @@ fun NewsResourceCardExpanded(
                             userNewsResource.title,
                             modifier = Modifier
                                 .fillMaxWidth((.8f))
+                                .testTag(C.NEWS_RESOURCE_CARD_TITLE)
                                 .dragAndDropSource { _ ->
                                     DragAndDropTransferData(
                                         ClipData.newPlainText(
@@ -210,7 +212,8 @@ fun NewsResourceHeaderImage(
         Image(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(180.dp),
+                .height(180.dp)
+                .testTag(C.NEWS_RESOURCE_CARD_IMAGE),
             contentScale = ContentScale.Crop,
             painter = if (isError.not() && !isLocalInspection) {
                 imageLoader
@@ -295,6 +298,8 @@ fun NewsResourceMetaData(
             formattedDate
         },
         style = MaterialTheme.typography.labelSmall,
+        modifier = Modifier.testTag(C.NEWS_RESOURCE_CARD_DATE)
+
     )
 }
 
@@ -302,7 +307,10 @@ fun NewsResourceMetaData(
 fun NewsResourceShortDescription(
     newsResourceShortDescription: String,
 ) {
-    Text(newsResourceShortDescription, style = MaterialTheme.typography.bodyLarge)
+    Text(newsResourceShortDescription,
+        style = MaterialTheme.typography.bodyLarge,
+        modifier = Modifier.testTag(C.NEWS_RESOURCE_CARD_SHORT_DESCRIPTION)
+    )
 }
 
 @Composable

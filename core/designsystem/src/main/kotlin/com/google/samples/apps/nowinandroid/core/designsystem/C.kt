@@ -27,4 +27,10 @@ object C {
     const val TOPIC_SELECTION_TEXT = "topicSelectionText"
     const val TOPIC_SELECTION_CLEAR_BUTTON = "NiaIconToggleButtonClear"
     const val TOPIC_SELECTION_CHECKED_BUTTON = "NiaIconToggleButtonChecked"
+    const val NEWS_RESOURCE_CARD = "newsResourceCard"
+    const val NEWS_RESOURCE_CARD_IMAGE = "newsResourceCardImage"
+    const val NEWS_RESOURCE_CARD_TITLE = "newsResourceCardTitle"
+    const val NEWS_RESOURCE_CARD_DATE = "newsResourceCardDate"
+    const val NEWS_RESOURCE_CARD_SHORT_DESCRIPTION = "newsResourceCardShortDescription"
+
 }

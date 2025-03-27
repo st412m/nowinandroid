@@ -16,15 +16,17 @@
 
 package com.google.samples.apps.nowinandroid.ui.homework16
 
-import androidx.compose.ui.test.SemanticsMatcher
+import androidx.compose.ui.semantics.SemanticsNode
 import androidx.compose.ui.test.SemanticsNodeInteractionsProvider
-import com.google.samples.apps.nowinandroid.core.designsystem.LazyListItemPositionSemantics
-import io.github.kakaocup.compose.node.element.ComposeScreen
-import io.github.kakaocup.compose.node.element.lazylist.KLazyListNode
+import com.google.samples.apps.nowinandroid.core.designsystem.C
+import com.kaspersky.components.composesupport.core.KNode
+import io.github.kakaocup.compose.node.element.lazylist.KLazyListItemNode
 
-class NewsFeedScreen(semanticsProvider: SemanticsNodeInteractionsProvider) :
-    ComposeScreen<NewsFeedScreen>(
-        semanticsProvider = semanticsProvider,
-        viewBuilderAction = { hasTestTag("forYou:feed") },
-    ) {
+class NewsFeedScreenCards(semanticsNode: SemanticsNode,
+    semanticsProvider: SemanticsNodeInteractionsProvider,
+) : KLazyListItemNode<NewsFeedScreenCards>(semanticsNode, semanticsProvider) {
+
+    val card = child<KNode>{
+        hasTestTag(C.NEWS_RESOURCE_CARD)
+    }
 }
