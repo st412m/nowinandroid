@@ -23,6 +23,7 @@ object C {
     const val ON_BACK_ICON = "OnBackIcon"
     const val SEARCH_ICON = "SearchIcon"
     const val SEARCH_TEXT_FIELD = "searchTextField"
+    const val DONE_BUTTON = "doneButton"
     const val TOPIC_SELECTION_ICON = "topicSelectionIcon"
     const val TOPIC_SELECTION_TEXT = "topicSelectionText"
     const val TOPIC_SELECTION_CLEAR_BUTTON = "NiaIconToggleButtonClear"

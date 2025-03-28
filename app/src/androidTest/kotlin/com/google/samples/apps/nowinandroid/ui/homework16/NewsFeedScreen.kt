@@ -18,13 +18,29 @@ package com.google.samples.apps.nowinandroid.ui.homework16
 
 import androidx.compose.ui.test.SemanticsMatcher
 import androidx.compose.ui.test.SemanticsNodeInteractionsProvider
+import com.google.samples.apps.nowinandroid.core.designsystem.C
 import com.google.samples.apps.nowinandroid.core.designsystem.LazyListItemPositionSemantics
+import com.google.samples.apps.nowinandroid.core.designsystem.LazyListLengthSemantics
 import io.github.kakaocup.compose.node.element.ComposeScreen
 import io.github.kakaocup.compose.node.element.lazylist.KLazyListNode
 
 class NewsFeedScreen(semanticsProvider: SemanticsNodeInteractionsProvider) :
     ComposeScreen<NewsFeedScreen>(
         semanticsProvider = semanticsProvider,
-        viewBuilderAction = { hasTestTag("forYou:feed") },
+        viewBuilderAction = { hasTestTag("forYou:Box") },
     ) {
+    val list = KLazyListNode(
+        semanticsProvider = semanticsProvider,
+        viewBuilderAction = { hasTestTag(C.NEWS_RESOURCE_CARD) },
+        itemTypeBuilder = {
+            itemType(::NewsFeedScreenCards)
+        },
+        positionMatcher = { position ->
+            SemanticsMatcher.expectValue(
+                LazyListItemPositionSemantics,
+                position,
+            )
+        },
+        lengthSemanticsPropertyKey = LazyListLengthSemantics,
+    )
 }

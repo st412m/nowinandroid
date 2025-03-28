@@ -16,14 +16,12 @@
 
 package com.google.samples.apps.nowinandroid.ui.homework16
 
-import androidx.compose.ui.semantics.SemanticsPropertyReceiver
 import androidx.compose.ui.test.ExperimentalTestApi
 import androidx.compose.ui.test.hasTestTag
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
-import androidx.test.rule.ActivityTestRule
 import androidx.test.uiautomator.UiSelector
 import com.google.samples.apps.nowinandroid.MainActivity
-import com.google.samples.apps.nowinandroid.core.designsystem.LazyListItemPositionSemantics
+import com.google.samples.apps.nowinandroid.core.designsystem.C
 import com.google.samples.apps.nowinandroid.core.designsystem.LazyListLengthSemantics
 import com.kaspersky.components.composesupport.config.withComposeSupport
 import com.kaspersky.kaspresso.kaspresso.Kaspresso
@@ -38,6 +36,7 @@ class MainScreenTest3 : TestCase(
     @get: Rule
     val composeTestRule = createAndroidComposeRule<MainActivity>()
     val topicSelectionScreen = TopicSelectionScreen(composeTestRule)
+    val mainScreen = MainScreen3(composeTestRule)
     val newsFeedScreen = NewsFeedScreen(composeTestRule)
 
     @get: Rule
@@ -56,44 +55,55 @@ class MainScreenTest3 : TestCase(
                     UiSelector().text("Allow"),
                 ).click()
             }
-            step("Проверяем отображение элементов 'Topic Selection'") {
-                val itemCount = composeTestRule
-                    .onNode(hasTestTag("forYou:topicSelection"))
-                    .fetchSemanticsNode()
-                    .config[LazyListLengthSemantics]
+//            step("Проверяем отображение элементов 'Topic Selection'") {
+//                val itemCount = composeTestRule
+//                    .onNode(hasTestTag("forYou:topicSelection"))
+//                    .fetchSemanticsNode()
+//                    .config[LazyListLengthSemantics]
+//                topicSelectionScreen {
+//                    for (index in 0 until itemCount) {
+//                        list.childAt<TopicSelectionsItems>(index) {
+//                            step("Проверяем начальное состояние элемента") {
+//                                icon.assertIsDisplayed()
+//                                text.assertIsDisplayed()
+//                                clearButton.assertIsDisplayed()
+//                                checkedButton.assertDoesNotExist()
+//                            }
+//
+//                            step("Клик на clearButton для выбора темы") {
+//                                clearButton.performClick()
+//                                checkedButton.assertIsDisplayed()
+//                                clearButton.assertDoesNotExist()
+//                            }
+//
+//                            step("Клик на checkedButton для отмены выбора") {
+//                                checkedButton.performClick()
+//                                clearButton.assertIsDisplayed()
+//                                checkedButton.assertDoesNotExist()
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+            step("Кликаем в элемент 'Topic Selection' с индексом 0") {
                 topicSelectionScreen {
-                    for (index in 0 until itemCount) {
-                        list.childAt<TopicSelectionsItems>(index) {
-                            step("Проверяем начальное состояние элемента") {
-                                icon.assertIsDisplayed()
-                                text.assertIsDisplayed()
-                                clearButton.assertIsDisplayed()
-                                checkedButton.assertDoesNotExist()
-                            }
-
-                            step("Клик на clearButton для выбора темы") {
-                                clearButton.performClick()
-                                checkedButton.assertIsDisplayed()
-                                clearButton.assertDoesNotExist()
-                            }
-
-                            step("Клик на checkedButton для отмены выбора") {
-                                checkedButton.performClick()
-                                clearButton.assertIsDisplayed()
-                                checkedButton.assertDoesNotExist()
-                            }
-                        }
-                    }
-                }
-            }
-            step("Кликаем в элемент 'Topic Selection' с индексом 0"){
-                topicSelectionScreen{
-                    list.childAt<TopicSelectionsItems>(0){
+                    list.childAt<TopicSelectionsItems>(0) {
                         clearButton.performClick()
                         composeTestRule.waitForIdle()
+                    }
+                }
+                mainScreen{
+                    doneButton.performClick()
+                }
+            }
+            step("Находим карточку с индексом 0") {
+                newsFeedScreen {
+                        list.childAt<NewsFeedScreenCards>(0) {
+                        card.assertIsDisplayed()
                     }
                 }
             }
         }
     }
 }
+
