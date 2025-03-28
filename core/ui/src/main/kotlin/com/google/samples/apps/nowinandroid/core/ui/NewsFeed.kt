@@ -32,6 +32,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.toArgb
+import androidx.compose.ui.modifier.modifierLocalMapOf
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.semantics.semantics
@@ -42,6 +43,7 @@ import androidx.compose.ui.unit.dp
 import com.google.samples.apps.nowinandroid.core.analytics.LocalAnalyticsHelper
 import com.google.samples.apps.nowinandroid.core.designsystem.C
 import com.google.samples.apps.nowinandroid.core.designsystem.lazyListItemPosition
+import com.google.samples.apps.nowinandroid.core.designsystem.lazyListLength
 import com.google.samples.apps.nowinandroid.core.designsystem.theme.NiaTheme
 import com.google.samples.apps.nowinandroid.core.model.data.UserNewsResource
 
@@ -90,7 +92,6 @@ fun LazyStaggeredGridScope.newsFeed(
                     modifier = Modifier
                         .padding(horizontal = 8.dp)
                         .animateItem()
-                        .testTag(C.NEWS_RESOURCE_CARD)
                         .semantics { lazyListItemPosition = index }
                 )
             }
@@ -151,7 +152,9 @@ private fun NewsFeedContentPreview(
     userNewsResources: List<UserNewsResource>,
 ) {
     NiaTheme {
-        LazyVerticalStaggeredGrid(columns = StaggeredGridCells.Adaptive(300.dp)) {
+        LazyVerticalStaggeredGrid(
+            columns = StaggeredGridCells.Adaptive(300.dp)
+        ){
             newsFeed(
                 feedState = NewsFeedUiState.Success(userNewsResources),
                 onNewsResourcesCheckedChanged = { _, _ -> },

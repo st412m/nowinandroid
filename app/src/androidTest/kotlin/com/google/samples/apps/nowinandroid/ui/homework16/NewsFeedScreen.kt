@@ -31,7 +31,7 @@ class NewsFeedScreen(semanticsProvider: SemanticsNodeInteractionsProvider) :
     ) {
     val list = KLazyListNode(
         semanticsProvider = semanticsProvider,
-        viewBuilderAction = { hasTestTag("newsResourceCard1") },
+        viewBuilderAction = { hasTestTag(C.NEWS_RESOURCE_CARD) },
         itemTypeBuilder = {
             itemType(::NewsFeedScreenCards)
         },

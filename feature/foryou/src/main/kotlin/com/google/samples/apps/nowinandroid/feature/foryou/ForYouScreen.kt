@@ -166,7 +166,7 @@ internal fun ForYouScreen(
 
     Box(
         modifier = modifier
-            .fillMaxSize()
+            .fillMaxSize(),
     ) {
         LazyVerticalStaggeredGrid(
             columns = StaggeredGridCells.Adaptive(300.dp),
@@ -271,7 +271,7 @@ private fun LazyStaggeredGridScope.onboarding(
         OnboardingUiState.Loading,
         OnboardingUiState.LoadFailed,
         OnboardingUiState.NotShown,
-        -> Unit
+            -> Unit
 
         is OnboardingUiState.Shown -> {
             item(span = StaggeredGridItemSpan.FullLine, contentType = "onboarding") {
@@ -309,7 +309,7 @@ private fun LazyStaggeredGridScope.onboarding(
                                 .padding(horizontal = 24.dp)
                                 .widthIn(364.dp)
                                 .fillMaxWidth()
-                                .testTag(C.DONE_BUTTON)
+                                .testTag(C.DONE_BUTTON),
                         ) {
                             Text(
                                 text = stringResource(R.string.feature_foryou_done),
@@ -356,19 +356,19 @@ private fun TopicSelection(
                 .heightIn(max = max(240.dp, with(LocalDensity.current) { 240.sp.toDp() }))
                 .fillMaxWidth()
                 .testTag(topicSelectionTestTag)
-                .semantics { lazyListLength = onboardingUiState.topics.size}
+                .semantics { lazyListLength = onboardingUiState.topics.size },
         ) {
             itemsIndexed(
                 items = onboardingUiState.topics,
-                key = {_, item -> item.topic.id },
-            ) {index, item ->
+                key = { _, item -> item.topic.id },
+            ) { index, item ->
                 SingleTopicButton(
                     name = item.topic.name,
                     topicId = item.topic.id,
                     imageUrl = item.topic.imageUrl,
                     isSelected = item.isFollowed,
                     onClick = onTopicCheckedChanged,
-                    modifier = Modifier.semantics { lazyListItemPosition = index }
+                    modifier = Modifier.semantics { lazyListItemPosition = index },
                 )
             }
         }
@@ -409,7 +409,7 @@ private fun SingleTopicButton(
         ) {
             TopicIcon(
                 imageUrl = imageUrl,
-                modifier = Modifier.testTag(C.TOPIC_SELECTION_ICON)
+                modifier = Modifier.testTag(C.TOPIC_SELECTION_ICON),
             )
             Text(
                 text = name,
@@ -427,14 +427,14 @@ private fun SingleTopicButton(
                     Icon(
                         imageVector = NiaIcons.Add,
                         contentDescription = name,
-                        modifier = Modifier.testTag(C.TOPIC_SELECTION_CLEAR_BUTTON)
+                        modifier = Modifier.testTag(C.TOPIC_SELECTION_CLEAR_BUTTON),
                     )
                 },
                 checkedIcon = {
                     Icon(
                         imageVector = NiaIcons.Check,
                         contentDescription = name,
-                        modifier = Modifier.testTag(C.TOPIC_SELECTION_CHECKED_BUTTON)
+                        modifier = Modifier.testTag(C.TOPIC_SELECTION_CHECKED_BUTTON),
                     )
                 },
             )
@@ -508,7 +508,7 @@ private fun feedItemsSize(
         OnboardingUiState.Loading,
         OnboardingUiState.LoadFailed,
         OnboardingUiState.NotShown,
-        -> 0
+            -> 0
 
         is OnboardingUiState.Shown -> 1
     }
