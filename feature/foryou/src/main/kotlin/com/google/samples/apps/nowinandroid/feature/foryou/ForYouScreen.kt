@@ -167,8 +167,6 @@ internal fun ForYouScreen(
     Box(
         modifier = modifier
             .fillMaxSize()
-            .semantics { lazyListLength = itemsAvailable }
-            .testTag("forYou:Box")
     ) {
         LazyVerticalStaggeredGrid(
             columns = StaggeredGridCells.Adaptive(300.dp),
@@ -176,7 +174,8 @@ internal fun ForYouScreen(
             horizontalArrangement = Arrangement.spacedBy(16.dp),
             verticalItemSpacing = 24.dp,
             modifier = Modifier
-                .testTag("forYou:feed"),
+                .testTag("forYou:feed")
+                .semantics { lazyListLength = itemsAvailable },
             state = state,
         ) {
             onboarding(
