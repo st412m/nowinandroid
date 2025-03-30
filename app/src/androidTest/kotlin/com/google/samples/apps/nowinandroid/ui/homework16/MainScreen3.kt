@@ -61,4 +61,7 @@ class MainScreen3(semanticProvides: SemanticsNodeInteractionsProvider) :
     val doneButton = child<KNode> {
         hasTestTag(C.DONE_BUTTON)
     }
+    val scrollbar = child<KNode>{
+        hasTestTag(C.SCROLLBAR)
+    }
 }

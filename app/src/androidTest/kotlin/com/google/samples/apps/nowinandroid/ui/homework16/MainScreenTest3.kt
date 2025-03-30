@@ -55,36 +55,36 @@ class MainScreenTest3 : TestCase(
                     UiSelector().text("Allow"),
                 ).click()
             }
-//            step("Проверяем отображение элементов 'Topic Selection'") {
-//                val itemCount = composeTestRule
-//                    .onNode(hasTestTag("forYou:topicSelection"))
-//                    .fetchSemanticsNode()
-//                    .config[LazyListLengthSemantics]
-//                topicSelectionScreen {
-//                    for (index in 0 until itemCount) {
-//                        list.childAt<TopicSelectionsItems>(index) {
-//                            step("Проверяем начальное состояние элемента") {
-//                                icon.assertIsDisplayed()
-//                                text.assertIsDisplayed()
-//                                clearButton.assertIsDisplayed()
-//                                checkedButton.assertDoesNotExist()
-//                            }
-//
-//                            step("Клик на clearButton для выбора темы") {
-//                                clearButton.performClick()
-//                                checkedButton.assertIsDisplayed()
-//                                clearButton.assertDoesNotExist()
-//                            }
-//
-//                            step("Клик на checkedButton для отмены выбора") {
-//                                checkedButton.performClick()
-//                                clearButton.assertIsDisplayed()
-//                                checkedButton.assertDoesNotExist()
-//                            }
-//                        }
-//                    }
-//                }
-//            }
+            step("Проверяем отображение элементов 'Topic Selection'") {
+                val itemCount = composeTestRule
+                    .onNode(hasTestTag("forYou:topicSelection"))
+                    .fetchSemanticsNode()
+                    .config[LazyListLengthSemantics]
+                topicSelectionScreen {
+                    for (index in 0 until itemCount) {
+                        list.childAt<TopicSelectionsItems>(index) {
+                            step("Проверяем начальное состояние элемента") {
+                                icon.assertIsDisplayed()
+                                text.assertIsDisplayed()
+                                clearButton.assertIsDisplayed()
+                                checkedButton.assertDoesNotExist()
+                            }
+
+                            step("Клик на clearButton для выбора темы") {
+                                clearButton.performClick()
+                                checkedButton.assertIsDisplayed()
+                                clearButton.assertDoesNotExist()
+                            }
+
+                            step("Клик на checkedButton для отмены выбора") {
+                                checkedButton.performClick()
+                                clearButton.assertIsDisplayed()
+                                checkedButton.assertDoesNotExist()
+                            }
+                        }
+                    }
+                }
+            }
             step("Кликаем в элемент 'Topic Selection' с индексом 0") {
                 topicSelectionScreen {
                     list.childAt<TopicSelectionsItems>(0) {
@@ -92,18 +92,21 @@ class MainScreenTest3 : TestCase(
                         composeTestRule.waitForIdle()
                     }
                 }
-                mainScreen{
+                mainScreen {
                     doneButton.performClick()
                 }
             }
             step("Находим карточку с индексом 0") {
                 newsFeedScreen {
-                        list.childAt<NewsFeedScreenCards>(0) {
-                        card.assertIsDisplayed()
+                    list.childAt<NewsFeedScreenItems>(0) {
+                        cardImage.assertIsDisplayed()
                     }
                 }
             }
         }
     }
 }
+
+
+
 

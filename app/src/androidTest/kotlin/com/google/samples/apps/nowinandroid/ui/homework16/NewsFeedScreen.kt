@@ -21,6 +21,7 @@ import androidx.compose.ui.test.SemanticsNodeInteractionsProvider
 import com.google.samples.apps.nowinandroid.core.designsystem.C
 import com.google.samples.apps.nowinandroid.core.designsystem.LazyListItemPositionSemantics
 import com.google.samples.apps.nowinandroid.core.designsystem.LazyListLengthSemantics
+import com.kaspersky.components.composesupport.core.KNode
 import io.github.kakaocup.compose.node.element.ComposeScreen
 import io.github.kakaocup.compose.node.element.lazylist.KLazyListNode
 
@@ -34,6 +35,7 @@ class NewsFeedScreen(semanticsProvider: SemanticsNodeInteractionsProvider) :
         viewBuilderAction = { hasTestTag(C.NEWS_RESOURCE_CARD) },
         itemTypeBuilder = {
             itemType(::NewsFeedScreenCards)
+            itemType(::NewsFeedScreenItems)
         },
         positionMatcher = { position ->
             SemanticsMatcher.expectValue(
@@ -43,4 +45,5 @@ class NewsFeedScreen(semanticsProvider: SemanticsNodeInteractionsProvider) :
         },
         lengthSemanticsPropertyKey = LazyListLengthSemantics,
     )
+
 }

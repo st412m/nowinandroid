@@ -33,5 +33,6 @@ object C {
     const val NEWS_RESOURCE_CARD_TITLE = "newsResourceCardTitle"
     const val NEWS_RESOURCE_CARD_DATE = "newsResourceCardDate"
     const val NEWS_RESOURCE_CARD_SHORT_DESCRIPTION = "newsResourceCardShortDescription"
+    const val SCROLLBAR = "scrollbar"
 
 }

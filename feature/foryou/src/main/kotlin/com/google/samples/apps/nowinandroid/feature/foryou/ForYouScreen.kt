@@ -240,7 +240,9 @@ internal fun ForYouScreen(
                 .fillMaxHeight()
                 .windowInsetsPadding(WindowInsets.systemBars)
                 .padding(horizontal = 2.dp)
-                .align(Alignment.CenterEnd),
+                .align(Alignment.CenterEnd)
+                .testTag(C.SCROLLBAR),
+
             state = scrollbarState,
             orientation = Orientation.Vertical,
             onThumbMoved = state.rememberDraggableScroller(
