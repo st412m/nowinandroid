@@ -97,6 +97,9 @@ class MainScreenTest3 : TestCase(
                 newsFeedScreen {
                     list.childAt<NewsFeedScreenItems>(0) {
                         cardImage.assertIsDisplayed()
+                        cardTitle.assertIsDisplayed()
+                        cardDate.assertIsDisplayed()
+                        cardShortDescription.assertIsDisplayed()
                     }
                 }
             }
