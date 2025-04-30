@@ -32,9 +32,7 @@ class NewsFeedScreenItems(
     val cardImage by lazy {
         child<KNode> {
             hasTestTag(C.NEWS_RESOURCE_CARD_IMAGE)
-        }.apply {
-            setName(withParent("Изображение карточки новостей"))
-        }
+        }.setName(withParent("Изображение карточки новостей"))
     }
 
     val cardTitle by lazy {
