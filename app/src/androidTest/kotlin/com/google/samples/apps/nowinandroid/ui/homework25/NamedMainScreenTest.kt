@@ -16,12 +16,10 @@
 
 package com.google.samples.apps.nowinandroid.ui.homework25
 
-import androidx.compose.ui.test.ExperimentalTestApi
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.test.uiautomator.UiSelector
 import com.google.samples.apps.nowinandroid.MainActivity
 import com.google.samples.apps.nowinandroid.ui.homework16.MainScreen3
-import com.google.samples.apps.nowinandroid.ui.homework16.NewsFeedScreen
 import com.google.samples.apps.nowinandroid.ui.homework16.TopicSelectionScreen
 import com.google.samples.apps.nowinandroid.ui.tools.steps
 import com.kaspersky.components.alluresupport.withForcedAllureSupport
@@ -40,7 +38,7 @@ class NamedMainScreenTest : TestCase(
     @get: Rule
     val composeTestRule = createAndroidComposeRule<MainActivity>()
     val topicSelectionScreen = TopicSelectionScreen(composeTestRule)
-    val newsFeedScreen = NewsFeedScreen(composeTestRule)
+    val mainScreen = MainScreen3(composeTestRule)
 
     @get: Rule
     val kakaoComposeTestRule = KakaoComposeTestRule(
@@ -64,12 +62,15 @@ class NamedMainScreenTest : TestCase(
                         click(clearButton)
                         isDisplayed(checkedButton)
                         doesNotExist(clearButton)
+                        composeTestRule.waitForIdle()
+                    }
+                    topicSelectionsItems(0){
+                        click(clearButton)
+                        composeTestRule.waitForIdle()
                     }
                 }
-                newsFeedScreen {
-                    newsFeedScreenItems(0) {
-                        isDisplayed(cardImage)
-                    }
+                mainScreen{
+                    click(doneButton)
                 }
             }
         }

@@ -19,6 +19,9 @@ package com.google.samples.apps.nowinandroid.ui.tools
 import com.kaspersky.kaspresso.testcases.core.testcontext.TestContext
 
 private val executorHasMap = mutableMapOf<String, StepsDSL<*>>()
+/*
+
+ЕСЛИ КОГДА-НИБУДЬ ПОНАДОБИТСЯ РАЗДЕЛИТЬ ШАГИ НА ДЕЙСТВИЯ И ПРОВЕРКИ
 
 val TestContext<*>.action: ActionSteps
     get() {
@@ -35,6 +38,7 @@ val TestContext<*>.checks: CheckSteps
             CheckSteps(StepsExecutor(this))
         } as CheckSteps
     }
+ */
 
 private val stepsCache = mutableMapOf<TestContext<*>, NamedSteps>()
 val TestContext<*>.steps: NamedSteps

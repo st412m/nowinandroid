@@ -24,8 +24,6 @@ import com.google.samples.apps.nowinandroid.core.designsystem.LazyListLengthSema
 import com.google.samples.apps.nowinandroid.ui.tools.NamedComposeScreen
 import com.google.samples.apps.nowinandroid.ui.tools.invokeAtIndex
 import com.google.samples.apps.nowinandroid.ui.tools.setName
-import com.google.samples.apps.nowinandroid.ui.tools.withParent
-import io.github.kakaocup.compose.node.element.ComposeScreen
 import io.github.kakaocup.compose.node.element.lazylist.KLazyListNode
 
 class NewsFeedScreen(semanticsProvider: SemanticsNodeInteractionsProvider) :

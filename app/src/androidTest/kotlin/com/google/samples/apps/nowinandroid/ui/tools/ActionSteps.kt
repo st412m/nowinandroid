@@ -15,6 +15,8 @@
  */
 
 package com.google.samples.apps.nowinandroid.ui.tools
+/*
+ЕСЛИ КОГДА-НИБУДЬ ПОНАДОБИТСЯ РАЗДЕЛИТЬ ШАГИ НА ДЕЙСТВИЯ И ПРОВЕРКИ
 
 import io.github.kakaocup.compose.node.action.NodeActions
 import java.util.concurrent.atomic.AtomicReference
@@ -43,4 +45,4 @@ class ActionSteps(private val stepsExecutor: StepsExecutor): StepsDSL<ActionStep
 
     fun nextStep(step: String) = stepsExecutor.setNextStepName(step)
 }
-
+ */

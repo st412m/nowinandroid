@@ -18,11 +18,14 @@ package com.google.samples.apps.nowinandroid.ui.homework16
 
 import androidx.compose.ui.test.SemanticsNodeInteractionsProvider
 import com.google.samples.apps.nowinandroid.core.designsystem.C
+import com.google.samples.apps.nowinandroid.ui.tools.NamedComposeScreen
+import com.google.samples.apps.nowinandroid.ui.tools.setName
 import com.kaspersky.components.composesupport.core.KNode
-import io.github.kakaocup.compose.node.element.ComposeScreen
 
-class MainScreen3(semanticProvides: SemanticsNodeInteractionsProvider) :
-    ComposeScreen<MainScreen3>(semanticProvides) {
+class MainScreen3(semanticProvides: SemanticsNodeInteractionsProvider,
+    override val screenName: String = "Главный экран"
+) :
+    NamedComposeScreen<MainScreen3>(semanticProvides) {
 
     val centerAlignedTopAppBar = child<KNode> {
         hasTestTag("niaTopAppBar")
@@ -58,8 +61,10 @@ class MainScreen3(semanticProvides: SemanticsNodeInteractionsProvider) :
 //        hasText("Interests")
         hasPosition(2)
     }
-    val doneButton = child<KNode> {
-        hasTestTag(C.DONE_BUTTON)
+    val doneButton by lazy{
+        child<KNode> {
+            hasTestTag(C.DONE_BUTTON)
+        }.setName(withParent("Кнопка Done"))
     }
     val scrollbar = child<KNode>{
         hasTestTag(C.SCROLLBAR)

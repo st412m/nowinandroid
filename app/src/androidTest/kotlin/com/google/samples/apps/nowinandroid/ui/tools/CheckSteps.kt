@@ -15,6 +15,8 @@
  */
 
 package com.google.samples.apps.nowinandroid.ui.tools
+/*
+ЕСЛИ КОГДА-НИБУДЬ ПОНАДОБИТСЯ РАЗДЕЛИТЬ ШАГИ НА ДЕЙСТВИЯ И ПРОВЕРКИ
 
 import io.github.kakaocup.compose.node.action.NodeActions
 import io.github.kakaocup.compose.node.assertion.NodeAssertions
@@ -38,3 +40,4 @@ class CheckSteps(private val stepsExecutor: StepsExecutor): StepsDSL<CheckSteps>
         )
     }
 }
+ */
