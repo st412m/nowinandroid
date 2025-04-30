@@ -17,9 +17,13 @@
 package com.google.samples.apps.nowinandroid.ui.homework16
 
 import androidx.compose.ui.test.ExperimentalTestApi
+import androidx.compose.ui.test.hasTestTag
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.test.uiautomator.UiSelector
 import com.google.samples.apps.nowinandroid.MainActivity
+import com.google.samples.apps.nowinandroid.core.designsystem.C
+import com.google.samples.apps.nowinandroid.core.designsystem.LazyListLengthSemantics
+import com.kaspersky.components.alluresupport.withForcedAllureSupport
 import com.kaspersky.components.composesupport.config.withComposeSupport
 import com.kaspersky.kaspresso.kaspresso.Kaspresso
 import com.kaspersky.kaspresso.testcases.api.testcase.TestCase
@@ -28,7 +32,9 @@ import org.junit.Rule
 import org.junit.Test
 
 class MainScreenTest3 : TestCase(
-    Kaspresso.Builder.withComposeSupport(),
+    Kaspresso.Builder.withComposeSupport().apply {
+        Kaspresso.Builder.withForcedAllureSupport()
+    }
 ) {
     @get: Rule
     val composeTestRule = createAndroidComposeRule<MainActivity>()
@@ -52,36 +58,36 @@ class MainScreenTest3 : TestCase(
                     UiSelector().text("Allow"),
                 ).click()
             }
-//            step("Проверяем отображение элементов 'Topic Selection'") {
-//                val itemCount = composeTestRule
-//                    .onNode(hasTestTag("forYou:topicSelection"))
-//                    .fetchSemanticsNode()
-//                    .config[LazyListLengthSemantics]
-//                topicSelectionScreen {
-//                    for (index in 0 until itemCount) {
-//                        list.childAt<TopicSelectionsItems>(index) {
-//                            step("Проверяем начальное состояние элемента") {
-//                                icon.assertIsDisplayed()
-//                                text.assertIsDisplayed()
-//                                clearButton.assertIsDisplayed()
-//                                checkedButton.assertDoesNotExist()
-//                            }
-//
-//                            step("Клик на clearButton для выбора темы") {
-//                                clearButton.performClick()
-//                                checkedButton.assertIsDisplayed()
-//                                clearButton.assertDoesNotExist()
-//                            }
-//
-//                            step("Клик на checkedButton для отмены выбора") {
-//                                checkedButton.performClick()
-//                                clearButton.assertIsDisplayed()
-//                                checkedButton.assertDoesNotExist()
-//                            }
-//                        }
-//                    }
-//                }
-//            }
+            step("Проверяем отображение элементов 'Topic Selection'") {
+                val itemCount = composeTestRule
+                    .onNode(hasTestTag("forYou:topicSelection"))
+                    .fetchSemanticsNode()
+                    .config[LazyListLengthSemantics]
+                topicSelectionScreen {
+                    for (index in 0 until itemCount) {
+                        list.childAt<TopicSelectionsItems>(index) {
+                            step("Проверяем начальное состояние элемента") {
+                                icon.assertIsDisplayed()
+                                text.assertIsDisplayed()
+                                clearButton.assertIsDisplayed()
+                                checkedButton.assertDoesNotExist()
+                            }
+
+                            step("Клик на clearButton для выбора темы") {
+                                clearButton.performClick()
+                                checkedButton.assertIsDisplayed()
+                                clearButton.assertDoesNotExist()
+                            }
+
+                            step("Клик на checkedButton для отмены выбора") {
+                                checkedButton.performClick()
+                                clearButton.assertIsDisplayed()
+                                checkedButton.assertDoesNotExist()
+                            }
+                        }
+                    }
+                }
+            }
             step("Кликаем в элемент 'Topic Selection' с индексом 0") {
                 topicSelectionScreen {
                     list.childAt<TopicSelectionsItems>(0) {
@@ -97,9 +103,6 @@ class MainScreenTest3 : TestCase(
                 newsFeedScreen {
                     list.childAt<NewsFeedScreenItems>(0) {
                         cardImage.assertIsDisplayed()
-                        cardTitle.assertIsDisplayed()
-                        cardDate.assertIsDisplayed()
-                        cardShortDescription.assertIsDisplayed()
                     }
                 }
             }

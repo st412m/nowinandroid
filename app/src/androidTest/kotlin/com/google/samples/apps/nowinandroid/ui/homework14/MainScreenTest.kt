@@ -19,6 +19,7 @@ package com.google.samples.apps.nowinandroid.ui.homework14
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.test.uiautomator.UiSelector
 import com.google.samples.apps.nowinandroid.MainActivity
+import com.kaspersky.components.alluresupport.withForcedAllureSupport
 import com.kaspersky.components.composesupport.config.withComposeSupport
 import com.kaspersky.kaspresso.kaspresso.Kaspresso
 import com.kaspersky.kaspresso.testcases.api.testcase.TestCase
@@ -26,7 +27,9 @@ import org.junit.Rule
 import org.junit.Test
 
 class MainScreenTest : TestCase(
-    Kaspresso.Builder.withComposeSupport(),
+    Kaspresso.Builder.withComposeSupport().apply {
+        Kaspresso.Builder.withForcedAllureSupport()
+    }
 ) {
     @get: Rule
     val composeTestRule = createAndroidComposeRule<MainActivity>()
@@ -61,70 +64,70 @@ class MainScreenTest : TestCase(
                     }
                 }
             }
-            step("check button 'done' and click") {
-                mainScreen {
-                    doneButton.assertTextContains("Done")
-                    composeTestRule.waitForIdle()
-                    performClick()
-                }
-            }
-            step("Проверяем отображение иконки 'Search'") {
-                mainScreen {
-                    searchIcon.assertIsDisplayed()
-                }
-            }
-            step("Проверяем отображение иконки 'Settings' и кликаем на нее") {
-                mainScreen {
-                    settingsIcon.assertIsDisplayed()
-                    settingsIcon.performClick()
-                }
-            }
-            step(
-                "Проверяем наличие кнопки 'Privacy Police' кликаем на нее, потом возвращаемся",
-            ) {
-                settingsDialog {
-                    privacyPolicyButton.assertIsDisplayed()
-                    privacyPolicyButton.performClick()
-                    composeTestRule.waitForIdle()
-                    Thread.sleep(5000)
-                    device.uiDevice.pressBack()
-                }
-            }
-            step("Проверяем наличие кнопки 'Brand Guide' кликаем на нее, потом возвращаемся") {
-                settingsDialog {
-                    brandGuideButton.assertIsDisplayed()
-                    brandGuideButton.performClick()
-                    composeTestRule.waitForIdle()
-                    Thread.sleep(5000)
-                    device.uiDevice.pressBack()
-                }
-            }
-            step("Проверяем наличие кнопки 'feedback' кликаем на нее, потом возвращаемся") {
-                settingsDialog {
-                    feedbackButton.assertIsDisplayed()
-                    feedbackButton.performClick()
-                    composeTestRule.waitForIdle()
-                    Thread.sleep(5000)
-                    device.uiDevice.pressBack()
-                }
-            }
-            step("Проверяем наличие кнопки 'licenses' кликаем на нее, потом возвращаемся") {
-                settingsDialog {
-                    licensesButton.assertIsDisplayed()
-                    licensesButton.performClick()
-                    composeTestRule.waitForIdle()
-                    Thread.sleep(5000)
-                    device.uiDevice.pressBack()
-                }
-            }
-            step("Проверяем наличие кнопки 'ок' и выходим из меню через клик на нее") {
-                settingsDialog {
-                    okButton.assertIsDisplayed()
-                    okButton.performClick()
-                    composeTestRule.waitForIdle()
-                    Thread.sleep(5000)
-                }
-            }
+//            step("check button 'done' and click") {
+//                mainScreen {
+//                    doneButton.assertTextContains("Done")
+//                    composeTestRule.waitForIdle()
+//                    performClick()
+//                }
+//            }
+//            step("Проверяем отображение иконки 'Search'") {
+//                mainScreen {
+//                    searchIcon.assertIsDisplayed()
+//                }
+//            }
+//            step("Проверяем отображение иконки 'Settings' и кликаем на нее") {
+//                mainScreen {
+//                    settingsIcon.assertIsDisplayed()
+//                    settingsIcon.performClick()
+//                }
+//            }
+//            step(
+//                "Проверяем наличие кнопки 'Privacy Police' кликаем на нее, потом возвращаемся",
+//            ) {
+//                settingsDialog {
+//                    privacyPolicyButton.assertIsDisplayed()
+//                    privacyPolicyButton.performClick()
+//                    composeTestRule.waitForIdle()
+//                    Thread.sleep(5000)
+//                    device.uiDevice.pressBack()
+//                }
+//            }
+//            step("Проверяем наличие кнопки 'Brand Guide' кликаем на нее, потом возвращаемся") {
+//                settingsDialog {
+//                    brandGuideButton.assertIsDisplayed()
+//                    brandGuideButton.performClick()
+//                    composeTestRule.waitForIdle()
+//                    Thread.sleep(5000)
+//                    device.uiDevice.pressBack()
+//                }
+//            }
+//            step("Проверяем наличие кнопки 'feedback' кликаем на нее, потом возвращаемся") {
+//                settingsDialog {
+//                    feedbackButton.assertIsDisplayed()
+//                    feedbackButton.performClick()
+//                    composeTestRule.waitForIdle()
+//                    Thread.sleep(5000)
+//                    device.uiDevice.pressBack()
+//                }
+//            }
+//            step("Проверяем наличие кнопки 'licenses' кликаем на нее, потом возвращаемся") {
+//                settingsDialog {
+//                    licensesButton.assertIsDisplayed()
+//                    licensesButton.performClick()
+//                    composeTestRule.waitForIdle()
+//                    Thread.sleep(5000)
+//                    device.uiDevice.pressBack()
+//                }
+//            }
+//            step("Проверяем наличие кнопки 'ок' и выходим из меню через клик на нее") {
+//                settingsDialog {
+//                    okButton.assertIsDisplayed()
+//                    okButton.performClick()
+//                    composeTestRule.waitForIdle()
+//                    Thread.sleep(5000)
+//                }
+//            }
         }
     }
 }

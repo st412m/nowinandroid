@@ -363,6 +363,7 @@ private fun SearchResultBody(
                     onNewsResourcesCheckedChanged = onNewsResourcesCheckedChanged,
                     onNewsResourceViewed = onNewsResourceViewed,
                     onTopicClick = onTopicClick,
+                    modifier = Modifier,
                     onExpandedCardClick = {
                         onSearchTriggered(searchQuery)
                     },

@@ -20,6 +20,7 @@ import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.test.uiautomator.UiSelector
 import com.google.samples.apps.nowinandroid.MainActivity
 import com.google.samples.apps.nowinandroid.ui.homework14.SettingsDialog
+import com.kaspersky.components.alluresupport.withForcedAllureSupport
 import com.kaspersky.components.composesupport.config.withComposeSupport
 import com.kaspersky.kaspresso.kaspresso.Kaspresso
 import com.kaspersky.kaspresso.testcases.api.testcase.TestCase
@@ -27,7 +28,9 @@ import org.junit.Rule
 import org.junit.Test
 
 class MainScreenTest2 : TestCase(
-    Kaspresso.Builder.withComposeSupport(),
+    Kaspresso.Builder.withComposeSupport().apply {
+        Kaspresso.Builder.withForcedAllureSupport()
+    }
 ) {
     @get: Rule
     val composeTestRule = createAndroidComposeRule<MainActivity>()

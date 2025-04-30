@@ -26,10 +26,13 @@ import io.github.kakaocup.compose.node.element.ComposeScreen
 import io.github.kakaocup.compose.node.element.lazylist.KLazyListNode
 
 class NewsFeedScreen(semanticsProvider: SemanticsNodeInteractionsProvider) :
-    ComposeScreen<NewsFeedScreen>() {
-    val list = KLazyListNode(
+    ComposeScreen<NewsFeedScreen>(
         semanticsProvider = semanticsProvider,
         viewBuilderAction = { hasTestTag("forYou:feed") },
+    ) {
+    val list = KLazyListNode(
+        semanticsProvider = semanticsProvider,
+        viewBuilderAction = { hasTestTag(C.NEWS_RESOURCE_CARD) },
         itemTypeBuilder = {
             itemType(::NewsFeedScreenCards)
             itemType(::NewsFeedScreenItems)

@@ -57,10 +57,12 @@ fun LazyStaggeredGridScope.newsFeed(
     onNewsResourceViewed: (String) -> Unit,
     onTopicClick: (String) -> Unit,
     onExpandedCardClick: () -> Unit = {},
+    modifier: Modifier
 ) {
     when (feedState) {
         NewsFeedUiState.Loading -> Unit
         is NewsFeedUiState.Success -> {
+            modifier.semantics { lazyListLength = feedState.feed.size }
             itemsIndexed(
                 items = feedState.feed,
                 key = {_ , item -> item.id },
@@ -139,6 +141,7 @@ private fun NewsFeedLoadingPreview() {
                 onNewsResourcesCheckedChanged = { _, _ -> },
                 onNewsResourceViewed = {},
                 onTopicClick = {},
+                modifier = Modifier
             )
         }
     }
@@ -160,6 +163,7 @@ private fun NewsFeedContentPreview(
                 onNewsResourcesCheckedChanged = { _, _ -> },
                 onNewsResourceViewed = {},
                 onTopicClick = {},
+                modifier = Modifier
             )
         }
     }
