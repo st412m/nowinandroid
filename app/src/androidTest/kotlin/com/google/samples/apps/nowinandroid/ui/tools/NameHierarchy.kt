@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.google.samples.apps.nowinandroid.ui.homework25
+package com.google.samples.apps.nowinandroid.ui.tools
 
 class NameHierarchy(
     val name: String,

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.google.samples.apps.nowinandroid.ui.homework25
+package com.google.samples.apps.nowinandroid.ui.tools
 
 import com.kaspersky.kaspresso.testcases.core.testcontext.TestContext
 
@@ -35,3 +35,7 @@ val TestContext<*>.checks: CheckSteps
             CheckSteps(StepsExecutor(this))
         } as CheckSteps
     }
+
+private val stepsCache = mutableMapOf<TestContext<*>, NamedSteps>()
+val TestContext<*>.steps: NamedSteps
+    get() = stepsCache.getOrPut(this) { NamedSteps(StepsExecutor(this)) }

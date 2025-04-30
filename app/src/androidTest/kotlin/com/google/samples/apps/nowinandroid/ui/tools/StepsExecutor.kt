@@ -14,14 +14,13 @@
  * limitations under the License.
  */
 
-package com.google.samples.apps.nowinandroid.ui.homework25
+package com.google.samples.apps.nowinandroid.ui.tools
 
 import androidx.lifecycle.AtomicReference
 import com.kaspersky.kaspresso.testcases.core.testcontext.TestContext
 import com.kaspersky.kaspresso.testcases.models.info.StepInfo
 import io.github.kakaocup.compose.node.action.NodeActions
 import io.github.kakaocup.compose.node.assertion.NodeAssertions
-import org.w3c.dom.Text
 
 class StepsExecutor(private val testContext: TestContext<*>) {
 
@@ -45,6 +44,18 @@ class StepsExecutor(private val testContext: TestContext<*>) {
     fun checkText(step: String, item: NodeAssertions, expectedText: String) {
         execute(step) {
             item.assertTextEquals(expectedText)
+        }
+    }
+
+    fun isDisplayed(step: String, item: NodeAssertions){
+        execute(step){
+            item.assertIsDisplayed()
+        }
+    }
+
+    fun doesNotExist(step: String, item: NodeAssertions){
+        execute(step){
+            item.assertDoesNotExist()
         }
     }
 

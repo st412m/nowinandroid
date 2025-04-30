@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.google.samples.apps.nowinandroid.ui.homework25
+package com.google.samples.apps.nowinandroid.ui.tools
 
 import io.github.kakaocup.compose.node.action.NodeActions
 import androidx.compose.ui.semantics.SemanticsProperties
@@ -22,12 +22,15 @@ import androidx.compose.ui.semantics.getOrNull
 
 val elementNames = mutableMapOf<NodeActions, NameHierarchy>()
 
-fun <T: NodeActions> T.setName(nameHierarchy: NameHierarchy){
+fun <T: NodeActions> T.setName(nameHierarchy: NameHierarchy): T{
     elementNames[this] = nameHierarchy
+    return this
 }
 
-fun NodeActions.getName():  NameHierarchy =
-    elementNames.getOrDefault(this, NameHierarchy("No label"))
+fun NodeActions.getName(): NameHierarchy {
+    return elementNames[this] ?: throw RuntimeException("Необходимо указать имя")
+//    elementNames.getOrDefault(this, NameHierarchy("No label"))
+}
 
 fun NodeActions.withParent(elementName: String) = getName().withParent(elementName)
 

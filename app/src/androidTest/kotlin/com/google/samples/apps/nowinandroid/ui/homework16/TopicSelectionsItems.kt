@@ -19,6 +19,8 @@ package com.google.samples.apps.nowinandroid.ui.homework16
 import androidx.compose.ui.semantics.SemanticsNode
 import androidx.compose.ui.test.SemanticsNodeInteractionsProvider
 import com.google.samples.apps.nowinandroid.core.designsystem.C
+import com.google.samples.apps.nowinandroid.ui.tools.setName
+import com.google.samples.apps.nowinandroid.ui.tools.withParent
 import io.github.kakaocup.compose.node.element.KNode
 import io.github.kakaocup.compose.node.element.lazylist.KLazyListItemNode
 
@@ -26,17 +28,28 @@ class TopicSelectionsItems(
     semanticsNode: SemanticsNode,
     semanticsProvider: SemanticsNodeInteractionsProvider,
 ) : KLazyListItemNode<TopicSelectionsItems>(semanticsNode, semanticsProvider) {
-    val icon = child<KNode> {
-        hasTestTag(C.TOPIC_SELECTION_ICON)
-    }
-    val text = child<KNode> {
-        hasTestTag(C.TOPIC_SELECTION_TEXT)
-    }
-    val clearButton = child<KNode> {
-        hasTestTag(C.TOPIC_SELECTION_CLEAR_BUTTON)
-    }
-    val checkedButton = child<KNode> {
-        hasTestTag(C.TOPIC_SELECTION_CHECKED_BUTTON)
+
+    val icon by lazy {
+        child<KNode> {
+            hasTestTag(C.TOPIC_SELECTION_ICON)
+        }.setName(withParent("Значок"))
     }
 
+    val text by lazy {
+        child<KNode> {
+            hasTestTag(C.TOPIC_SELECTION_TEXT)
+        }.setName(withParent("Текст"))
+    }
+
+    val clearButton by lazy {
+        child<KNode> {
+            hasTestTag(C.TOPIC_SELECTION_CLEAR_BUTTON)
+        }.setName(withParent("Не отмеченная кнопка"))
+    }
+
+    val checkedButton by lazy {
+        child<KNode> {
+            hasTestTag(C.TOPIC_SELECTION_CHECKED_BUTTON)
+        }.setName(withParent("Отмеченная кнока"))
+    }
 }

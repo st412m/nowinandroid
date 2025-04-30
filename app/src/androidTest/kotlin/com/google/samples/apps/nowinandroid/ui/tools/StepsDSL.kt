@@ -14,17 +14,12 @@
  * limitations under the License.
  */
 
-package com.google.samples.apps.nowinandroid.ui.homework25
+package com.google.samples.apps.nowinandroid.ui.tools
 
-import io.github.kakaocup.compose.node.action.NodeActions
-import io.github.kakaocup.compose.node.assertion.NodeAssertions
+abstract class StepsDSL<T: StepsDSL<T>> {
+    abstract val self: T
 
-class CheckSteps(private val stepsExecutor: StepsExecutor): StepsDSL<CheckSteps>() {
-    override val self = this
-
-    fun checkText(item: NodeAssertions, expectedText: String){
-        stepsExecutor.checkText(
-            "Проверяет, что в ноде '${(item as NodeActions).getName()}' установлен текст '$expectedText'", item, expectedText,
-        )
+    operator fun invoke(function: T.() -> Unit){
+        function(self)
     }
 }

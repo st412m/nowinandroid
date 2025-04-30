@@ -21,29 +21,44 @@ import androidx.compose.ui.test.SemanticsNodeInteractionsProvider
 import com.google.samples.apps.nowinandroid.core.designsystem.C
 import com.google.samples.apps.nowinandroid.core.designsystem.LazyListItemPositionSemantics
 import com.google.samples.apps.nowinandroid.core.designsystem.LazyListLengthSemantics
-import com.kaspersky.components.composesupport.core.KNode
+import com.google.samples.apps.nowinandroid.ui.tools.NamedComposeScreen
+import com.google.samples.apps.nowinandroid.ui.tools.invokeAtIndex
+import com.google.samples.apps.nowinandroid.ui.tools.setName
+import com.google.samples.apps.nowinandroid.ui.tools.withParent
 import io.github.kakaocup.compose.node.element.ComposeScreen
 import io.github.kakaocup.compose.node.element.lazylist.KLazyListNode
 
 class NewsFeedScreen(semanticsProvider: SemanticsNodeInteractionsProvider) :
-    ComposeScreen<NewsFeedScreen>(
+    NamedComposeScreen<NewsFeedScreen>(
         semanticsProvider = semanticsProvider,
         viewBuilderAction = { hasTestTag("forYou:feed") },
     ) {
-    val list = KLazyListNode(
-        semanticsProvider = semanticsProvider,
-        viewBuilderAction = { hasTestTag(C.NEWS_RESOURCE_CARD) },
-        itemTypeBuilder = {
-            itemType(::NewsFeedScreenCards)
-            itemType(::NewsFeedScreenItems)
-        },
-        positionMatcher = { position ->
-            SemanticsMatcher.expectValue(
-                LazyListItemPositionSemantics,
-                position,
-            )
-        },
-        lengthSemanticsPropertyKey = LazyListLengthSemantics,
-    )
+    override val screenName = "News Feed Screen"
+    val list by lazy {
+        KLazyListNode(
+            semanticsProvider = semanticsProvider,
+            viewBuilderAction = { hasTestTag(C.NEWS_RESOURCE_CARD) },
+            itemTypeBuilder = {
+                itemType(::NewsFeedScreenCards)
+                itemType(::NewsFeedScreenItems)
+            },
+            positionMatcher = { position ->
+                SemanticsMatcher.expectValue(
+                    LazyListItemPositionSemantics,
+                    position,
+                )
+            },
+            lengthSemanticsPropertyKey = LazyListLengthSemantics,
+        ).setName(withParent("Список блоков"))
+    }
 
+    fun newsFeedScreenCards(index: Int, function: NewsFeedScreenCards.() -> Unit) {
+        list.invokeAtIndex(index, function)
+    }
+
+    fun newsFeedScreenItems(index: Int, function: NewsFeedScreenItems.() -> Unit) {
+        list.invokeAtIndex(index, function)
+    }
 }
+
+

@@ -14,12 +14,20 @@
  * limitations under the License.
  */
 
-package com.google.samples.apps.nowinandroid.ui.homework25
+package com.google.samples.apps.nowinandroid.ui.tools
 
-abstract class StepsDSL<T: StepsDSL<T>> {
-    abstract val self: T
+import androidx.compose.ui.test.ExperimentalTestApi
+import io.github.kakaocup.compose.node.element.lazylist.KLazyListItemNode
+import io.github.kakaocup.compose.node.element.lazylist.KLazyListNode
 
-    operator fun invoke(function: T.() -> Unit){
-        function(self)
+@OptIn(ExperimentalTestApi::class)
+inline fun <reified T : KLazyListItemNode<*>> KLazyListNode.invokeAtIndex(
+    targetIndex: Int,
+    function: T.() -> Unit
+) {
+    val lazyList: KLazyListNode = this
+    childAt<T>(position = targetIndex) {
+        setName(lazyList.getName().withParent("$targetIndex"))
+        function()
     }
 }

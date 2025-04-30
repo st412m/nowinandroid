@@ -20,26 +20,36 @@ import androidx.compose.ui.test.SemanticsMatcher
 import androidx.compose.ui.test.SemanticsNodeInteractionsProvider
 import com.google.samples.apps.nowinandroid.core.designsystem.LazyListItemPositionSemantics
 import com.google.samples.apps.nowinandroid.core.designsystem.LazyListLengthSemantics
-import io.github.kakaocup.compose.node.element.ComposeScreen
+import com.google.samples.apps.nowinandroid.ui.tools.NamedComposeScreen
+import com.google.samples.apps.nowinandroid.ui.tools.invokeAtIndex
+import com.google.samples.apps.nowinandroid.ui.tools.setName
 import io.github.kakaocup.compose.node.element.lazylist.KLazyListNode
 
 class TopicSelectionScreen(semanticsProvider: SemanticsNodeInteractionsProvider) :
-    ComposeScreen<TopicSelectionScreen>(
+
+    NamedComposeScreen<TopicSelectionScreen>(
         semanticsProvider = semanticsProvider,
         viewBuilderAction = { hasTestTag("forYou:feed") },
     ) {
-    val list = KLazyListNode(
-        semanticsProvider = semanticsProvider,
-        viewBuilderAction = { hasTestTag("forYou:topicSelection") },
-        itemTypeBuilder = {
-            itemType(::TopicSelectionsItems)
-        },
-        positionMatcher = { position ->
-            SemanticsMatcher.expectValue(
-                LazyListItemPositionSemantics,
-                position,
-            )
-        },
-        lengthSemanticsPropertyKey = LazyListLengthSemantics
-    )
+    override val screenName = "Topic Selection Screen"
+    val list by lazy {
+        KLazyListNode(
+            semanticsProvider = semanticsProvider,
+            viewBuilderAction = { hasTestTag("forYou:topicSelection") },
+            itemTypeBuilder = {
+                itemType(::TopicSelectionsItems)
+            },
+            positionMatcher = { position ->
+                SemanticsMatcher.expectValue(
+                    LazyListItemPositionSemantics,
+                    position,
+                )
+            },
+            lengthSemanticsPropertyKey = LazyListLengthSemantics,
+        ).setName(withParent("Список топиков"))
+    }
+
+    fun topicSelectionsItems(index: Int, function: TopicSelectionsItems.() -> Unit) {
+        list.invokeAtIndex(index, function)
+    }
 }
