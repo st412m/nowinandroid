@@ -62,7 +62,7 @@ fun LazyStaggeredGridScope.newsFeed(
     when (feedState) {
         NewsFeedUiState.Loading -> Unit
         is NewsFeedUiState.Success -> {
-            modifier.semantics { lazyListLength = feedState.feed.size }
+        //    modifier.semantics { lazyListLength = feedState.feed.size }
             itemsIndexed(
                 items = feedState.feed,
                 key = {_ , item -> item.id },

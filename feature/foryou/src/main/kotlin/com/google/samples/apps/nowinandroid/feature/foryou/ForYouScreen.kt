@@ -174,8 +174,8 @@ internal fun ForYouScreen(
             horizontalArrangement = Arrangement.spacedBy(16.dp),
             verticalItemSpacing = 24.dp,
             modifier = Modifier
-                .testTag("forYou:feed"),
-//                .semantics { lazyListLength = itemsAvailable },
+                .testTag("forYou:feed")
+                .semantics { lazyListLength = itemsAvailable },
             state = state,
         ) {
             onboarding(

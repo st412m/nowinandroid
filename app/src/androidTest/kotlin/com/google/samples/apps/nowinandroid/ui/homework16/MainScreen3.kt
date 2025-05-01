@@ -22,10 +22,10 @@ import com.google.samples.apps.nowinandroid.ui.tools.NamedComposeScreen
 import com.google.samples.apps.nowinandroid.ui.tools.setName
 import com.kaspersky.components.composesupport.core.KNode
 
-class MainScreen3(semanticProvides: SemanticsNodeInteractionsProvider,
+class MainScreen3(semanticsProvider: SemanticsNodeInteractionsProvider,
     override val screenName: String = "Главный экран"
 ) :
-    NamedComposeScreen<MainScreen3>(semanticProvides) {
+    NamedComposeScreen<MainScreen3>(semanticsProvider) {
 
     val centerAlignedTopAppBar = child<KNode> {
         hasTestTag("niaTopAppBar")
