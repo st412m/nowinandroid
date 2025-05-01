@@ -66,6 +66,7 @@ fun LazyStaggeredGridScope.newsFeed(
             itemsIndexed(
                 items = feedState.feed,
                 key = {_ , item -> item.id },
+                contentType = {  _, _ -> "newsFeedItem" },
             ) { index, userNewsResource ->
                 val context = LocalContext.current
                 val analyticsHelper = LocalAnalyticsHelper.current
