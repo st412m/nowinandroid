@@ -17,10 +17,12 @@
 package com.google.samples.apps.nowinandroid.ui.tools
 
 import android.content.res.Resources.NotFoundException
+import android.util.Log
 import androidx.compose.ui.semantics.getOrNull
 import androidx.compose.ui.test.ExperimentalTestApi
 import com.google.samples.apps.nowinandroid.core.designsystem.LazyListLengthSemantics
 import io.github.kakaocup.compose.node.action.NodeActions
+import io.github.kakaocup.compose.node.builder.ViewBuilder
 import io.github.kakaocup.compose.node.element.lazylist.KLazyListItemNode
 import io.github.kakaocup.compose.node.element.lazylist.KLazyListNode
 import io.github.kakaocup.compose.node.element.list.KListItemNode
@@ -39,6 +41,49 @@ inline fun <reified T : KLazyListItemNode<*>> KLazyListNode.invokeAtIndex(
     }
 }
 
+inline fun <reified T : KListItemNode<*>> KListNode.invokeFirstChild(function: T.() -> Unit) {
+    val list = this
+    firstChild<T> {
+        setName(list.withParent("first"))
+        function()
+    }
+}
+
+inline fun <reified T : KListItemNode<*>> KListNode.invokeChildAtMatcher(
+    noinline viewBuilderAction: ViewBuilder.() -> Unit,
+    description: String,
+    function: T.() -> Unit,
+) {
+    val list = this
+    childWith<T>(viewBuilderAction = viewBuilderAction) {
+        setName(list.withParent(description))
+        function()
+    }
+}
+
+inline fun <reified T : KListItemNode<*>> KListNode.findByPredicate(
+    targetIndex: Int,
+    blockName: String,
+    limiter: Int,
+    predicate: T.() -> Boolean,
+): T {
+    val list = this
+    var findBlockCounter = 0
+    val max = min(limiter, getSize())
+    for (i in 0 until max) {
+        childAt<T>(i) {
+            if (predicate()) {
+                if (findBlockCounter == targetIndex) {
+                    setName(list.getName().withParent("$targetIndex's block of $blockName"))
+                    return this
+                }
+                findBlockCounter++
+            }
+        }
+    }
+    throw NotFoundException("Not found block with $targetIndex index of $blockName")
+}
+
 inline fun <reified T : KListItemNode<*>> KListNode.invokeByPredicate(
     targetIndex: Int,
     blockName: String,
@@ -51,8 +96,14 @@ inline fun <reified T : KListItemNode<*>> KListNode.invokeByPredicate(
     val max = min(limiter, getSize())
     for (i in 0 until max) {
         childAt<T>(i) {
+            Log.d(
+                "KASPRESSO",
+                "Проход №$i, ${getText()}, targetIndex = $targetIndex, findBlockCounter = $findBlockCounter",
+            )
             if (predicate()) {
+                Log.d("KASPRESSO", "Предикат сработал")
                 if (findBlockCounter == targetIndex) {
+                    Log.d("KASPRESSO", "Каунтер сработал")
                     setName(list.getName().withParent("$targetIndex's block of $blockName"))
                     function()
                     return

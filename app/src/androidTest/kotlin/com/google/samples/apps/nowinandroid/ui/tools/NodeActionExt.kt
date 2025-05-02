@@ -44,3 +44,12 @@ fun NodeActions.getText(): List<String> {
             it.text
         } ?: emptyList()
 }
+
+fun NodeActions.hasTestTag(testTag: String): Boolean {
+   return this.delegate
+        .interaction
+        .semanticsNodeInteraction
+        .fetchSemanticsNode()
+        .config
+        .getOrNull(SemanticsProperties.TestTag) == testTag
+}
