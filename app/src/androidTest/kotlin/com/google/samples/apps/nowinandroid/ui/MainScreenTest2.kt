@@ -14,12 +14,14 @@
  * limitations under the License.
  */
 
-package com.google.samples.apps.nowinandroid.ui.homework15
+package com.google.samples.apps.nowinandroid.ui
 
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.test.uiautomator.UiSelector
 import com.google.samples.apps.nowinandroid.MainActivity
-import com.google.samples.apps.nowinandroid.ui.homework14.SettingsDialog
+import com.google.samples.apps.nowinandroid.ui.forYouScreen.MainScreen2
+import com.google.samples.apps.nowinandroid.ui.searchScreen.SearchScreenItems
+import com.google.samples.apps.nowinandroid.ui.settingsScreen.SettingsDialog
 import com.kaspersky.components.alluresupport.withForcedAllureSupport
 import com.kaspersky.components.composesupport.config.withComposeSupport
 import com.kaspersky.kaspresso.kaspresso.Kaspresso

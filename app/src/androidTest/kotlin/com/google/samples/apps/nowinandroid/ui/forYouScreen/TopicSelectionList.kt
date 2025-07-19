@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.google.samples.apps.nowinandroid.ui.homework16
+package com.google.samples.apps.nowinandroid.ui.forYouScreen
 
 import androidx.compose.ui.test.SemanticsMatcher
 import androidx.compose.ui.test.SemanticsNodeInteractionsProvider
@@ -25,19 +25,19 @@ import com.google.samples.apps.nowinandroid.ui.tools.invokeAtIndex
 import com.google.samples.apps.nowinandroid.ui.tools.setName
 import io.github.kakaocup.compose.node.element.lazylist.KLazyListNode
 
-class TopicSelectionScreen(semanticsProvider: SemanticsNodeInteractionsProvider) :
+class TopicSelectionList(semanticsProvider: SemanticsNodeInteractionsProvider) :
 
-    NamedComposeScreen<TopicSelectionScreen>(
+    NamedComposeScreen<TopicSelectionList>(
         semanticsProvider = semanticsProvider,
         viewBuilderAction = { hasTestTag("forYou:feed") },
     ) {
-    override val screenName = "Topic Selection Screen"
+    override val screenName = "Topic Selection List"
     val list by lazy {
         KLazyListNode(
             semanticsProvider = semanticsProvider,
             viewBuilderAction = { hasTestTag("forYou:topicSelection") },
             itemTypeBuilder = {
-                itemType(::TopicSelectionsItems)
+                itemType(::TopicSelectionsListItems)
             },
             positionMatcher = { position ->
                 SemanticsMatcher.expectValue(
@@ -46,10 +46,10 @@ class TopicSelectionScreen(semanticsProvider: SemanticsNodeInteractionsProvider)
                 )
             },
             lengthSemanticsPropertyKey = LazyListLengthSemantics,
-        ).setName(withParent("Список топиков"))
+        ).setName(withParent("Topic list"))
     }
 
-    fun topicSelectionsItems(index: Int, function: TopicSelectionsItems.() -> Unit) {
+    fun topicSelectionsItems(index: Int, function: TopicSelectionsListItems.() -> Unit) {
         list.invokeAtIndex(index, function)
     }
 }

@@ -14,26 +14,24 @@
  * limitations under the License.
  */
 
-package com.google.samples.apps.nowinandroid.ui.homework15
+package com.google.samples.apps.nowinandroid.ui.forYouScreen
 
+import androidx.compose.ui.semantics.SemanticsNode
 import androidx.compose.ui.test.SemanticsNodeInteractionsProvider
 import com.google.samples.apps.nowinandroid.core.designsystem.C
+import com.google.samples.apps.nowinandroid.ui.tools.setName
+import com.google.samples.apps.nowinandroid.ui.tools.withParent
 import com.kaspersky.components.composesupport.core.KNode
-import io.github.kakaocup.compose.node.element.ComposeScreen
+import io.github.kakaocup.compose.node.element.lazylist.KLazyListItemNode
 
-class SearchScreenItems(semanticProvides: SemanticsNodeInteractionsProvider) :
-    ComposeScreen<SearchScreenItems>(semanticProvides) {
+class NewsFeedScreenCards(
+    semanticsNode: SemanticsNode,
+    semanticsProvider: SemanticsNodeInteractionsProvider,
+) : KLazyListItemNode<NewsFeedScreenCards>(semanticsNode, semanticsProvider) {
 
-    val onBackIcon = child<KNode> {
-        hasTestTag(C.ON_BACK_ICON)
-        useUnmergedTree = true
-    }
-    val searchIcon = child<KNode> {
-        hasTestTag(C.SEARCH_ICON)
-        useUnmergedTree = true
-    }
-    val searchTextField = child<KNode> {
-        hasTestTag(C.SEARCH_TEXT_FIELD)
-        useUnmergedTree = true
+    val card by lazy {
+        child<KNode> {
+            hasTestTag(C.NEWS_RESOURCE_CARD)
+        }.setName(withParent("Карточка списка новостей"))
     }
 }

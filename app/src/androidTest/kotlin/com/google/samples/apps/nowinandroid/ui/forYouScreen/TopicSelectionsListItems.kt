@@ -14,42 +14,42 @@
  * limitations under the License.
  */
 
-package com.google.samples.apps.nowinandroid.ui.homework16
+package com.google.samples.apps.nowinandroid.ui.forYouScreen
 
 import androidx.compose.ui.semantics.SemanticsNode
 import androidx.compose.ui.test.SemanticsNodeInteractionsProvider
 import com.google.samples.apps.nowinandroid.core.designsystem.C
 import com.google.samples.apps.nowinandroid.ui.tools.setName
 import com.google.samples.apps.nowinandroid.ui.tools.withParent
-import com.kaspersky.components.composesupport.core.KNode
+import io.github.kakaocup.compose.node.element.KNode
 import io.github.kakaocup.compose.node.element.lazylist.KLazyListItemNode
 
-class NewsFeedScreenItems(
+class TopicSelectionsListItems(
     semanticsNode: SemanticsNode,
     semanticsProvider: SemanticsNodeInteractionsProvider,
-) : KLazyListItemNode<NewsFeedScreenItems>(semanticsNode, semanticsProvider) {
+) : KLazyListItemNode<TopicSelectionsListItems>(semanticsNode, semanticsProvider) {
 
-    val cardImage by lazy {
+    val icon by lazy {
         child<KNode> {
-            hasTestTag(C.NEWS_RESOURCE_CARD_IMAGE)
-        }.setName(withParent("Изображение карточки новостей"))
+            hasTestTag(C.TOPIC_SELECTION_ICON)
+        }.setName(withParent("Icon"))
     }
 
-    val cardTitle by lazy {
+    val text by lazy {
         child<KNode> {
-            hasTestTag(C.NEWS_RESOURCE_CARD_TITLE)
-        }.setName(withParent("Заголовок карточки новостей"))
+            hasTestTag(C.TOPIC_SELECTION_TEXT)
+        }.setName(withParent("Text"))
     }
 
-    val cardDate by lazy {
+    val clearButton by lazy {
         child<KNode> {
-            hasTestTag(C.NEWS_RESOURCE_CARD_DATE)
-        }.setName(withParent("Дата"))
+            hasTestTag(C.TOPIC_SELECTION_CLEAR_BUTTON)
+        }.setName(withParent("Unchecked button"))
     }
 
-    val cardShortDescription by lazy {
+    val checkedButton by lazy {
         child<KNode> {
-            hasTestTag(C.NEWS_RESOURCE_CARD_SHORT_DESCRIPTION)
-        }.setName(withParent("Описание карточки"))
+            hasTestTag(C.TOPIC_SELECTION_CHECKED_BUTTON)
+        }.setName(withParent("Checked button"))
     }
 }

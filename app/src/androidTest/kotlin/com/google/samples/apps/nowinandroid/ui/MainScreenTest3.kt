@@ -14,15 +14,19 @@
  * limitations under the License.
  */
 
-package com.google.samples.apps.nowinandroid.ui.homework16
+package com.google.samples.apps.nowinandroid.ui
 
 import androidx.compose.ui.test.ExperimentalTestApi
 import androidx.compose.ui.test.hasTestTag
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.test.uiautomator.UiSelector
 import com.google.samples.apps.nowinandroid.MainActivity
-import com.google.samples.apps.nowinandroid.core.designsystem.C
 import com.google.samples.apps.nowinandroid.core.designsystem.LazyListLengthSemantics
+import com.google.samples.apps.nowinandroid.ui.forYouScreen.MainScreen3
+import com.google.samples.apps.nowinandroid.ui.forYouScreen.NewsFeedScreen
+import com.google.samples.apps.nowinandroid.ui.forYouScreen.NewsFeedScreenItems
+import com.google.samples.apps.nowinandroid.ui.forYouScreen.TopicSelectionList
+import com.google.samples.apps.nowinandroid.ui.forYouScreen.TopicSelectionsListItems
 import com.kaspersky.components.alluresupport.withForcedAllureSupport
 import com.kaspersky.components.composesupport.config.withComposeSupport
 import com.kaspersky.kaspresso.kaspresso.Kaspresso
@@ -38,7 +42,7 @@ class MainScreenTest3 : TestCase(
 ) {
     @get: Rule
     val composeTestRule = createAndroidComposeRule<MainActivity>()
-    val topicSelectionScreen = TopicSelectionScreen(composeTestRule)
+    val topicSelectionList = TopicSelectionList(composeTestRule)
     val mainScreen = MainScreen3(composeTestRule)
     val newsFeedScreen = NewsFeedScreen(composeTestRule)
 
@@ -63,9 +67,9 @@ class MainScreenTest3 : TestCase(
                     .onNode(hasTestTag("forYou:topicSelection"))
                     .fetchSemanticsNode()
                     .config[LazyListLengthSemantics]
-                topicSelectionScreen {
+                topicSelectionList {
                     for (index in 0 until itemCount) {
-                        list.childAt<TopicSelectionsItems>(index) {
+                        list.childAt<TopicSelectionsListItems>(index) {
                             step("Проверяем начальное состояние элемента") {
                                 icon.assertIsDisplayed()
                                 text.assertIsDisplayed()
@@ -89,8 +93,8 @@ class MainScreenTest3 : TestCase(
                 }
             }
             step("Кликаем в элемент 'Topic Selection' с индексом 0") {
-                topicSelectionScreen {
-                    list.childAt<TopicSelectionsItems>(0) {
+                topicSelectionList {
+                    list.childAt<TopicSelectionsListItems>(0) {
                         clearButton.performClick()
                         composeTestRule.waitForIdle()
                     }

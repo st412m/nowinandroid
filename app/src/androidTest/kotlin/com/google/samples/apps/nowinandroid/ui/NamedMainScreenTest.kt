@@ -14,13 +14,13 @@
  * limitations under the License.
  */
 
-package com.google.samples.apps.nowinandroid.ui.homework25
+package com.google.samples.apps.nowinandroid.ui
 
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.test.uiautomator.UiSelector
 import com.google.samples.apps.nowinandroid.MainActivity
-import com.google.samples.apps.nowinandroid.ui.homework16.MainScreen3
-import com.google.samples.apps.nowinandroid.ui.homework16.TopicSelectionScreen
+import com.google.samples.apps.nowinandroid.ui.forYouScreen.MainScreen3
+import com.google.samples.apps.nowinandroid.ui.forYouScreen.TopicSelectionList
 import com.google.samples.apps.nowinandroid.ui.tools.steps
 import com.kaspersky.components.alluresupport.withForcedAllureSupport
 import com.kaspersky.components.composesupport.config.addComposeSupport
@@ -37,7 +37,7 @@ class NamedMainScreenTest : TestCase(
 ) {
     @get: Rule
     val composeTestRule = createAndroidComposeRule<MainActivity>()
-    val topicSelectionScreen = TopicSelectionScreen(composeTestRule)
+    val topicSelectionList = TopicSelectionList(composeTestRule)
     val mainScreen = MainScreen3(composeTestRule)
 
     @get: Rule
@@ -53,7 +53,7 @@ class NamedMainScreenTest : TestCase(
                 UiSelector().text("Allow"),
             ).click()
             steps {
-                topicSelectionScreen {
+                topicSelectionList {
                     topicSelectionsItems(1) {
                         isDisplayed(icon)
                         isDisplayed(text)

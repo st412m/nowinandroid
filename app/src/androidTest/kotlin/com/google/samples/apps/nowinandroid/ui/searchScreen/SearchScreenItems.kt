@@ -14,14 +14,26 @@
  * limitations under the License.
  */
 
-package com.google.samples.apps.nowinandroid.ui.homework14
+package com.google.samples.apps.nowinandroid.ui.searchScreen
 
 import androidx.compose.ui.test.SemanticsNodeInteractionsProvider
+import com.google.samples.apps.nowinandroid.core.designsystem.C
 import com.kaspersky.components.composesupport.core.KNode
 import io.github.kakaocup.compose.node.element.ComposeScreen
 
-class NowInAndroid(semanticProvides: SemanticsNodeInteractionsProvider) :
-    ComposeScreen<NowInAndroid>(semanticProvides) {
+class SearchScreenItems(semanticProvides: SemanticsNodeInteractionsProvider) :
+    ComposeScreen<SearchScreenItems>(semanticProvides) {
 
-
+    val onBackIcon = child<KNode> {
+        hasTestTag(C.ON_BACK_ICON)
+        useUnmergedTree = true
+    }
+    val searchIcon = child<KNode> {
+        hasTestTag(C.SEARCH_ICON)
+        useUnmergedTree = true
+    }
+    val searchTextField = child<KNode> {
+        hasTestTag(C.SEARCH_TEXT_FIELD)
+        useUnmergedTree = true
+    }
 }
