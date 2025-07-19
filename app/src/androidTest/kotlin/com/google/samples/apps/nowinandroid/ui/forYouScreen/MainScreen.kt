@@ -86,7 +86,7 @@ class MainScreen(
         }.setName(withParent("Text subtitle"))
     }
 
-    val scrollbar by lazy {
+    val decorativeScrollbar by lazy {
         child<KNode> {
             hasTestTag(C.SCROLLBAR)
         }.setName(withParent("Decorative scrollbar"))
@@ -98,21 +98,21 @@ class MainScreen(
         }.setName(withParent("[Done] button"))
     }
 
-    val forYouIcon by lazy {
+    val forYouButton by lazy {
         child<KNode> {
             hasTestTag("NiaNavItem")
             hasPosition(0)
         }.setName(withParent("[For you] button"))
     }
 
-    val savedIcon by lazy {
+    val savedButton by lazy {
         child<KNode> {
             hasTestTag("NiaNavItem")
             hasPosition(1)
         }.setName(withParent("[Saved] button"))
     }
 
-    val interestsIcon by lazy {
+    val interestsButton by lazy {
         child<KNode> {
             hasTestTag("NiaNavItem")
             hasPosition(2)
