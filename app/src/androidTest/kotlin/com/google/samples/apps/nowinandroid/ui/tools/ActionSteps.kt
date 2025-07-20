@@ -15,8 +15,6 @@
  */
 
 package com.google.samples.apps.nowinandroid.ui.tools
-/*
-ЕСЛИ КОГДА-НИБУДЬ ПОНАДОБИТСЯ РАЗДЕЛИТЬ ШАГИ НА ДЕЙСТВИЯ И ПРОВЕРКИ
 
 import io.github.kakaocup.compose.node.action.NodeActions
 import java.util.concurrent.atomic.AtomicReference
@@ -26,7 +24,7 @@ class ActionSteps(private val stepsExecutor: StepsExecutor): StepsDSL<ActionStep
 
     fun click(item: NodeActions){
         stepsExecutor.click(
-            "Нажимает на кнопку '${item.getName()}'", item
+            "Taps the '${item.getName()}'", item
         )
     }
 
@@ -36,7 +34,7 @@ class ActionSteps(private val stepsExecutor: StepsExecutor): StepsDSL<ActionStep
         extraction: (item: NodeActions) -> T,
         ) {
         stepsExecutor.extractSemantic(
-            "Получает данные из элемента '${item.getName()}'",
+            "Gets data from the '${item.getName()}'",
             item,
             container,
             extraction,
@@ -45,4 +43,3 @@ class ActionSteps(private val stepsExecutor: StepsExecutor): StepsDSL<ActionStep
 
     fun nextStep(step: String) = stepsExecutor.setNextStepName(step)
 }
- */

@@ -15,8 +15,6 @@
  */
 
 package com.google.samples.apps.nowinandroid.ui.tools
-/*
-ЕСЛИ КОГДА-НИБУДЬ ПОНАДОБИТСЯ РАЗДЕЛИТЬ ШАГИ НА ДЕЙСТВИЯ И ПРОВЕРКИ
 
 import io.github.kakaocup.compose.node.action.NodeActions
 import io.github.kakaocup.compose.node.assertion.NodeAssertions
@@ -26,18 +24,25 @@ class CheckSteps(private val stepsExecutor: StepsExecutor): StepsDSL<CheckSteps>
 
     fun checkText(item: NodeAssertions, expectedText: String){
         stepsExecutor.checkText(
-            "Проверяет, что в ноде '${(item as NodeActions).getName()}' установлен текст '$expectedText'", item, expectedText,
+            "Checks that the'${(item as NodeActions).getName()}' has text '$expectedText'", item, expectedText,
         )
     }
+
     fun isDisplayed(item: NodeAssertions){
         stepsExecutor.isDisplayed(
-            "Проверяет, что объект '${(item as NodeActions).getName()}' отображается", item
+            "Checks that the '${(item as NodeActions).getName()}' is displayed", item
         )
     }
+
+    fun isClickable(item: NodeAssertions){
+        stepsExecutor.isClickable(
+            "Checks that the '${(item as NodeActions).getName()}' is clickable", item
+        )
+    }
+
     fun doesNotExist(item: NodeAssertions){
-        stepsExecutor.isDisplayed(
-            "Проверяет, что объект '${(item as NodeActions).getName()}' не существует", item
+        stepsExecutor.doesNotExist(
+            "Checks that the '${(item as NodeActions).getName()}' does not exist", item
         )
     }
 }
- */

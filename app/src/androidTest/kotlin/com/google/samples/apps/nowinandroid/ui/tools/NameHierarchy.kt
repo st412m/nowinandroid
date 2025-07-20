@@ -17,7 +17,7 @@
 package com.google.samples.apps.nowinandroid.ui.tools
 
 class NameHierarchy(
-    val name: String,
+    private val name: String,
     private val parent: NameHierarchy? = null
 ) {
     fun withParent(currentElementName: String) =

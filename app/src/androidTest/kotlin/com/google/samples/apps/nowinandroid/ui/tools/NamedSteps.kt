@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+/*
 package com.google.samples.apps.nowinandroid.ui.tools
 
 import io.github.kakaocup.compose.node.action.NodeActions
@@ -25,23 +25,31 @@ class NamedSteps(private val stepsExecutor: StepsExecutor): StepsDSL<NamedSteps>
 
     fun checkText(item: NodeAssertions, expectedText: String){
         stepsExecutor.checkText(
-            "Проверяет, что в ноде '${(item as NodeActions).getName()}' установлен текст '$expectedText'", item, expectedText,
+            "Checks that the'${(item as NodeActions).getName()}' has text '$expectedText'", item, expectedText,
         )
     }
+
     fun isDisplayed(item: NodeAssertions){
         stepsExecutor.isDisplayed(
-            "Проверяет, что объект '${(item as NodeActions).getName()}' отображается", item
+            "Checks that the '${(item as NodeActions).getName()}' is displayed", item
         )
     }
+
+    fun isClickable(item: NodeAssertions){
+        stepsExecutor.isClickable(
+            "Checks that the '${(item as NodeActions).getName()}' is clickable", item
+        )
+    }
+
     fun doesNotExist(item: NodeAssertions){
         stepsExecutor.doesNotExist(
-            "Проверяет, что объект '${(item as NodeActions).getName()}' не существует", item
+            "Checks that the '${(item as NodeActions).getName()}' does not exist", item
         )
     }
 
     fun click(item: NodeActions){
         stepsExecutor.click(
-            "Нажимает на кнопку '${item.getName()}'", item
+            "Taps the '${item.getName()}'", item
         )
     }
 
@@ -51,7 +59,7 @@ class NamedSteps(private val stepsExecutor: StepsExecutor): StepsDSL<NamedSteps>
         extraction: (item: NodeActions) -> T,
     ) {
         stepsExecutor.extractSemantic(
-            "Получает данные из элемента '${item.getName()}'",
+            "Gets data from the '${item.getName()}'",
             item,
             container,
             extraction,
@@ -59,3 +67,5 @@ class NamedSteps(private val stepsExecutor: StepsExecutor): StepsDSL<NamedSteps>
     }
     fun nextStep(step: String) = stepsExecutor.setNextStepName(step)
 }
+
+ */

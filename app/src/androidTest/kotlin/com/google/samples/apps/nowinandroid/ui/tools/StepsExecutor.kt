@@ -25,7 +25,8 @@ import io.github.kakaocup.compose.node.assertion.NodeAssertions
 class StepsExecutor(private val testContext: TestContext<*>) {
 
     private var nextStepName: String = ""
-    private fun execute(step: String, actions: (StepInfo) -> Unit){
+
+    private fun execute(step: String, actions: (StepInfo) -> Unit) {
         val stepName = nextStepName.ifBlank { step }
         testContext.step(step, actions)
         nextStepName = ""
@@ -35,36 +36,46 @@ class StepsExecutor(private val testContext: TestContext<*>) {
         nextStepName = name
     }
 
-    fun click(step: String, item: NodeActions){
-        execute(step){
+    // Actions start
+    fun click(step: String, item: NodeActions) {
+        execute(step) {
             item.performClick()
         }
     }
+// Actions end
 
+    // Assertions start
     fun checkText(step: String, item: NodeAssertions, expectedText: String) {
         execute(step) {
             item.assertTextEquals(expectedText)
         }
     }
 
-    fun isDisplayed(step: String, item: NodeAssertions){
-        execute(step){
+    fun isDisplayed(step: String, item: NodeAssertions) {
+        execute(step) {
             item.assertIsDisplayed()
         }
     }
 
-    fun doesNotExist(step: String, item: NodeAssertions){
-        execute(step){
+    fun isClickable(step: String, item: NodeAssertions) {
+        execute(step) {
+            item.assertHasClickAction()
+        }
+    }
+
+    fun doesNotExist(step: String, item: NodeAssertions) {
+        execute(step) {
             item.assertDoesNotExist()
         }
     }
+// Assertions end
 
     fun <T> extractSemantic(
         step: String,
         item: NodeActions,
         container: AtomicReference<T>,
         extraction: (item: NodeActions) -> T,
-        ) {
+    ) {
         execute(step) {
             container.set(extraction(item))
         }

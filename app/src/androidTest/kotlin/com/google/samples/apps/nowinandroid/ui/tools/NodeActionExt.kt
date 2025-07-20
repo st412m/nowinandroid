@@ -28,7 +28,7 @@ fun <T: NodeActions> T.setName(nameHierarchy: NameHierarchy): T{
 }
 
 fun NodeActions.getName(): NameHierarchy {
-    return elementNames[this] ?: throw RuntimeException("Необходимо указать имя")
+    return elementNames[this] ?: throw RuntimeException("NAME IS REQUIRED")
 //    elementNames.getOrDefault(this, NameHierarchy("No label"))
 }
 
