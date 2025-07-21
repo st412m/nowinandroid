@@ -23,10 +23,7 @@ import androidx.test.uiautomator.UiSelector
 import com.google.samples.apps.nowinandroid.MainActivity
 import com.google.samples.apps.nowinandroid.core.designsystem.LazyListLengthSemantics
 import com.google.samples.apps.nowinandroid.ui.TopicNames
-import com.google.samples.apps.nowinandroid.ui.forYouScreen.MainScreen
 import com.google.samples.apps.nowinandroid.ui.forYouScreen.TopicSelectionList
-import com.google.samples.apps.nowinandroid.ui.searchScreen.SearchScreen
-import com.google.samples.apps.nowinandroid.ui.settingsScreen.SettingsScreen
 import com.google.samples.apps.nowinandroid.ui.tools.checks
 import com.google.samples.apps.nowinandroid.ui.tools.interceptors.FailOnlyScreenshotStepInterceptor
 import com.google.samples.apps.nowinandroid.ui.tools.interceptors.SuccessFinaleScreenshotTestInterceptor
@@ -65,7 +62,6 @@ class TopicSelectionListTests : TestCase(
 ) {
     @get:Rule
     val composeTestRule = createAndroidComposeRule<MainActivity>()
-    val mainScreen = MainScreen(composeTestRule)
     val topicSelectionList = TopicSelectionList(composeTestRule)
 
     @get:Rule
