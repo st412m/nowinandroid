@@ -58,7 +58,7 @@ class TopicSelectionListTests : TestCase(
                 DumpLogcatTestInterceptor(logcatDumper),
             ),
         )
-    },
+    }
 ) {
     @get:Rule
     val composeTestRule = createAndroidComposeRule<MainActivity>()
