@@ -18,25 +18,22 @@ package com.google.samples.apps.nowinandroid.ui.tools
 
 import com.kaspersky.kaspresso.testcases.core.testcontext.TestContext
 
-private val executorHasMap = mutableMapOf<String, StepsDSL<*>>()
+// Отдельные мапы для ActionSteps и CheckSteps чтобы небыло конфликтов
+private val actionStepsMap = mutableMapOf<String, ActionSteps>()
+private val checkStepsMap = mutableMapOf<String, CheckSteps>()
 
 val TestContext<*>.actions: ActionSteps
     get() {
-        val key = ActionSteps::class.java.name + this.hashCode()
-        return executorHasMap.getOrPut(key) {
+        val key = "${ActionSteps::class.java.name}_${this.hashCode()}"
+        return actionStepsMap.getOrPut(key) {
             ActionSteps(StepsExecutor(this))
-        } as ActionSteps
+        }
     }
 
 val TestContext<*>.checks: CheckSteps
     get() {
-        val key = ActionSteps::class.java.name + this.hashCode()
-        return executorHasMap.getOrPut(key) {
+        val key = "${CheckSteps::class.java.name}_${this.hashCode()}"
+        return checkStepsMap.getOrPut(key) {
             CheckSteps(StepsExecutor(this))
-        } as CheckSteps
+        }
     }
-
-
-//private val stepsCache = mutableMapOf<TestContext<*>, NamedSteps>()
-//val TestContext<*>.steps: NamedSteps
-//    get() = stepsCache.getOrPut(this) { NamedSteps(StepsExecutor(this)) }

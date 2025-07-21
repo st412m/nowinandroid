@@ -20,8 +20,8 @@ import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.test.uiautomator.UiSelector
 import com.google.samples.apps.nowinandroid.MainActivity
 import com.google.samples.apps.nowinandroid.ui.forYouScreen.MainScreen2
-import com.google.samples.apps.nowinandroid.ui.searchScreen.SearchScreenItems
-import com.google.samples.apps.nowinandroid.ui.settingsScreen.SettingsDialog
+import com.google.samples.apps.nowinandroid.ui.searchScreen.SearchScreen
+import com.google.samples.apps.nowinandroid.ui.settingsScreen.SettingsScreen
 import com.kaspersky.components.alluresupport.withForcedAllureSupport
 import com.kaspersky.components.composesupport.config.withComposeSupport
 import com.kaspersky.kaspresso.kaspresso.Kaspresso
@@ -37,8 +37,8 @@ class MainScreenTest2 : TestCase(
     @get: Rule
     val composeTestRule = createAndroidComposeRule<MainActivity>()
     val mainScreen = MainScreen2(composeTestRule)
-    val settingsDialog = SettingsDialog(composeTestRule)
-    val searchScreenItems = SearchScreenItems(composeTestRule)
+    val settingsScreen = SettingsScreen(composeTestRule)
+    val searchScreen = SearchScreen(composeTestRule)
 
     @Test
     fun checkButtonTest() {
@@ -56,7 +56,7 @@ class MainScreenTest2 : TestCase(
                 step(
                     "Проверяем наличие кнопки 'Privacy Police' кликаем на нее, потом возвращаемся",
                 ) {
-                    settingsDialog {
+                    settingsScreen {
                         privacyPolicyButton.assertIsDisplayed()
                         privacyPolicyButton.performClick()
                         composeTestRule.waitForIdle()
@@ -65,7 +65,7 @@ class MainScreenTest2 : TestCase(
                     }
                 }
                 step("Проверяем наличие кнопки 'Brand Guide' кликаем на нее, потом возвращаемся") {
-                    settingsDialog {
+                    settingsScreen {
                         brandGuideButton.assertIsDisplayed()
                         brandGuideButton.performClick()
                         composeTestRule.waitForIdle()
@@ -74,7 +74,7 @@ class MainScreenTest2 : TestCase(
                     }
                 }
                 step("Проверяем наличие кнопки 'feedback' кликаем на нее, потом возвращаемся") {
-                    settingsDialog {
+                    settingsScreen {
                         feedbackButton.assertIsDisplayed()
                         feedbackButton.performClick()
                         composeTestRule.waitForIdle()
@@ -83,7 +83,7 @@ class MainScreenTest2 : TestCase(
                     }
                 }
                 step("Проверяем наличие кнопки 'licenses' кликаем на нее, потом возвращаемся") {
-                    settingsDialog {
+                    settingsScreen {
                         licensesButton.assertIsDisplayed()
                         licensesButton.performClick()
                         composeTestRule.waitForIdle()
@@ -92,7 +92,7 @@ class MainScreenTest2 : TestCase(
                     }
                 }
                 step("Проверяем наличие кнопки 'ок' и выходим из меню через клик на нее") {
-                    settingsDialog {
+                    settingsScreen {
                         okButton.assertIsDisplayed()
                         okButton.performClick()
                         composeTestRule.waitForIdle()
@@ -112,18 +112,18 @@ class MainScreenTest2 : TestCase(
                     searchIcon.performClick()
                 }
                 step("проверяем наличие иконки поиска") {
-                    searchScreenItems {
+                    searchScreen {
                         searchIcon.assertIsDisplayed()
                     }
                 }
                 step("проверяем наличие текстового поля ввода") {
-                    searchScreenItems {
+                    searchScreen {
                         searchTextField.assertIsDisplayed()
                         searchTextField.performTextInput("хуй")
                     }
                 }
                 step("Проверяем наличие кнопки 'назад' и выходим с экрана по клику") {
-                    searchScreenItems {
+                    searchScreen {
                         onBackIcon.assertIsDisplayed()
                         onBackIcon.performClick()
                     }

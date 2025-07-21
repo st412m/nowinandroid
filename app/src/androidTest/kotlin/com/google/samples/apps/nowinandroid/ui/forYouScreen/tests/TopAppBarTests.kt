@@ -14,28 +14,32 @@
  * limitations under the License.
  */
 
-package com.google.samples.apps.nowinandroid.ui
+package com.google.samples.apps.nowinandroid.ui.forYouScreen.tests
 
 import androidx.compose.ui.test.ExperimentalTestApi
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.test.uiautomator.UiSelector
 import com.google.samples.apps.nowinandroid.MainActivity
 import com.google.samples.apps.nowinandroid.ui.forYouScreen.MainScreen
-import com.google.samples.apps.nowinandroid.ui.forYouScreen.TopicSelectionList
+import com.google.samples.apps.nowinandroid.ui.searchScreen.SearchScreen
+import com.google.samples.apps.nowinandroid.ui.settingsScreen.SettingsScreen
+import com.google.samples.apps.nowinandroid.ui.tools.actions
 import com.google.samples.apps.nowinandroid.ui.tools.checks
 import com.google.samples.apps.nowinandroid.ui.tools.interceptors.FailOnlyScreenshotStepInterceptor
 import com.google.samples.apps.nowinandroid.ui.tools.interceptors.SuccessFinaleScreenshotTestInterceptor
 import com.kaspersky.components.alluresupport.interceptors.step.AllureMapperStepInterceptor
 import com.kaspersky.components.alluresupport.interceptors.step.ScreenshotStepInterceptor
+import com.kaspersky.components.alluresupport.interceptors.testrun.DumpLogcatTestInterceptor
 import com.kaspersky.components.alluresupport.withForcedAllureSupport
 import com.kaspersky.components.composesupport.config.withComposeSupport
+import com.kaspersky.kaspresso.interceptors.watcher.testcase.impl.video.VideoRecordingInterceptor
 import com.kaspersky.kaspresso.kaspresso.Kaspresso
 import com.kaspersky.kaspresso.testcases.api.testcase.TestCase
 import io.github.kakaocup.compose.rule.KakaoComposeTestRule
 import org.junit.Rule
 import org.junit.Test
 
-class MainScreenTests : TestCase(
+class TopAppBarTests : TestCase(
     Kaspresso.Builder.withComposeSupport().apply {
         Kaspresso.Builder.withForcedAllureSupport()
         stepWatcherInterceptors.removeIf {
@@ -44,18 +48,23 @@ class MainScreenTests : TestCase(
         stepWatcherInterceptors.addAll(
             listOf(
                 AllureMapperStepInterceptor(),
-                FailOnlyScreenshotStepInterceptor(screenshots)
-            )
+                FailOnlyScreenshotStepInterceptor(screenshots),
+            ),
         )
-        testRunWatcherInterceptors.add(
-            SuccessFinaleScreenshotTestInterceptor(screenshots)
+        testRunWatcherInterceptors.addAll(
+            listOf(
+                SuccessFinaleScreenshotTestInterceptor(screenshots),
+                VideoRecordingInterceptor(videos),
+                DumpLogcatTestInterceptor(logcatDumper),
+            ),
         )
-    }
+    },
 ) {
     @get:Rule
     val composeTestRule = createAndroidComposeRule<MainActivity>()
-    val topicSelectionList = TopicSelectionList(composeTestRule)
     val mainScreen = MainScreen(composeTestRule)
+    val searchScreen = SearchScreen(composeTestRule)
+    val settingsScreen = SettingsScreen(composeTestRule)
 
     @get:Rule
     val kakaoComposeTestRule = KakaoComposeTestRule(
@@ -66,7 +75,7 @@ class MainScreenTests : TestCase(
     @OptIn(ExperimentalTestApi::class)
 
     @Test
-    fun topAppBarTest() {
+    fun topAppBarVisibilityTest() {
         run {
             device.uiDevice.findObject(
                 UiSelector().text("Allow"),
@@ -78,9 +87,49 @@ class MainScreenTests : TestCase(
                     isClickable(searchButton)
                     isDisplayed(topAppBarTitle)
                     checkText(topAppBarTitle, "Now in Android")
-                    isDisplayed(searchButton)
-                    isDisplayed(searchIcon)
-                    isClickable(searchButton)
+                    isDisplayed(settingButton)
+                    isDisplayed(settingIcon)
+                    isClickable(settingButton)
+                }
+            }
+        }
+    }
+
+    @Test
+    fun searchButtonTransitionTest() {
+        run {
+            device.uiDevice.findObject(
+                UiSelector().text("Allow"),
+            ).click()
+
+            mainScreen {
+                actions {
+                    click(searchButton)
+                }
+            }
+            searchScreen {
+                checks {
+                    isDisplayed(onBackIcon)
+                }
+            }
+        }
+    }
+
+    @Test
+    fun settingButtonTransitionTest() {
+        run {
+            device.uiDevice.findObject(
+                UiSelector().text("Allow"),
+            ).click()
+
+            mainScreen {
+                actions {
+                    click(settingButton)
+                }
+            }
+            settingsScreen {
+                checks {
+                    isDisplayed(privacyPolicyButton)
                 }
             }
         }
