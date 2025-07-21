@@ -21,8 +21,6 @@ import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.test.uiautomator.UiSelector
 import com.google.samples.apps.nowinandroid.MainActivity
 import com.google.samples.apps.nowinandroid.ui.forYouScreen.MainScreen
-import com.google.samples.apps.nowinandroid.ui.searchScreen.SearchScreen
-import com.google.samples.apps.nowinandroid.ui.settingsScreen.SettingsScreen
 import com.google.samples.apps.nowinandroid.ui.tools.checks
 import com.google.samples.apps.nowinandroid.ui.tools.interceptors.FailOnlyScreenshotStepInterceptor
 import com.google.samples.apps.nowinandroid.ui.tools.interceptors.SuccessFinaleScreenshotTestInterceptor
@@ -38,7 +36,7 @@ import io.github.kakaocup.compose.rule.KakaoComposeTestRule
 import org.junit.Rule
 import org.junit.Test
 
-class OnboardingPromptTests: TestCase(
+class OnboardingPromptTests : TestCase(
     Kaspresso.Builder.withComposeSupport().apply {
         Kaspresso.Builder.withForcedAllureSupport()
         stepWatcherInterceptors.removeIf {
@@ -82,7 +80,10 @@ class OnboardingPromptTests: TestCase(
                     isDisplayed(textTitle)
                     checkText(textTitle, "What are you interested in?")
                     isDisplayed(textSubTitle)
-                    checkText(textSubTitle, "Updates from topics you follow will appear here. Follow some things to get started.")
+                    checkText(
+                        textSubTitle,
+                        "Updates from topics you follow will appear here. Follow some things to get started.",
+                    )
                 }
             }
         }
