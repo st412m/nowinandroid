@@ -81,8 +81,8 @@ class ForYouScreenTests : TestCase(
         composeTestRule.waitForIdle()
 
         run {
-            val index = 1 // Можно изменить на любой индекс (0–18)
-            val selectedTopic = TopicNames.entries[index] // TopicNames.UI для index = 1
+            val index = 1
+            val selectedTopic = TopicNames.entries[index]
 
             device.uiDevice.findObject(UiSelector().text("Allow")).click()
             topicSelectionList {
@@ -106,7 +106,7 @@ class ForYouScreenTests : TestCase(
                 forYouScreen {
                     composeTestRule.waitForIdle()
                     newsFeedCards(1) {
-                        val tag = topicTagButton(selectedTopic) // topicTag:$id
+                        val tag = topicTagButton(selectedTopic)
                         checks {
                             isDisplayed(cardImage)
                             isDisplayed(bookmarkButton)
