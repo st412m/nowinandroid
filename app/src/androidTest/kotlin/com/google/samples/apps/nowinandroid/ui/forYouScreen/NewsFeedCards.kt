@@ -32,9 +32,33 @@ class NewsFeedCards(
     semanticsProvider: SemanticsNodeInteractionsProvider,
 ) : KLazyListItemNode<NewsFeedCards>(semanticsNode, semanticsProvider) {
 
-    val card by lazy {
+    val cardImage by lazy {
         child<KNode> {
-            hasTestTag(C.NEWS_RESOURCE_CARD)
-        }.setName(withParent("News card"))
+            hasTestTag(C.NEWS_RESOURCE_CARD_IMAGE)
+        }.setName(withParent("Image"))
+    }
+
+    val cardTitle by lazy {
+        child<KNode> {
+            hasTestTag(C.NEWS_RESOURCE_CARD_TITLE)
+        }.setName(withParent("Title"))
+    }
+
+    val cardDate by lazy {
+        child<KNode> {
+            hasTestTag(C.NEWS_RESOURCE_CARD_DATE)
+        }.setName(withParent("Date"))
+    }
+
+    val cardShortDescription by lazy {
+        child<KNode> {
+            hasTestTag(C.NEWS_RESOURCE_CARD_SHORT_DESCRIPTION)
+        }.setName(withParent("Description"))
+    }
+
+    val bookmarkButton by lazy {
+        child<KNode> {
+            hasTestTag(C.BOOKMARK_BUTTON)
+        }.setName(withParent("Bookmark button"))
     }
 }

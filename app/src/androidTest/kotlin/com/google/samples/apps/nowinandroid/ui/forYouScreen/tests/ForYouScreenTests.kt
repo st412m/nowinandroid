@@ -102,14 +102,19 @@ class ForYouScreenTests : TestCase(
                         composeTestRule.waitForIdle()
                     }
                 }
-                forYouScreen{
+                forYouScreen {
                     composeTestRule.waitForIdle()
-                    newsFeedCards(0) {
-                              checks{
-                                 isDisplayed(card)
-                             }
+                    newsFeedCards(2) {
+                        checks {
+                            isDisplayed(cardImage)
+                            isDisplayed(bookmarkButton)
+                        }
+                        actions {
+                            click(bookmarkButton)
+                            composeTestRule.waitForIdle()
                         }
                     }
+                }
             }
         }
     }

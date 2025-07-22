@@ -154,7 +154,11 @@ fun NewsResourceCardExpanded(
                                 },
                         )
                         Spacer(modifier = Modifier.weight(1f))
-                        BookmarkButton(isBookmarked, onToggleBookmark)
+                        BookmarkButton(
+                            isBookmarked = isBookmarked,
+                            onClick = onToggleBookmark,
+                            modifier = Modifier.testTag(C.BOOKMARK_BUTTON)
+                        )
                     }
                     Spacer(modifier = Modifier.height(14.dp))
                     Row(verticalAlignment = Alignment.CenterVertically) {
@@ -299,7 +303,7 @@ fun NewsResourceMetaData(
             formattedDate
         },
         style = MaterialTheme.typography.labelSmall,
-        //modifier = Modifier.testTag(C.NEWS_RESOURCE_CARD_DATE)
+        modifier = Modifier.testTag(C.NEWS_RESOURCE_CARD_DATE)
 
     )
 }
@@ -310,7 +314,7 @@ fun NewsResourceShortDescription(
 ) {
     Text(newsResourceShortDescription,
         style = MaterialTheme.typography.bodyLarge,
-        //modifier = Modifier.testTag(C.NEWS_RESOURCE_CARD_SHORT_DESCRIPTION)
+        modifier = Modifier.testTag(C.NEWS_RESOURCE_CARD_SHORT_DESCRIPTION)
     )
 }
 

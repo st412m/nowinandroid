@@ -48,10 +48,9 @@ class ForYouScreen(semanticsProvider: SemanticsNodeInteractionsProvider) :
     val list by lazy {
         KLazyListNode(
             semanticsProvider = semanticsProvider,
-            viewBuilderAction = { hasTestTag(C.NEWS_RESOURCE_CARD) },
+            viewBuilderAction = { hasTestTag("forYou:feed") },
             itemTypeBuilder = {
                 itemType(::NewsFeedCards)
-                itemType(::NewsCardItems)
             },
             positionMatcher = { position ->
                 SemanticsMatcher.expectValue(
@@ -60,14 +59,10 @@ class ForYouScreen(semanticsProvider: SemanticsNodeInteractionsProvider) :
                 )
             },
             lengthSemanticsPropertyKey = LazyListLengthSemantics,
-        ).setName(withParent("Block list"))
+        ).setName(withParent("Card"))
     }
 
     fun newsFeedCards(index: Int, function: NewsFeedCards.() -> Unit) {
-        list.invokeAtIndex(index, function)
-    }
-
-    fun newsCardItems(index: Int, function: NewsCardItems.() -> Unit) {
         list.invokeAtIndex(index, function)
     }
 }

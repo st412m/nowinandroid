@@ -184,7 +184,9 @@ internal fun ForYouScreen(
                 saveFollowedTopics = saveFollowedTopics,
                 // Custom LayoutModifier to remove the enforced parent 16.dp contentPadding
                 // from the LazyVerticalGrid and enable edge-to-edge scrolling for this section
-                interestsItemModifier = Modifier.layout { measurable, constraints ->
+                interestsItemModifier = Modifier
+                    .semantics { lazyListItemPosition = 0 }
+                    .layout { measurable, constraints ->
                     val placeable = measurable.measure(
                         constraints.copy(
                             maxWidth = constraints.maxWidth + 32.dp.roundToPx(),

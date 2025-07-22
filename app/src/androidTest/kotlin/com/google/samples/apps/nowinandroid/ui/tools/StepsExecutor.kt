@@ -81,7 +81,6 @@ class StepsExecutor(private val testContext: TestContext<*>) {
         }
     }
 // Assertions end
-
     fun <T> extractSemantic(
         step: String,
         item: NodeActions,
