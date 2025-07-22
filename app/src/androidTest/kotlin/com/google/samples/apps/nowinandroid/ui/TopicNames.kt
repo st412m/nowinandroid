@@ -16,24 +16,26 @@
 
 package com.google.samples.apps.nowinandroid.ui
 
-enum class TopicNames(val expectedText: String) {
-    HEADLINES("Headlines"),
-    UI("UI"),
-    COMPOSE("Compose"),
-    ARCHITECTURE("Architecture"),
-    ANDROID_STUDIO_TOOLS("Android Studio & Tools"),
-    TESTING("Testing"),
-    PERFORMANCE("Performance"),
-    NEW_APIS_LIBRARIES("New APIs & Libraries"),
-    DATA_STORAGE("Data Storage"),
-    KOTLIN("Kotlin"),
-    PRIVACY_SECURITY("Privacy & Security"),
-    PUBLISHING_DISTRIBUTION("Publishing & Distribution"),
-    PLATFORM_RELEASES("Platform & Releases"),
-    ACCESSIBILITY("Accessibility"),
-    ANDROID_AUTO("Android Auto"),
-    ANDROID_TV("Android TV"),
-    GAMES("Games"),
-    CAMERA_MEDIA("Camera & Media"),
-    WEAR_OS("Wear OS")
+enum class TopicNames(val id: String, val expectedText: String) {
+    HEADLINES("1", "Headlines"),
+    UI("2", "UI"),
+    COMPOSE("3", "Compose"),
+    ARCHITECTURE("4", "Architecture"),
+    ANDROID_STUDIO_TOOLS("5", "Android Studio & Tools"),
+    TESTING("6", "Testing"),
+    PERFORMANCE("7", "Performance"),
+    NEW_APIS_LIBRARIES("8", "New APIs & Libraries"),
+    DATA_STORAGE("9", "Data Storage"),
+    KOTLIN("10", "Kotlin"),
+    PRIVACY_SECURITY("11", "Privacy & Security"),
+    PUBLISHING_DISTRIBUTION("12", "Publishing & Distribution"),
+    PLATFORM_RELEASES("13", "Platform & Releases"),
+    ACCESSIBILITY("14", "Accessibility"),
+    ANDROID_AUTO("15", "Android Auto"),
+    ANDROID_TV("16", "Android TV"),
+    GAMES("17", "Games"),
+    CAMERA_MEDIA("18", "Camera & Media"),
+    WEAR_OS("19", "Wear OS");
+
+    fun testTag() = "topicTag:$id"
 }

@@ -20,6 +20,7 @@ import androidx.compose.ui.test.ExperimentalTestApi
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.test.uiautomator.UiSelector
 import com.google.samples.apps.nowinandroid.MainActivity
+import com.google.samples.apps.nowinandroid.ui.TopicNames
 import com.google.samples.apps.nowinandroid.ui.forYouScreen.ForYouScreen
 import com.google.samples.apps.nowinandroid.ui.forYouScreen.MainScreen
 import com.google.samples.apps.nowinandroid.ui.forYouScreen.NewsFeedCards
@@ -80,11 +81,12 @@ class ForYouScreenTests : TestCase(
         composeTestRule.waitForIdle()
 
         run {
-            device.uiDevice.findObject(
-                UiSelector().text("Allow"),
-            ).click()
+            val index = 1 // Можно изменить на любой индекс (0–18)
+            val selectedTopic = TopicNames.entries[index] // TopicNames.UI для index = 1
+
+            device.uiDevice.findObject(UiSelector().text("Allow")).click()
             topicSelectionList {
-                topicSelectionsItems(1) {
+                topicSelectionsItems(index) {
                     actions {
                         click(clearButton)
                         composeTestRule.waitForIdle()
@@ -96,7 +98,6 @@ class ForYouScreenTests : TestCase(
                     checks {
                         isEnable(doneButton)
                     }
-
                     actions {
                         click(doneButton)
                         composeTestRule.waitForIdle()
@@ -104,13 +105,21 @@ class ForYouScreenTests : TestCase(
                 }
                 forYouScreen {
                     composeTestRule.waitForIdle()
-                    newsFeedCards(2) {
+                    newsFeedCards(1) {
+                        val tag = topicTagButton(selectedTopic) // topicTag:$id
                         checks {
                             isDisplayed(cardImage)
                             isDisplayed(bookmarkButton)
                         }
                         actions {
                             click(bookmarkButton)
+                            composeTestRule.waitForIdle()
+                        }
+                        checks {
+                            isDisplayed(tag)
+                        }
+                        actions {
+                            click(tag)
                             composeTestRule.waitForIdle()
                         }
                     }

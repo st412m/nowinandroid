@@ -22,6 +22,7 @@ import androidx.compose.ui.test.junit4.AndroidComposeTestRule
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import com.google.samples.apps.nowinandroid.MainActivity
 import com.google.samples.apps.nowinandroid.core.designsystem.C
+import com.google.samples.apps.nowinandroid.ui.TopicNames
 import com.google.samples.apps.nowinandroid.ui.tools.setName
 import com.google.samples.apps.nowinandroid.ui.tools.withParent
 import com.kaspersky.components.composesupport.core.KNode
@@ -60,5 +61,19 @@ class NewsFeedCards(
         child<KNode> {
             hasTestTag(C.BOOKMARK_BUTTON)
         }.setName(withParent("Bookmark button"))
+    }
+
+    val topicTagButtons by lazy {
+        TopicNames.entries.associateWith { topic ->
+            child<KNode> {
+                hasTestTag("topicTag:${topic.id}") // Динамически подставляем id из TopicNames
+            }.setName(withParent("[${topic.expectedText.uppercase()}] tag Button"))
+        }
+    }
+
+    fun topicTagButton(topic: TopicNames): KNode {
+        return child<KNode> {
+            hasTestTag(topic.testTag())
+        }.setName(withParent("[${topic.expectedText.uppercase()}] tag Button"))
     }
 }
