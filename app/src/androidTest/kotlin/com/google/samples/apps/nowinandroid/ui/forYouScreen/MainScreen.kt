@@ -36,12 +36,6 @@ class MainScreen(
         return context.getString(resourceId)
     }
 
-    val centerAlignedTopAppBar by lazy {
-        child<KNode> {
-            hasTestTag("niaTopAppBar")
-        }.setName(withParent("Top app bar"))
-    }
-
     val searchButton by lazy {
         child<KNode> {
             hasTestTag("NiaTopAppBarSearch")
@@ -86,17 +80,12 @@ class MainScreen(
         }.setName(withParent("Text subtitle"))
     }
 
-    val decorativeScrollbar by lazy {
-        child<KNode> {
-            hasTestTag(C.SCROLLBAR)
-        }.setName(withParent("Decorative scrollbar"))
-    }
-
     val doneButton by lazy {
         child<KNode> {
             hasTestTag(C.DONE_BUTTON)
         }.setName(withParent("[Done] button"))
     }
+
 
     val forYouButton by lazy {
         child<KNode> {

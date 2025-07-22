@@ -45,4 +45,11 @@ class CheckSteps(private val stepsExecutor: StepsExecutor): StepsDSL<CheckSteps>
             "Checks that the '${(item as NodeActions).getName()}' does not exist", item
         )
     }
+
+    fun isEnable(item: NodeAssertions){
+        stepsExecutor.isEnable(
+            "Checks that the '${(item as NodeActions).getName()}' is enable", item
+
+        )
+    }
 }

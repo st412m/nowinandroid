@@ -28,6 +28,12 @@ class ActionSteps(private val stepsExecutor: StepsExecutor): StepsDSL<ActionStep
         )
     }
 
+    fun scrollTo(item: NodeActions){
+        stepsExecutor.scrollTo(
+            "Scrolls to the '${item.getName()}'", item
+        )
+    }
+
     fun <T> extract(
         item: NodeActions,
         container: AtomicReference<T>,

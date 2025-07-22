@@ -20,7 +20,11 @@ import androidx.compose.ui.test.ExperimentalTestApi
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.test.uiautomator.UiSelector
 import com.google.samples.apps.nowinandroid.MainActivity
+import com.google.samples.apps.nowinandroid.ui.forYouScreen.ForYouScreen
 import com.google.samples.apps.nowinandroid.ui.forYouScreen.MainScreen
+import com.google.samples.apps.nowinandroid.ui.forYouScreen.NewsFeedCards
+import com.google.samples.apps.nowinandroid.ui.forYouScreen.TopicSelectionList
+import com.google.samples.apps.nowinandroid.ui.tools.actions
 import com.google.samples.apps.nowinandroid.ui.tools.checks
 import com.google.samples.apps.nowinandroid.ui.tools.interceptors.FailOnlyScreenshotStepInterceptor
 import com.google.samples.apps.nowinandroid.ui.tools.interceptors.SuccessFinaleScreenshotTestInterceptor
@@ -36,7 +40,7 @@ import io.github.kakaocup.compose.rule.KakaoComposeTestRule
 import org.junit.Rule
 import org.junit.Test
 
-class OnboardingPromptTests : TestCase(
+class ForYouScreenTests : TestCase(
     Kaspresso.Builder.withComposeSupport().apply {
         Kaspresso.Builder.withForcedAllureSupport()
         stepWatcherInterceptors.removeIf {
@@ -53,12 +57,14 @@ class OnboardingPromptTests : TestCase(
                 SuccessFinaleScreenshotTestInterceptor(screenshots),
                 VideoRecordingInterceptor(videos),
                 DumpLogcatTestInterceptor(logcatDumper),
-            )
+            ),
         )
-    }
+    },
 ) {
     @get:Rule
     val composeTestRule = createAndroidComposeRule<MainActivity>()
+    val topicSelectionList = TopicSelectionList(composeTestRule)
+    val forYouScreen = ForYouScreen(composeTestRule)
     val mainScreen = MainScreen(composeTestRule)
 
     @get:Rule
@@ -70,22 +76,43 @@ class OnboardingPromptTests : TestCase(
     @OptIn(ExperimentalTestApi::class)
 
     @Test
-    fun onboardingPromptTest() {
+    fun newsCardTest() {
+        composeTestRule.waitForIdle()
+
         run {
             device.uiDevice.findObject(
                 UiSelector().text("Allow"),
             ).click()
-            mainScreen {
-                checks {
-                    isDisplayed(textTitle)
-                    checkText(textTitle, "What are you interested in?")
-                    isDisplayed(textSubTitle)
-                    checkText(
-                        textSubTitle,
-                        "Updates from topics you follow will appear here. Follow some things to get started.",
-                    )
+            topicSelectionList {
+                topicSelectionsItems(1) {
+                    actions {
+                        click(clearButton)
+                        composeTestRule.waitForIdle()
+                    }
                 }
+
+                composeTestRule.waitForIdle()
+                mainScreen {
+                    checks {
+                        isEnable(doneButton)
+                    }
+
+                    actions {
+                        click(doneButton)
+                        composeTestRule.waitForIdle()
+                    }
+                }
+                forYouScreen{
+                    composeTestRule.waitForIdle()
+                    newsFeedCards(0) {
+                              checks{
+                                 isDisplayed(card)
+                             }
+                        }
+                    }
             }
         }
     }
 }
+
+

@@ -19,37 +19,39 @@ package com.google.samples.apps.nowinandroid.ui.forYouScreen
 import androidx.compose.ui.semantics.SemanticsNode
 import androidx.compose.ui.test.SemanticsNodeInteractionsProvider
 import com.google.samples.apps.nowinandroid.core.designsystem.C
+import com.google.samples.apps.nowinandroid.ui.searchScreen.SearchScreen
+import com.google.samples.apps.nowinandroid.ui.tools.NamedComposeScreen
 import com.google.samples.apps.nowinandroid.ui.tools.setName
 import com.google.samples.apps.nowinandroid.ui.tools.withParent
 import com.kaspersky.components.composesupport.core.KNode
 import io.github.kakaocup.compose.node.element.lazylist.KLazyListItemNode
 
-class NewsFeedScreenItems(
+class NewsCardItems(
     semanticsNode: SemanticsNode,
     semanticsProvider: SemanticsNodeInteractionsProvider,
-) : KLazyListItemNode<NewsFeedScreenItems>(semanticsNode, semanticsProvider) {
+) : KLazyListItemNode<NewsCardItems>(semanticsNode, semanticsProvider) {
 
     val cardImage by lazy {
         child<KNode> {
             hasTestTag(C.NEWS_RESOURCE_CARD_IMAGE)
-        }.setName(withParent("Изображение карточки новостей"))
+        }.setName(withParent("Image"))
     }
 
     val cardTitle by lazy {
         child<KNode> {
             hasTestTag(C.NEWS_RESOURCE_CARD_TITLE)
-        }.setName(withParent("Заголовок карточки новостей"))
+        }.setName(withParent("Title"))
     }
 
     val cardDate by lazy {
         child<KNode> {
             hasTestTag(C.NEWS_RESOURCE_CARD_DATE)
-        }.setName(withParent("Дата"))
+        }.setName(withParent("Date"))
     }
 
     val cardShortDescription by lazy {
         child<KNode> {
             hasTestTag(C.NEWS_RESOURCE_CARD_SHORT_DESCRIPTION)
-        }.setName(withParent("Описание карточки"))
+        }.setName(withParent("Description"))
     }
 }

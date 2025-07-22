@@ -42,6 +42,12 @@ class StepsExecutor(private val testContext: TestContext<*>) {
             item.performClick()
         }
     }
+
+    fun scrollTo(step: String, item: NodeActions) {
+        execute(step) {
+            item.performScrollTo()
+        }
+    }
 // Actions end
 
     // Assertions start
@@ -66,6 +72,12 @@ class StepsExecutor(private val testContext: TestContext<*>) {
     fun doesNotExist(step: String, item: NodeAssertions) {
         execute(step) {
             item.assertDoesNotExist()
+        }
+    }
+
+    fun isEnable(step: String, item: NodeAssertions) {
+        execute(step){
+            item.assertIsEnabled()
         }
     }
 // Assertions end

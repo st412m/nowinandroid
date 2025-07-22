@@ -24,21 +24,34 @@ import com.google.samples.apps.nowinandroid.core.designsystem.LazyListLengthSema
 import com.google.samples.apps.nowinandroid.ui.tools.NamedComposeScreen
 import com.google.samples.apps.nowinandroid.ui.tools.invokeAtIndex
 import com.google.samples.apps.nowinandroid.ui.tools.setName
+import com.kaspersky.components.composesupport.core.KNode
 import io.github.kakaocup.compose.node.element.lazylist.KLazyListNode
 
-class NewsFeedScreen(semanticsProvider: SemanticsNodeInteractionsProvider) :
-    NamedComposeScreen<NewsFeedScreen>(
+class ForYouScreen(semanticsProvider: SemanticsNodeInteractionsProvider) :
+    NamedComposeScreen<ForYouScreen>(
         semanticsProvider = semanticsProvider,
         viewBuilderAction = { hasTestTag("forYou:feed") },
     ) {
-    override val screenName = "News Feed Screen"
+    override val screenName = "For You Screen"
+
+    val centerAlignedTopAppBar by lazy {
+        child<KNode> {
+            hasTestTag("niaTopAppBar")
+        }.setName(withParent("Top app bar"))
+    }
+
+    val decorativeScrollbar by lazy {
+        child<KNode> {
+            hasTestTag(C.SCROLLBAR)
+        }.setName(withParent("Decorative scrollbar"))
+    }
     val list by lazy {
         KLazyListNode(
             semanticsProvider = semanticsProvider,
             viewBuilderAction = { hasTestTag(C.NEWS_RESOURCE_CARD) },
             itemTypeBuilder = {
-                itemType(::NewsFeedScreenCards)
-                itemType(::NewsFeedScreenItems)
+                itemType(::NewsFeedCards)
+                itemType(::NewsCardItems)
             },
             positionMatcher = { position ->
                 SemanticsMatcher.expectValue(
@@ -47,14 +60,14 @@ class NewsFeedScreen(semanticsProvider: SemanticsNodeInteractionsProvider) :
                 )
             },
             lengthSemanticsPropertyKey = LazyListLengthSemantics,
-        ).setName(withParent("Список блоков"))
+        ).setName(withParent("Block list"))
     }
 
-    fun newsFeedScreenCards(index: Int, function: NewsFeedScreenCards.() -> Unit) {
+    fun newsFeedCards(index: Int, function: NewsFeedCards.() -> Unit) {
         list.invokeAtIndex(index, function)
     }
 
-    fun newsFeedScreenItems(index: Int, function: NewsFeedScreenItems.() -> Unit) {
+    fun newsCardItems(index: Int, function: NewsCardItems.() -> Unit) {
         list.invokeAtIndex(index, function)
     }
 }

@@ -123,7 +123,7 @@ fun NewsResourceCardExpanded(
                 onClick(label = clickActionLabel, action = null)
             }
             .testTag("newsResourceCard:${userNewsResource.id}")
-            //.testTag(C.NEWS_RESOURCE_CARD)
+            .testTag(C.NEWS_RESOURCE_CARD)
 
     ) {
         Column {

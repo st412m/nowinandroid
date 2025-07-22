@@ -23,8 +23,8 @@ import androidx.test.uiautomator.UiSelector
 import com.google.samples.apps.nowinandroid.MainActivity
 import com.google.samples.apps.nowinandroid.core.designsystem.LazyListLengthSemantics
 import com.google.samples.apps.nowinandroid.ui.forYouScreen.MainScreen3
-import com.google.samples.apps.nowinandroid.ui.forYouScreen.NewsFeedScreen
-import com.google.samples.apps.nowinandroid.ui.forYouScreen.NewsFeedScreenItems
+import com.google.samples.apps.nowinandroid.ui.forYouScreen.ForYouScreen
+import com.google.samples.apps.nowinandroid.ui.forYouScreen.NewsCardItems
 import com.google.samples.apps.nowinandroid.ui.forYouScreen.TopicSelectionList
 import com.google.samples.apps.nowinandroid.ui.forYouScreen.TopicSelectionsListItems
 import com.kaspersky.components.alluresupport.withForcedAllureSupport
@@ -44,7 +44,7 @@ class MainScreenTest3 : TestCase(
     val composeTestRule = createAndroidComposeRule<MainActivity>()
     val topicSelectionList = TopicSelectionList(composeTestRule)
     val mainScreen = MainScreen3(composeTestRule)
-    val newsFeedScreen = NewsFeedScreen(composeTestRule)
+    val forYouScreen = ForYouScreen(composeTestRule)
 
     @get: Rule
     val kakaoComposeTestRule = KakaoComposeTestRule(
@@ -104,8 +104,8 @@ class MainScreenTest3 : TestCase(
                 }
             }
             step("Находим карточку с индексом 0") {
-                newsFeedScreen {
-                    list.childAt<NewsFeedScreenItems>(0) {
+                forYouScreen {
+                    list.childAt<NewsCardItems>(0) {
                         cardImage.assertIsDisplayed()
                     }
                 }

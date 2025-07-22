@@ -18,20 +18,23 @@ package com.google.samples.apps.nowinandroid.ui.forYouScreen
 
 import androidx.compose.ui.semantics.SemanticsNode
 import androidx.compose.ui.test.SemanticsNodeInteractionsProvider
+import androidx.compose.ui.test.junit4.AndroidComposeTestRule
+import androidx.test.ext.junit.rules.ActivityScenarioRule
+import com.google.samples.apps.nowinandroid.MainActivity
 import com.google.samples.apps.nowinandroid.core.designsystem.C
 import com.google.samples.apps.nowinandroid.ui.tools.setName
 import com.google.samples.apps.nowinandroid.ui.tools.withParent
 import com.kaspersky.components.composesupport.core.KNode
 import io.github.kakaocup.compose.node.element.lazylist.KLazyListItemNode
 
-class NewsFeedScreenCards(
+class NewsFeedCards(
     semanticsNode: SemanticsNode,
     semanticsProvider: SemanticsNodeInteractionsProvider,
-) : KLazyListItemNode<NewsFeedScreenCards>(semanticsNode, semanticsProvider) {
+) : KLazyListItemNode<NewsFeedCards>(semanticsNode, semanticsProvider) {
 
     val card by lazy {
         child<KNode> {
             hasTestTag(C.NEWS_RESOURCE_CARD)
-        }.setName(withParent("Карточка списка новостей"))
+        }.setName(withParent("News card"))
     }
 }
