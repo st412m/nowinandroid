@@ -111,7 +111,7 @@ class ForYouScreenTests : TestCase(
                     } else {
                         listOf(0)
                     }
-                    indices.forEach { index ->
+                    indices.forEach { _ ->
                         newsFeedCards(0) {
                             val tag = topicTagButton(selectedTopic)
                             checks {
