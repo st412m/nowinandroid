@@ -101,8 +101,7 @@ class StepsExecutor(private val testContext: TestContext<*>) {
         }
     }
 // Actions end
-
-    // Assertions start
+// Assertions start
     fun checkText(step: String, item: NodeAssertions, expectedText: String) {
         execute(step) {
             item.assertTextEquals(expectedText)

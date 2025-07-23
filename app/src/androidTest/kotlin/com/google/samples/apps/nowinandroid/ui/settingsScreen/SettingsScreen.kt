@@ -31,10 +31,6 @@ class SettingsScreen(
 
     private val context = InstrumentationRegistry.getInstrumentation().targetContext
 
-    private fun getStringResource(resourceId: Int): String {
-        return context.getString(resourceId)
-    }
-
     val privacyPolicyButton by lazy {
         child<KNode> {
             hasText(this@SettingsScreen.getStringResource(R.string.feature_settings_privacy_policy))
@@ -59,6 +55,10 @@ class SettingsScreen(
         child<KNode> {
             hasText(this@SettingsScreen.getStringResource(R.string.feature_settings_dismiss_dialog_button_text))
         }.setName(withParent("Ok button"))
+    }
+
+    private fun getStringResource(resourceId: Int): String {
+        return context.getString(resourceId)
     }
 }
 

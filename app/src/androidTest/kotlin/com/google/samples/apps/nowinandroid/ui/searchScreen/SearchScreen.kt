@@ -31,10 +31,6 @@ class SearchScreen(
 
     private val context = InstrumentationRegistry.getInstrumentation().targetContext
 
-    private fun getStringResource(resourceId: Int): String {
-        return context.getString(resourceId)
-    }
-
     val onBackIcon by lazy {
         child<KNode> {
             hasTestTag(C.ON_BACK_ICON)
@@ -52,5 +48,9 @@ class SearchScreen(
             hasTestTag(C.SEARCH_TEXT_FIELD)
             useUnmergedTree = true
         }.setName(withParent("Search text field"))
+    }
+
+    private fun getStringResource(resourceId: Int): String {
+        return context.getString(resourceId)
     }
 }

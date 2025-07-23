@@ -32,10 +32,6 @@ class MainScreen(
 
     private val context = InstrumentationRegistry.getInstrumentation().targetContext
 
-    private fun getStringResource(resourceId: Int): String {
-        return context.getString(resourceId)
-    }
-
     val searchButton by lazy {
         child<KNode> {
             hasTestTag("NiaTopAppBarSearch")
@@ -106,5 +102,9 @@ class MainScreen(
             hasTestTag("NiaNavItem")
             hasPosition(2)
         }.setName(withParent("[Interests] button"))
+    }
+
+    private fun getStringResource(resourceId: Int): String {
+        return context.getString(resourceId)
     }
 }
