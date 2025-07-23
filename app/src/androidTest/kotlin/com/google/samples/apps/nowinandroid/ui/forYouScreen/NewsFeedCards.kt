@@ -66,7 +66,7 @@ class NewsFeedCards(
     val topicTagButtons by lazy {
         TopicNames.entries.associateWith { topic ->
             child<KNode> {
-                hasTestTag("topicTag:${topic.id}") // Динамически подставляем id из TopicNames
+                hasTestTag("topicTag:${topic.id}")
             }.setName(withParent("[${topic.expectedText.uppercase()}] tag Button"))
         }
     }

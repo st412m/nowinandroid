@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.google.samples.apps.nowinandroid.ui
+package com.google.samples.apps.nowinandroid.ui.fromTheDevelopers
 
 import androidx.annotation.StringRes
 import androidx.compose.ui.test.junit4.AndroidComposeTestRule
