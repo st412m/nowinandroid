@@ -14,14 +14,13 @@
  * limitations under the License.
  */
 
-package com.google.samples.apps.nowinandroid.ui.forYouScreen.tests
+package com.google.samples.apps.nowinandroid.ui.tests
 
 import androidx.compose.ui.test.ExperimentalTestApi
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import com.google.samples.apps.nowinandroid.MainActivity
-import com.google.samples.apps.nowinandroid.ui.forYouScreen.MainScreen
-import com.google.samples.apps.nowinandroid.ui.searchScreen.SearchScreen
-import com.google.samples.apps.nowinandroid.ui.settingsScreen.SettingsScreen
+import com.google.samples.apps.nowinandroid.ui.TopicNames
+import com.google.samples.apps.nowinandroid.ui.forYouScreen.TopicSelectionList
 import com.google.samples.apps.nowinandroid.ui.tools.extensions.actions
 import com.google.samples.apps.nowinandroid.ui.tools.extensions.checks
 import com.google.samples.apps.nowinandroid.ui.tools.interceptors.FailOnlyScreenshotStepInterceptor
@@ -38,7 +37,7 @@ import io.github.kakaocup.compose.rule.KakaoComposeTestRule
 import org.junit.Rule
 import org.junit.Test
 
-class TopAppBarTests : TestCase(
+class TopicSelectionListTests : TestCase(
     Kaspresso.Builder.withComposeSupport().apply {
         Kaspresso.Builder.withForcedAllureSupport()
         stepWatcherInterceptors.removeIf {
@@ -61,9 +60,7 @@ class TopAppBarTests : TestCase(
 ) {
     @get:Rule
     val composeTestRule = createAndroidComposeRule<MainActivity>()
-    val mainScreen = MainScreen(composeTestRule)
-    val searchScreen = SearchScreen(composeTestRule)
-    val settingsScreen = SettingsScreen(composeTestRule)
+    val topicSelectionList = TopicSelectionList(composeTestRule)
 
     @get:Rule
     val kakaoComposeTestRule = KakaoComposeTestRule(
@@ -74,59 +71,64 @@ class TopAppBarTests : TestCase(
     @OptIn(ExperimentalTestApi::class)
 
     @Test
-    fun topAppBarVisibilityTest() {
+    fun topicSelectionItemsDisplay() {
+        composeTestRule.waitForIdle()
+
         run {
             actions {
                 uiClick("Allow")
             }
-            mainScreen {
-                checks {
-                    isDisplayed(searchButton)
-                    isDisplayed(searchIcon)
-                    isClickable(searchButton)
-                    isDisplayed(topAppBarTitle)
-                    checkText(topAppBarTitle, "Now in Android")
-                    isDisplayed(settingButton)
-                    isDisplayed(settingIcon)
-                    isClickable(settingButton)
+            val expectedTopics = TopicNames.entries.toTypedArray()
+            topicSelectionList {
+                val itemCount = getTopicSelectionLength()
+                val indices = if (itemCount > 0) {
+                    listOf(0, itemCount / 2, itemCount - 1)
+                } else {
+                    listOf(0)
+                }
+                indices.forEach { index ->
+                    val expectedText =
+                        expectedTopics.getOrNull(index)?.expectedText ?: return@forEach
+                    topicSelectionsItems(index) {
+                        checks {
+                            isDisplayed(icon)
+                            isDisplayed(text)
+                            checkText(text, expectedText)
+                            isDisplayed(clearButton)
+                            doesNotExist(checkedButton)
+                        }
+                    }
                 }
             }
         }
     }
 
     @Test
-    fun searchButtonTransitionTest() {
-        run {
-            actions {
-                uiClick("Allow")
-            }
-            mainScreen {
-                actions {
-                    click(searchButton)
-                }
-            }
-            searchScreen {
-                checks {
-                    isDisplayed(onBackIcon)
-                }
-            }
-        }
-    }
+    fun topicSelectionItemsMark() {
+        composeTestRule.waitForIdle()
 
-    @Test
-    fun settingButtonTransitionTest() {
         run {
             actions {
                 uiClick("Allow")
             }
-            mainScreen {
-                actions {
-                    click(settingButton)
+            topicSelectionList {
+                val itemCount = getTopicSelectionLength()
+                val indices = if (itemCount > 0) {
+                    listOf(0, itemCount / 2, itemCount - 1)
+                } else {
+                    listOf(0)
                 }
-            }
-            settingsScreen {
-                checks {
-                    isDisplayed(privacyPolicyButton)
+                indices.forEach { index ->
+                    topicSelectionsItems(index) {
+                        actions {
+                            click(clearButton)
+                        }
+                        checks {
+                            isDisplayed(checkedButton)
+                            doesNotExist(clearButton)
+
+                        }
+                    }
                 }
             }
         }
