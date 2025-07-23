@@ -18,13 +18,10 @@ package com.google.samples.apps.nowinandroid.ui.forYouScreen
 
 import androidx.compose.ui.semantics.SemanticsNode
 import androidx.compose.ui.test.SemanticsNodeInteractionsProvider
-import androidx.compose.ui.test.junit4.AndroidComposeTestRule
-import androidx.test.ext.junit.rules.ActivityScenarioRule
-import com.google.samples.apps.nowinandroid.MainActivity
 import com.google.samples.apps.nowinandroid.core.designsystem.C
 import com.google.samples.apps.nowinandroid.ui.TopicNames
-import com.google.samples.apps.nowinandroid.ui.tools.setName
-import com.google.samples.apps.nowinandroid.ui.tools.withParent
+import com.google.samples.apps.nowinandroid.ui.tools.extensions.setName
+import com.google.samples.apps.nowinandroid.ui.tools.extensions.withParent
 import com.kaspersky.components.composesupport.core.KNode
 import io.github.kakaocup.compose.node.element.lazylist.KLazyListItemNode
 

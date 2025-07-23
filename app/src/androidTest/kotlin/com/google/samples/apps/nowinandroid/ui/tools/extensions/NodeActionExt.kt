@@ -14,11 +14,12 @@
  * limitations under the License.
  */
 
-package com.google.samples.apps.nowinandroid.ui.tools
+package com.google.samples.apps.nowinandroid.ui.tools.extensions
 
 import io.github.kakaocup.compose.node.action.NodeActions
 import androidx.compose.ui.semantics.SemanticsProperties
 import androidx.compose.ui.semantics.getOrNull
+import com.google.samples.apps.nowinandroid.ui.tools.NameHierarchy
 
 val elementNames = mutableMapOf<NodeActions, NameHierarchy>()
 

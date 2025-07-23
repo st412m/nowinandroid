@@ -19,8 +19,8 @@ package com.google.samples.apps.nowinandroid.ui.forYouScreen
 import androidx.compose.ui.semantics.SemanticsNode
 import androidx.compose.ui.test.SemanticsNodeInteractionsProvider
 import com.google.samples.apps.nowinandroid.core.designsystem.C
-import com.google.samples.apps.nowinandroid.ui.tools.setName
-import com.google.samples.apps.nowinandroid.ui.tools.withParent
+import com.google.samples.apps.nowinandroid.ui.tools.extensions.setName
+import com.google.samples.apps.nowinandroid.ui.tools.extensions.withParent
 import io.github.kakaocup.compose.node.element.KNode
 import io.github.kakaocup.compose.node.element.lazylist.KLazyListItemNode
 

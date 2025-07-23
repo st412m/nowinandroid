@@ -22,8 +22,8 @@ import com.google.samples.apps.nowinandroid.MainActivity
 import com.google.samples.apps.nowinandroid.ui.forYouScreen.MainScreen
 import com.google.samples.apps.nowinandroid.ui.searchScreen.SearchScreen
 import com.google.samples.apps.nowinandroid.ui.settingsScreen.SettingsScreen
-import com.google.samples.apps.nowinandroid.ui.tools.actions
-import com.google.samples.apps.nowinandroid.ui.tools.checks
+import com.google.samples.apps.nowinandroid.ui.tools.extensions.actions
+import com.google.samples.apps.nowinandroid.ui.tools.extensions.checks
 import com.google.samples.apps.nowinandroid.ui.tools.interceptors.FailOnlyScreenshotStepInterceptor
 import com.google.samples.apps.nowinandroid.ui.tools.interceptors.SuccessFinaleScreenshotTestInterceptor
 import com.kaspersky.components.alluresupport.interceptors.step.AllureMapperStepInterceptor

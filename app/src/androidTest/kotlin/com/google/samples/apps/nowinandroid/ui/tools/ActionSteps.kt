@@ -16,6 +16,7 @@
 
 package com.google.samples.apps.nowinandroid.ui.tools
 
+import com.google.samples.apps.nowinandroid.ui.tools.extensions.getName
 import io.github.kakaocup.compose.node.action.NodeActions
 import java.util.concurrent.atomic.AtomicReference
 

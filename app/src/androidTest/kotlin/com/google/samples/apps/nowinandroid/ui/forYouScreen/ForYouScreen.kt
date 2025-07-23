@@ -22,9 +22,9 @@ import com.google.samples.apps.nowinandroid.core.designsystem.C
 import com.google.samples.apps.nowinandroid.core.designsystem.LazyListItemPositionSemantics
 import com.google.samples.apps.nowinandroid.core.designsystem.LazyListLengthSemantics
 import com.google.samples.apps.nowinandroid.ui.tools.NamedComposeScreen
-import com.google.samples.apps.nowinandroid.ui.tools.getSize
-import com.google.samples.apps.nowinandroid.ui.tools.invokeAtIndex
-import com.google.samples.apps.nowinandroid.ui.tools.setName
+import com.google.samples.apps.nowinandroid.ui.tools.extensions.getSize
+import com.google.samples.apps.nowinandroid.ui.tools.extensions.invokeAtIndex
+import com.google.samples.apps.nowinandroid.ui.tools.extensions.setName
 import com.kaspersky.components.composesupport.core.KNode
 import io.github.kakaocup.compose.node.element.lazylist.KLazyListNode
 

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.google.samples.apps.nowinandroid.ui.tools
+package com.google.samples.apps.nowinandroid.ui.tools.extensions
 
 import android.content.res.Resources.NotFoundException
 import android.util.Log

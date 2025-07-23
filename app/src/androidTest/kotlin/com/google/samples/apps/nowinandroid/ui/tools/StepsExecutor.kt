@@ -75,7 +75,8 @@ class StepsExecutor(private val testContext: TestContext<*>) {
             try {
                 testContext.device.uiDevice.swipe(startX, startY, startX, clampedEndY, steps)
             } catch (e: Exception) {
-                println("Error with vertical swipe: ${e.message}")
+                testContext.testLogger.e("Error with vertical swipe: ${e.message}")
+                throw RuntimeException("Vertical swipe failed, cannot continue test.", e)
             }
         }
     }
@@ -92,9 +93,10 @@ class StepsExecutor(private val testContext: TestContext<*>) {
             val clampedEndX = endX.coerceIn(0, displayWidth)
 
             try {
-                testContext.device.uiDevice.swipe(startX, startY, endX, clampedEndX, steps)
+                testContext.device.uiDevice.swipe(startX, startY, clampedEndX, startY, steps)
             } catch (e: Exception) {
-                println("Error with horizontal swipe: ${e.message}")
+                testContext.testLogger.e("Error with horizontal swipe: ${e.message}")
+                throw RuntimeException("Horizontal swipe failed, cannot continue test.", e)
             }
         }
     }

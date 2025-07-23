@@ -14,8 +14,11 @@
  * limitations under the License.
  */
 
-package com.google.samples.apps.nowinandroid.ui.tools
+package com.google.samples.apps.nowinandroid.ui.tools.extensions
 
+import com.google.samples.apps.nowinandroid.ui.tools.ActionSteps
+import com.google.samples.apps.nowinandroid.ui.tools.CheckSteps
+import com.google.samples.apps.nowinandroid.ui.tools.StepsExecutor
 import com.kaspersky.kaspresso.testcases.core.testcontext.TestContext
 
 // Отдельные мапы для ActionSteps и CheckSteps чтобы небыло конфликтов

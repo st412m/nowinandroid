@@ -20,7 +20,7 @@ import androidx.compose.ui.test.SemanticsNodeInteractionsProvider
 import androidx.test.platform.app.InstrumentationRegistry
 import com.google.samples.apps.nowinandroid.feature.settings.R
 import com.google.samples.apps.nowinandroid.ui.tools.NamedComposeScreen
-import com.google.samples.apps.nowinandroid.ui.tools.setName
+import com.google.samples.apps.nowinandroid.ui.tools.extensions.setName
 import com.kaspersky.components.composesupport.core.KNode
 
 class SettingsScreen(
