@@ -22,6 +22,11 @@ import java.util.concurrent.atomic.AtomicReference
 class ActionSteps(private val stepsExecutor: StepsExecutor): StepsDSL<ActionSteps>() {
     override val self = this
 
+    fun uiClick(text: String) {
+        stepsExecutor.uiClick(
+            "Taps the element with text '$text'", text
+        )
+    }
     fun click(item: NodeActions){
         stepsExecutor.click(
             "Taps the '${item.getName()}'", item
@@ -31,6 +36,24 @@ class ActionSteps(private val stepsExecutor: StepsExecutor): StepsDSL<ActionStep
     fun scrollTo(item: NodeActions){
         stepsExecutor.scrollTo(
             "Scrolls to the '${item.getName()}'", item
+        )
+    }
+
+    fun swipeVertically(screens: Double, steps: Int, isUp: Boolean = true) {
+        stepsExecutor.swipeVertically(
+            "Performs vertical swipe for '$screens' screens with $steps steps, direction up: $isUp",
+            screens,
+            steps,
+            isUp
+        )
+    }
+
+    fun swipeHorizontally(screens: Double, steps: Int, isRight: Boolean = true) {
+        stepsExecutor.swipeHorizontally(
+            "Performs horizontal swipe for '$screens' screens with $steps steps, direction right: $isRight",
+            screens,
+            steps,
+            isRight
         )
     }
 

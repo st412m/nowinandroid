@@ -17,6 +17,7 @@
 package com.google.samples.apps.nowinandroid.ui.forYouScreen.tests
 
 import androidx.compose.ui.test.ExperimentalTestApi
+import androidx.compose.ui.test.hasText
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.test.uiautomator.UiSelector
 import com.google.samples.apps.nowinandroid.MainActivity
@@ -84,7 +85,9 @@ class ForYouScreenTests : TestCase(
             val index = 1
             val selectedTopic = TopicNames.entries[index]
 
-            device.uiDevice.findObject(UiSelector().text("Allow")).click()
+            actions{
+                uiClick("Allow")
+            }
             topicSelectionList {
                 topicSelectionsItems(index) {
                     actions {
@@ -105,22 +108,28 @@ class ForYouScreenTests : TestCase(
                 }
                 forYouScreen {
                     composeTestRule.waitForIdle()
-                    newsFeedCards(1) {
-                        val tag = topicTagButton(selectedTopic)
-                        checks {
-                            isDisplayed(cardImage)
-                            isDisplayed(bookmarkButton)
-                        }
-                        actions {
-                            click(bookmarkButton)
-                            composeTestRule.waitForIdle()
-                        }
-                        checks {
-                            isDisplayed(tag)
-                        }
-                        actions {
-                            click(tag)
-                            composeTestRule.waitForIdle()
+                    val listSize = getNewsFeedCardsLength()
+                    val indices = if (listSize > 0) {
+                        listOf(0, listSize / 2, listSize - 1)
+                    } else {
+                        listOf(0)
+                    }
+                    indices.forEach { index ->
+                        newsFeedCards(0) {
+                            val tag = topicTagButton(selectedTopic)
+                            checks {
+                                isDisplayed(cardImage)
+                                isDisplayed(bookmarkButton)
+                                isDisplayed(cardTitle)
+                                isDisplayed(cardDate)
+                                isDisplayed(cardShortDescription)
+                            }
+                            actions {
+                                swipeVertically(0.2, 10)
+                            }
+                            checks {
+                                isDisplayed(tag)
+                            }
                         }
                     }
                 }

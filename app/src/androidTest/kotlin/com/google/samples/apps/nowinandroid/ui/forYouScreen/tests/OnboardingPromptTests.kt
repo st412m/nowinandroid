@@ -18,9 +18,9 @@ package com.google.samples.apps.nowinandroid.ui.forYouScreen.tests
 
 import androidx.compose.ui.test.ExperimentalTestApi
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
-import androidx.test.uiautomator.UiSelector
 import com.google.samples.apps.nowinandroid.MainActivity
 import com.google.samples.apps.nowinandroid.ui.forYouScreen.MainScreen
+import com.google.samples.apps.nowinandroid.ui.tools.actions
 import com.google.samples.apps.nowinandroid.ui.tools.checks
 import com.google.samples.apps.nowinandroid.ui.tools.interceptors.FailOnlyScreenshotStepInterceptor
 import com.google.samples.apps.nowinandroid.ui.tools.interceptors.SuccessFinaleScreenshotTestInterceptor
@@ -53,9 +53,9 @@ class OnboardingPromptTests : TestCase(
                 SuccessFinaleScreenshotTestInterceptor(screenshots),
                 VideoRecordingInterceptor(videos),
                 DumpLogcatTestInterceptor(logcatDumper),
-            )
+            ),
         )
-    }
+    },
 ) {
     @get:Rule
     val composeTestRule = createAndroidComposeRule<MainActivity>()
@@ -72,9 +72,9 @@ class OnboardingPromptTests : TestCase(
     @Test
     fun onboardingPromptTest() {
         run {
-            device.uiDevice.findObject(
-                UiSelector().text("Allow"),
-            ).click()
+            actions {
+                uiClick("Allow")
+            }
             mainScreen {
                 checks {
                     isDisplayed(textTitle)

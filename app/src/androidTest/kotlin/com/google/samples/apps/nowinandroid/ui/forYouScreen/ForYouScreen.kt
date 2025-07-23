@@ -22,6 +22,7 @@ import com.google.samples.apps.nowinandroid.core.designsystem.C
 import com.google.samples.apps.nowinandroid.core.designsystem.LazyListItemPositionSemantics
 import com.google.samples.apps.nowinandroid.core.designsystem.LazyListLengthSemantics
 import com.google.samples.apps.nowinandroid.ui.tools.NamedComposeScreen
+import com.google.samples.apps.nowinandroid.ui.tools.getSize
 import com.google.samples.apps.nowinandroid.ui.tools.invokeAtIndex
 import com.google.samples.apps.nowinandroid.ui.tools.setName
 import com.kaspersky.components.composesupport.core.KNode
@@ -64,6 +65,10 @@ class ForYouScreen(semanticsProvider: SemanticsNodeInteractionsProvider) :
 
     fun newsFeedCards(index: Int, function: NewsFeedCards.() -> Unit) {
         list.invokeAtIndex(index, function)
+    }
+
+    fun getNewsFeedCardsLength(): Int {
+        return list.getSize()
     }
 }
 

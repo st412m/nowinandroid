@@ -18,7 +18,6 @@ package com.google.samples.apps.nowinandroid.ui.forYouScreen.tests
 
 import androidx.compose.ui.test.ExperimentalTestApi
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
-import androidx.test.uiautomator.UiSelector
 import com.google.samples.apps.nowinandroid.MainActivity
 import com.google.samples.apps.nowinandroid.ui.forYouScreen.MainScreen
 import com.google.samples.apps.nowinandroid.ui.searchScreen.SearchScreen
@@ -77,9 +76,9 @@ class TopAppBarTests : TestCase(
     @Test
     fun topAppBarVisibilityTest() {
         run {
-            device.uiDevice.findObject(
-                UiSelector().text("Allow"),
-            ).click()
+            actions {
+                uiClick("Allow")
+            }
             mainScreen {
                 checks {
                     isDisplayed(searchButton)
@@ -98,10 +97,9 @@ class TopAppBarTests : TestCase(
     @Test
     fun searchButtonTransitionTest() {
         run {
-            device.uiDevice.findObject(
-                UiSelector().text("Allow"),
-            ).click()
-
+            actions {
+                uiClick("Allow")
+            }
             mainScreen {
                 actions {
                     click(searchButton)
@@ -118,10 +116,9 @@ class TopAppBarTests : TestCase(
     @Test
     fun settingButtonTransitionTest() {
         run {
-            device.uiDevice.findObject(
-                UiSelector().text("Allow"),
-            ).click()
-
+            actions {
+                uiClick("Allow")
+            }
             mainScreen {
                 actions {
                     click(settingButton)

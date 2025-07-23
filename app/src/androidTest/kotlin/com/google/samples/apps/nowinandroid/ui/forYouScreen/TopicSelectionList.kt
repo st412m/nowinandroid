@@ -21,6 +21,7 @@ import androidx.compose.ui.test.SemanticsNodeInteractionsProvider
 import com.google.samples.apps.nowinandroid.core.designsystem.LazyListItemPositionSemantics
 import com.google.samples.apps.nowinandroid.core.designsystem.LazyListLengthSemantics
 import com.google.samples.apps.nowinandroid.ui.tools.NamedComposeScreen
+import com.google.samples.apps.nowinandroid.ui.tools.getSize
 import com.google.samples.apps.nowinandroid.ui.tools.invokeAtIndex
 import com.google.samples.apps.nowinandroid.ui.tools.setName
 import io.github.kakaocup.compose.node.element.lazylist.KLazyListNode
@@ -51,5 +52,9 @@ class TopicSelectionList(semanticsProvider: SemanticsNodeInteractionsProvider) :
 
     fun topicSelectionsItems(index: Int, function: TopicSelectionsListItems.() -> Unit) {
         list.invokeAtIndex(index, function)
+    }
+
+    fun getTopicSelectionLength(): Int {
+        return list.getSize()
     }
 }

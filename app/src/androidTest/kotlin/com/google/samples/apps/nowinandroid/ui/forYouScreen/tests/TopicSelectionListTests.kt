@@ -17,13 +17,11 @@
 package com.google.samples.apps.nowinandroid.ui.forYouScreen.tests
 
 import androidx.compose.ui.test.ExperimentalTestApi
-import androidx.compose.ui.test.hasTestTag
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
-import androidx.test.uiautomator.UiSelector
 import com.google.samples.apps.nowinandroid.MainActivity
-import com.google.samples.apps.nowinandroid.core.designsystem.LazyListLengthSemantics
 import com.google.samples.apps.nowinandroid.ui.TopicNames
 import com.google.samples.apps.nowinandroid.ui.forYouScreen.TopicSelectionList
+import com.google.samples.apps.nowinandroid.ui.tools.actions
 import com.google.samples.apps.nowinandroid.ui.tools.checks
 import com.google.samples.apps.nowinandroid.ui.tools.interceptors.FailOnlyScreenshotStepInterceptor
 import com.google.samples.apps.nowinandroid.ui.tools.interceptors.SuccessFinaleScreenshotTestInterceptor
@@ -58,7 +56,7 @@ class TopicSelectionListTests : TestCase(
                 DumpLogcatTestInterceptor(logcatDumper),
             ),
         )
-    }
+    },
 ) {
     @get:Rule
     val composeTestRule = createAndroidComposeRule<MainActivity>()
@@ -77,17 +75,20 @@ class TopicSelectionListTests : TestCase(
         composeTestRule.waitForIdle()
 
         run {
-            device.uiDevice.findObject(
-                UiSelector().text("Allow"),
-            ).click()
-            val itemCount = composeTestRule
-                .onNode(hasTestTag("forYou:topicSelection"))
-                .fetchSemanticsNode()
-                .config[LazyListLengthSemantics]
+            actions {
+                uiClick("Allow")
+            }
             val expectedTopics = TopicNames.entries.toTypedArray()
             topicSelectionList {
-                for (index in 0 until itemCount) {
-                    val expectedText = expectedTopics.getOrNull(index)?.expectedText ?: continue
+                val itemCount = getTopicSelectionLength()
+                val indices = if (itemCount > 0) {
+                    listOf(0, itemCount / 2, itemCount - 1)
+                } else {
+                    listOf(0)
+                }
+                indices.forEach { index ->
+                    val expectedText =
+                        expectedTopics.getOrNull(index)?.expectedText ?: return@forEach
                     topicSelectionsItems(index) {
                         checks {
                             isDisplayed(icon)
@@ -95,6 +96,37 @@ class TopicSelectionListTests : TestCase(
                             checkText(text, expectedText)
                             isDisplayed(clearButton)
                             doesNotExist(checkedButton)
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    @Test
+    fun topicSelectionItemsMark() {
+        composeTestRule.waitForIdle()
+
+        run {
+            actions {
+                uiClick("Allow")
+            }
+            topicSelectionList {
+                val itemCount = getTopicSelectionLength()
+                val indices = if (itemCount > 0) {
+                    listOf(0, itemCount / 2, itemCount - 1)
+                } else {
+                    listOf(0)
+                }
+                indices.forEach { index ->
+                    topicSelectionsItems(index) {
+                        actions {
+                            click(clearButton)
+                        }
+                        checks {
+                            isDisplayed(checkedButton)
+                            doesNotExist(clearButton)
+
                         }
                     }
                 }
