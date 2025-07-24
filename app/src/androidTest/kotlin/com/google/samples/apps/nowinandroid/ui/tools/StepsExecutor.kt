@@ -131,6 +131,18 @@ class StepsExecutor(private val testContext: TestContext<*>) {
             item.assertIsEnabled()
         }
     }
+
+    fun isChecked(step: String, item: NodeAssertions) {
+        execute(step){
+            item.assertIsOn()
+        }
+    }
+
+    fun isNotChecked(step: String, item: NodeAssertions) {
+        execute(step){
+            item.assertIsOff()
+        }
+    }
 // Assertions end
     fun <T> extractSemantic(
         step: String,

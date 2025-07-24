@@ -53,4 +53,17 @@ class CheckSteps(private val stepsExecutor: StepsExecutor): StepsDSL<CheckSteps>
 
         )
     }
+
+    fun isChecked(item: NodeAssertions){
+        stepsExecutor.isChecked(
+            "Checks that the '${(item as NodeActions).getName()}' is checked", item
+        )
+    }
+
+    fun isNotChecked(item: NodeAssertions){
+        stepsExecutor.isNotChecked(
+            "Checks that the '${(item as NodeActions).getName()}' is not checked", item
+        )
+
+    }
 }

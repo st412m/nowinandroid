@@ -122,6 +122,16 @@ class ForYouScreenTests : TestCase(
                                 isDisplayed(cardShortDescription)
                             }
                             actions {
+                                click(bookmarkButton)
+                                checks {
+                                    isChecked(bookmarkButton)
+                                }
+                                click(bookmarkButton)
+                                checks {
+                                    isNotChecked(bookmarkButton)
+                                }
+                            }
+                            actions {
                                 swipeVertically(0.2, 10)
                             }
                             checks {
