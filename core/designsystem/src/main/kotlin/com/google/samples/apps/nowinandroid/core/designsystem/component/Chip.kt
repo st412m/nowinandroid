@@ -27,7 +27,9 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.unit.dp
+import com.google.samples.apps.nowinandroid.core.designsystem.C
 import com.google.samples.apps.nowinandroid.core.designsystem.icon.NiaIcons
 import com.google.samples.apps.nowinandroid.core.designsystem.theme.NiaTheme
 
@@ -48,7 +50,13 @@ fun NiaFilterChip(
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
     label: @Composable () -> Unit,
+    testTag: String? = null,  // my testTag
 ) {
+    val finalModifier = if (testTag != null) {
+        modifier.then(Modifier.testTag(testTag)) // add tag to modifier
+    } else {
+        modifier
+    }
     FilterChip(
         selected = selected,
         onClick = { onSelectedChange(!selected) },
@@ -57,7 +65,7 @@ fun NiaFilterChip(
                 label()
             }
         },
-        modifier = modifier,
+        modifier = finalModifier,
         enabled = enabled,
         leadingIcon = if (selected) {
             {
@@ -111,9 +119,16 @@ fun NiaFilterChip(
 fun ChipPreview() {
     NiaTheme {
         NiaBackground(modifier = Modifier.size(80.dp, 20.dp)) {
-            NiaFilterChip(selected = true, onSelectedChange = {}) {
-                Text("Chip")
-            }
+            NiaFilterChip(
+                selected = true,
+                onSelectedChange = {},
+                modifier = Modifier,
+                enabled = true,
+                testTag = C.FOLLOWING_CHIP, // testTag
+                label = {
+                    Text("Chip")
+                },
+            )
         }
     }
 }
