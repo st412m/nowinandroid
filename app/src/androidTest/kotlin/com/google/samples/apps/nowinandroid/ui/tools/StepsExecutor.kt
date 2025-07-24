@@ -27,16 +27,6 @@ class StepsExecutor(private val testContext: TestContext<*>) {
 
     private var nextStepName: String = ""
 
-    private fun execute(step: String, actions: (StepInfo) -> Unit) {
-        val stepName = nextStepName.ifBlank { step }
-        testContext.step(step, actions)
-        nextStepName = ""
-    }
-
-    fun setNextStepName(name: String) {
-        nextStepName = name
-    }
-
     // Actions start
 
     fun uiClick(step: String, text: String) {
@@ -144,6 +134,17 @@ class StepsExecutor(private val testContext: TestContext<*>) {
         }
     }
 // Assertions end
+
+    private fun execute(step: String, actions: (StepInfo) -> Unit) {
+        val stepName = nextStepName.ifBlank { step }
+        testContext.step(step, actions)
+        nextStepName = ""
+    }
+
+    fun setNextStepName(name: String) {
+        nextStepName = name
+    }
+
     fun <T> extractSemantic(
         step: String,
         item: NodeActions,
