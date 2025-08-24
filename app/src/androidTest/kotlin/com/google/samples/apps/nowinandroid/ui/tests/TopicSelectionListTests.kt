@@ -80,15 +80,10 @@ class TopicSelectionListTests : TestCase(
             }
             val expectedTopics = TopicNames.entries.toTypedArray()
             topicSelectionList {
-                val itemCount = getTopicSelectionLength()
-                val indices = if (itemCount > 0) {
-                    listOf(0, itemCount / 2, itemCount - 1)
-                } else {
-                    listOf(0)
-                }
-                indices.forEach { index ->
-                    val expectedText =
-                        expectedTopics.getOrNull(index)?.expectedText ?: return@forEach
+                topicSelectionForEachIndex(::getTopicSelectionLength) { index ->
+                    val expectedText = expectedTopics.getOrNull(index)?.expectedText
+                        ?: return@topicSelectionForEachIndex
+
                     topicSelectionsItems(index) {
                         checks {
                             isDisplayed(icon)
@@ -112,13 +107,7 @@ class TopicSelectionListTests : TestCase(
                 uiClick("Allow")
             }
             topicSelectionList {
-                val itemCount = getTopicSelectionLength()
-                val indices = if (itemCount > 0) {
-                    listOf(0, itemCount / 2, itemCount - 1)
-                } else {
-                    listOf(0)
-                }
-                indices.forEach { index ->
+                topicSelectionForEachIndex(::getTopicSelectionLength) { index ->
                     topicSelectionsItems(index) {
                         actions {
                             click(clearButton)
@@ -126,7 +115,6 @@ class TopicSelectionListTests : TestCase(
                         checks {
                             isDisplayed(checkedButton)
                             doesNotExist(clearButton)
-
                         }
                     }
                 }

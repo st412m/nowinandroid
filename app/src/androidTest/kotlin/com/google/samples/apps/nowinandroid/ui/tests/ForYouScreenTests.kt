@@ -85,6 +85,7 @@ class ForYouScreenTests : TestCase(
             actions {
                 uiClick("Allow")
             }
+
             topicSelectionList {
                 topicSelectionsItems(index) {
                     actions {
@@ -103,16 +104,12 @@ class ForYouScreenTests : TestCase(
                         composeTestRule.waitForIdle()
                     }
                 }
+
                 forYouScreen {
                     composeTestRule.waitForIdle()
-                    val listSize = getNewsFeedCardsLength()
-                    val indices = if (listSize > 0) {
-                        listOf(0, listSize / 2, listSize - 1)
-                    } else {
-                        listOf(0)
-                    }
-                    indices.forEach { _ ->
-                        newsFeedCards(0) {
+
+                    newsCardsForEachIndex(::getNewsFeedCardsLength) { cardIndex ->
+                        newsFeedCards(cardIndex) {
                             val tag = topicTagButton(selectedTopic)
                             checks {
                                 isDisplayed(cardImage)
@@ -134,5 +131,4 @@ class ForYouScreenTests : TestCase(
         }
     }
 }
-
 

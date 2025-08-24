@@ -70,6 +70,19 @@ class ForYouScreen(semanticsProvider: SemanticsNodeInteractionsProvider) :
     fun getNewsFeedCardsLength(): Int {
         return list.getSize()
     }
+
+    fun newsCardsForEachIndex(
+        getLength: () -> Int,
+        block: (index: Int) -> Unit
+    ) {
+        val listSize = getLength()
+        val indices = if (listSize > 0) {
+            listOf(0, listSize / 2, listSize - 1)
+        } else {
+            listOf(0)
+        }
+        indices.forEach(block)
+    }
 }
 
 

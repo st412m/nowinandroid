@@ -57,4 +57,17 @@ class TopicSelectionList(semanticsProvider: SemanticsNodeInteractionsProvider) :
     fun getTopicSelectionLength(): Int {
         return list.getSize()
     }
+
+    fun topicSelectionForEachIndex(
+        getLength: () -> Int,
+        block: (index: Int) -> Unit
+    ) {
+        val itemCount = getLength()
+        val indices = if (itemCount > 0) {
+            listOf(0, itemCount / 2, itemCount - 1)
+        } else {
+            listOf(0)
+        }
+        indices.forEach(block)
+    }
 }
