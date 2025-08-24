@@ -20,8 +20,10 @@ import androidx.compose.ui.test.ExperimentalTestApi
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import com.google.samples.apps.nowinandroid.MainActivity
 import com.google.samples.apps.nowinandroid.ui.TopicNames
+import com.google.samples.apps.nowinandroid.ui.followingScreen.FollowingScreen
 import com.google.samples.apps.nowinandroid.ui.forYouScreen.ForYouScreen
 import com.google.samples.apps.nowinandroid.ui.forYouScreen.MainScreen
+import com.google.samples.apps.nowinandroid.ui.forYouScreen.NewsFeedCards
 import com.google.samples.apps.nowinandroid.ui.forYouScreen.TopicSelectionList
 import com.google.samples.apps.nowinandroid.ui.tools.extensions.actions
 import com.google.samples.apps.nowinandroid.ui.tools.extensions.checks
@@ -39,7 +41,7 @@ import io.github.kakaocup.compose.rule.KakaoComposeTestRule
 import org.junit.Rule
 import org.junit.Test
 
-class ForYouScreenTests : TestCase(
+class FollowingScreenTest : TestCase(
     Kaspresso.Builder.withComposeSupport().apply {
         Kaspresso.Builder.withForcedAllureSupport()
         stepWatcherInterceptors.removeIf {
@@ -65,6 +67,7 @@ class ForYouScreenTests : TestCase(
     val topicSelectionList = TopicSelectionList(composeTestRule)
     val forYouScreen = ForYouScreen(composeTestRule)
     val mainScreen = MainScreen(composeTestRule)
+    val followingScreen = FollowingScreen(composeTestRule)
 
     @get:Rule
     val kakaoComposeTestRule = KakaoComposeTestRule(
@@ -75,7 +78,7 @@ class ForYouScreenTests : TestCase(
     @OptIn(ExperimentalTestApi::class)
 
     @Test
-    fun newsCardTest() {
+    fun followingScreenUpperToolbarChecksTest() {
         composeTestRule.waitForIdle()
 
         run {
@@ -85,7 +88,6 @@ class ForYouScreenTests : TestCase(
             actions {
                 uiClick("Allow")
             }
-
             topicSelectionList {
                 topicSelectionsItems(index) {
                     actions {
@@ -93,43 +95,91 @@ class ForYouScreenTests : TestCase(
                         composeTestRule.waitForIdle()
                     }
                 }
+            }
 
-                composeTestRule.waitForIdle()
-                mainScreen {
-                    checks {
-                        isEnable(doneButton)
-                    }
+            composeTestRule.waitForIdle()
+            mainScreen {
+                checks {
+                    isEnable(doneButton)
+                }
+                actions {
+                    click(doneButton)
+                    composeTestRule.waitForIdle()
+                }
+            }
+            forYouScreen {
+                newsFeedCards(0) {
+                    val tag = topicTagButton(selectedTopic)
                     actions {
-                        click(doneButton)
+                        swipeVertically(0.2, 10)
+                        click(tag)
+                    }
+                }
+            }
+            followingScreen {
+                checks {
+                    isDisplayed(backButton)
+                    isDisplayed(filterChip)
+                    checkText(filterChipLabel, "FOLLOWING")
+                }
+            }
+        }
+    }
+
+    @Test
+    fun followingScreenUpperToolbarActionsTest() {
+        composeTestRule.waitForIdle()
+
+        run {
+            val index = 1
+            val selectedTopic = TopicNames.entries[index]
+
+            actions {
+                uiClick("Allow")
+            }
+            topicSelectionList {
+                topicSelectionsItems(index) {
+                    actions {
+                        click(clearButton)
                         composeTestRule.waitForIdle()
                     }
                 }
+            }
 
-                forYouScreen {
+            composeTestRule.waitForIdle()
+            mainScreen {
+                checks {
+                    isEnable(doneButton)
+                }
+                actions {
+                    click(doneButton)
                     composeTestRule.waitForIdle()
-
-                    newsCardsForEachIndex(::getNewsFeedCardsLength) { cardIndex ->
-                        newsFeedCards(cardIndex) {
-                            val tag = topicTagButton(selectedTopic)
-                            checks {
-                                isDisplayed(cardImage)
-                                isDisplayed(bookmarkButton)
-                                isDisplayed(cardTitle)
-                                isDisplayed(cardDate)
-                                isDisplayed(cardShortDescription)
-                            }
-                            actions {
-                                swipeVertically(0.2, 10)
-                            }
-                            checks {
-                                isDisplayed(tag)
-                            }
-                        }
+                }
+            }
+            forYouScreen {
+                newsFeedCards(0) {
+                    val tag = topicTagButton(selectedTopic)
+                    actions {
+                        swipeVertically(0.2, 10)
+                        click(tag)
                     }
+                }
+            }
+            followingScreen {
+                actions {
+                    click(filterChip)
+                    checks {
+                        checkText(filterChipLabel, "NOT FOLLOWING")
+                    }
+                    click(backButton)
+                }
+            }
+            mainScreen {
+                checks {
+                    isDisplayed(textTitle)
+                    checkText(textTitle, "What are you interested in?")
                 }
             }
         }
     }
 }
-
-

@@ -35,4 +35,6 @@ object C {
     const val NEWS_RESOURCE_CARD_SHORT_DESCRIPTION = "newsResourceCardShortDescription"
     const val SCROLLBAR = "scrollbar"
     const val BOOKMARK_BUTTON = "bookmarkButton"
+    const val FOLLOWING_CHIP = "followingChip"
+    const val FOLLOWING_CHIP_LABEL = "followingChipLabel"
 }

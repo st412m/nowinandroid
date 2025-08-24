@@ -60,7 +60,7 @@ class NewsFeedCards(
         }.setName(withParent("Bookmark button"))
     }
 
-    val topicTagButtons by lazy {
+    val topicTagButton by lazy {
         TopicNames.entries.associateWith { topic ->
             child<KNode> {
                 hasTestTag("topicTag:${topic.id}")
